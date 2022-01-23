@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container">
+  <a class="navbar-brand" routerLink="/"><h1>Registro de Personas</h1></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav " style="margin-left: auto;">
+        <li  class="nav-item active">
+          <a class="nav-link" routerLink="/listarPersonas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Listar</a>
+        </li>
+        <li *ngIf=logedUser class="nav-item active">
+          <a class="nav-link" routerLink="/argegarPersonas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Agregar</a>
+        </li>
+        <button (click)="logout()" >logout</button>
+      </ul>
+    </div>
+  </div>
+</div>
+</nav>

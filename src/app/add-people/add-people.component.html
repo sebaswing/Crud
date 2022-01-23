@@ -1,0 +1,20 @@
+<div class="container col-md-6">
+    <div class="card" >
+        <div class="card-header">
+        <h3>Agregar Personas</h3>
+        </div>
+        <div class="card-body ">
+        <form>
+            <div class="form-group">
+                <label for="">Nombre:</label>
+                <input #nombre type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Apellido:</label>
+                <input #apellido type="text" class="form-control">
+            </div>
+            <button (click)="Guardar(nombre.value,apellido.value)" class="btn btn-outline-danger">Guardar</button>
+        </form>
+        </div>
+    </div>
+</div>
