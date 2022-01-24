@@ -11,10 +11,11 @@
         <li  class="nav-item active">
           <a class="nav-link" routerLink="/listarPersonas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Listar</a>
         </li>
-        <li *ngIf=logedUser class="nav-item active">
+        <li *ngIf=islogged() class="nav-item active">
           <a class="nav-link" routerLink="/argegarPersonas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Agregar</a>
         </li>
-        <button (click)="logout()" >logout</button>
+        <button (click)="logout()" class="btn btn-outline-success" >logout</button>
+
       </ul>
     </div>
   </div>
