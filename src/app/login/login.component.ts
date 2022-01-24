@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  model:login={user:"juan",password:"123"};
+  model:login={user:"juan",password:"123",userType:"Admin"};
   pass:string;
   email:string;
   approved=false;
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       this.authService.logout();  
   }
   checkLogin(){
-    if(this.email===this.model.user && this.pass=== this.model.password &&this.approved==false){
+    if(this.email===this.model.user && this.pass=== this.model.password && this.approved==false){
         console.log("Login successful");  
         //this.authService.authLogin(this.model);  
         localStorage.setItem('isLoggedIn', "true");  
