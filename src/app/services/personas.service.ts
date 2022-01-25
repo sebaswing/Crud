@@ -14,7 +14,7 @@ export class PersonasService {
     return this.http.get<Persona>(`${this.url}/listar`);
   }
   getPersonasL(){
-    return this.http.get<Persona>(`${this.url}/listarTodos`);
+    return this.http.get<Persona>(`${this.url}/listarTodos/`+"jul");
   }
   createPersona(persona:Persona){
     return this.http.post<Persona>(this.url,persona);
