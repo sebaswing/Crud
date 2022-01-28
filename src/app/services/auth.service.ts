@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Persona } from '../Modelo/Persona';
 import{User}from '../Modelo/User';
 
 @Injectable({
@@ -8,7 +9,6 @@ import{User}from '../Modelo/User';
 export class AuthService {
 
   constructor(private http:HttpClient) { }
-
 
   url='http://localhost:8080/users';  
   checkLog(username:String){
@@ -19,4 +19,8 @@ export class AuthService {
     localStorage.setItem('isLoggedIn','false');    
     localStorage.removeItem('token');    
     }  
+
+    createUser(user:User){
+      return this.http.post<User>(this.url,user);
+    }
 }

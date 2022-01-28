@@ -9,6 +9,11 @@ html {
     height: 100vh;
   }
   
+  p{
+    background-color: #0d0d0d;
+    color: #dce8f1;
+  }
+  
   a {
     color: #92badd;
     display:inline-block;

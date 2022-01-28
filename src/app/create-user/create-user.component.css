@@ -39,6 +39,22 @@ html {
     min-height: 100%;
     padding: 20px;
   }
+
+  p{
+    background-color: #0d0d0d;
+    color: #d9dee2;
+  }
+
+  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
   
   #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;

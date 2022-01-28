@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../Modelo/User';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-create-user',
@@ -12,7 +14,7 @@ export class CreateUserComponent implements OnInit {
   username:string;
   dni:number;
   email:string;
-  constructor() { }
+  constructor(private route:Router,private service:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -20,9 +22,16 @@ export class CreateUserComponent implements OnInit {
   guardarUser(){
     if(this.validarUser()){
       let usuarioGuardar = this.cargarUser();
+      this.service.createUser(usuarioGuardar)
+      .subscribe(
+        usuario=>{
+          alert("se creo el usuario con exito")
+          this.route.navigate(["login"]);
+        }
+      )
     }
     else{
-      alert("no se puede guardar");
+      alert("error creando el usuario intente de nuevo");
     }
   }
 
