@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddPeopleComponent } from './add-people/add-people.component';
 import { AppComponent } from './app.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 import { EditPeopleComponent } from './edit-people/edit-people.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path:'refresh',
     component:AppComponent
+  },
+  {
+    path:'createUser',
+    component:CreateUserComponent
   }
 ];
 

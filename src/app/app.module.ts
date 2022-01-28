@@ -10,7 +10,8 @@ import {PersonasService} from '../app/services/personas.service'
 import {HttpClientModule} from '@angular/common/http';
 import { EditPeopleComponent } from './edit-people/edit-people.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './guards/auth.guard'; 
+import { AuthGuard } from './guards/auth.guard';
+import { CreateUserComponent } from './create-user/create-user.component'; 
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthGuard } from './guards/auth.guard';
     AddPeopleComponent,
     EditPeopleComponent,
     LoginComponent,
+    CreateUserComponent,
   ],
   imports: [
     BrowserModule,
