@@ -23,4 +23,8 @@ export class AuthService {
     createUser(user:User){
       return this.http.post<User>(this.url,user);
     }
+
+    checkUser(username:String){
+      return this.http.get<User>(`${this.url}/userExist/`+username);     
+    }
 }
