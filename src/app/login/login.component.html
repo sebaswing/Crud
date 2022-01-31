@@ -12,11 +12,23 @@
     </div>
 
     <!-- Login Form -->
-    <form>
+    <form (ngSubmit)="checkLogin(form)" #form="ngForm">
       <p>Ingresa a tu cuenta</p>
-      <input type="email" id="login" class="fadeIn second" name="name" placeholder="login" [(ngModel)]="email" >
-      <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password"[(ngModel)]="pass" >
-      <input (click)="checkLogin()" type="submit" class="fadeIn fourth" value="Log In">
+      <input type="email" id="login" class="fadeIn second" name="user" placeholder="login" [(ngModel)]="email" required #username="ngModel">
+      <div class="error" *ngIf="username.invalid && (username.dirty || username.touched)" style="color:red">
+        <div *ngIf="username.errors.required">username is required.</div>
+      </div>
+      <input  type="password" id="password" class="fadeIn third" name="pass" placeholder="password"[(ngModel)]="pass" required #password="ngModel">
+      <!--Mensaje de validacion para que escriba algo -->
+      <div class="error" *ngIf="password.invalid && (password.dirty || password.touched)" style="color:red"> 
+        <div *ngIf="password.errors.required">Password is required.</div>
+      </div>
+      <!--Mensaje de validacion para un usuario que no existe -->
+      <div *ngIf="!aproved" class="error alert alert-danger mt-3"  style="color:red"> 
+        <div >usuario o contraseña incorrectos.</div>
+      </div>
+       <!--botón --> 
+      <input  type="submit" class="fadeIn fourth" value="Log In" [disabled]="!form.valid">
     </form>
     <a class="nav-link" routerLink="/createUser" routerLinkActive="active"><i class="fas fa-gamepad"></i>Crear Usuario</a>
   </div>

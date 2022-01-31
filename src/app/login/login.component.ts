@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service' 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms'; 
 import { User } from '../Modelo/User';
 
 @Component({
@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   encontrado:User=new User();
   approved=false;
   message: string;  
+  aproved=true;
   returnUrl='/listarPersonas';  
   constructor(  
     private router : Router,  
@@ -27,22 +28,21 @@ export class LoginComponent implements OnInit {
       this.pass=''; 
       this.authService.logout();  
   }
-  checkLogin(){
+  checkLogin(form:NgForm){
       this.authService.checkLog(this.email)
       .subscribe(
         usuario=>{
           this.encontrado=usuario;
-          if(this.encontrado.username===this.email && this.encontrado.password===this.pass && this.approved==false)
-          {
-            console.log("Login successful");  
-            // this.authService.authLogin(this.model);  
-            localStorage.setItem('isLoggedIn', "true");  
-            localStorage.setItem('token', this.encontrado.username);  
-            this.router.navigate([this.returnUrl]); 
+          if(this.encontrado!=null && this.approved==false && this.encontrado.username===this.email && this.encontrado.password==this.pass){
+              console.log("Login successful");  
+              // this.authService.authLogin(this.model);  
+              localStorage.setItem('isLoggedIn', "true");  
+              localStorage.setItem('token', this.encontrado.username);  
+              this.router.navigate([this.returnUrl]); 
           }
           else
           {
-            alert("usuario o contraseña incorrecto"); 
+            this.aproved=false;
           } 
       })   
   }
