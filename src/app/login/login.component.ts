@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   approved=false;
   message: string;  
   aproved=true;
-  returnUrl='';  
+  returnUrl='/listarPersonas';  
   constructor(  
     private router : Router,  
     private authService : AuthService  ) { 
