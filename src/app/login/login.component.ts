@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   approved=false;
   message: string;  
   aproved=true;
-  returnUrl='/listarPersonas';  
+  returnUrl='';  
   constructor(  
     private router : Router,  
     private authService : AuthService  ) { 
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         usuario=>{
           this.encontrado=usuario;
-          if(this.encontrado!=null && this.approved==false && this.encontrado.username===this.email && this.encontrado.password==this.pass){
+          if(this.approved==false && this.encontrado!=null  && this.encontrado.username===this.email && this.encontrado.password==this.pass ){
               console.log("Login successful");  
               // this.authService.authLogin(this.model);  
               localStorage.setItem('isLoggedIn', "true");  

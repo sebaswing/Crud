@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../Modelo/User';
 import { AuthService } from '../services/auth.service';
@@ -14,6 +15,8 @@ export class CreateUserComponent implements OnInit {
   username:string;
   dni:number;
   email:string;
+  passwordmismatch=false;
+  userExists=false;
   encontrado:User=new User();
   us:User=new User();
   constructor(private route:Router,private service:AuthService) { }
@@ -32,13 +35,18 @@ export class CreateUserComponent implements OnInit {
       )
   }
 
-  buscarUser():void{
+  buscarUser(form:NgForm):void{
     this.service.checkUser(this.username)
     .subscribe(
       usuario=>{ 
         this.encontrado=usuario;
         if (this.encontrado!=null || this.pass!=this.pass2){
-          alert('error al guardar el usuario');
+          if(this.encontrado!=null){
+            this.userExists=true;
+          }          
+          if(this.pass!=this.pass2){
+            this.passwordmismatch=true;
+          }
         }
         else {
           this.guardarUser(this.cargarUser());

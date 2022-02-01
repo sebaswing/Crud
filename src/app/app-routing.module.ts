@@ -53,10 +53,12 @@ export class AppRoutingModule {
  }
 
 function checkbasic(): string  {
-  if(localStorage.getItem('isLoggedIn') == "true"){
-    return "refresh";
+  if(localStorage.getItem('isLoggedIn') === "false"){
+    return "login";
   }
-  else  
-  return "login";
+  else  {
+  return "refresh";
+  console.log(localStorage.getItem('isLoggedIn') === "false");
+  }
 }
 

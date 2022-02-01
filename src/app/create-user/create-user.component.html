@@ -12,14 +12,35 @@
     </div>
 
     <!-- Login Form -->
-    <form>
+    <form (ngSubmit)="buscarUser(form)" #form="ngForm">
       <p>Crea tu usuario</p>
-      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" [(ngModel)]="username" >
-      <input type="number" id="dni"  class="fadeIn second" name="dni" placeholder="dni" [(ngModel)]="dni" >
-      <input type="email" id="email" class="fadeIn second" name="name" placeholder="email" [(ngModel)]="email" >
-      <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password"[(ngModel)]="pass" >
-      <input type="password" id="pass2" class="fadeIn third" name="pass2" placeholder="confirm password"[(ngModel)]="pass2" >
-      <input (click)=buscarUser() type="submit" class="fadeIn fourth" value="Crear">
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" [(ngModel)]="username" required #user="ngModel">
+      <div class="error" *ngIf="user.invalid && (user.dirty || user.touched)">
+        <div *ngIf="user.errors.required">campo usuario es obligatorio.</div>
+      </div>
+      <input type="number" id="dni"  class="fadeIn second" name="dni" placeholder="dni" [(ngModel)]="dni" required #id="ngModel">
+      <div class="error" *ngIf="id.invalid && (id.dirty || id.touched)">
+        <div *ngIf="id.errors.required">campo DNI es obligatorio.</div>
+      </div>
+      <input type="email" id="email" class="fadeIn second" name="name" placeholder="email" [(ngModel)]="email" required #mail="ngModel">
+      <div class="error" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+        <div *ngIf="mail.errors.required">campo mail es obligatorio</div>
+      </div>
+      <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password"[(ngModel)]="pass" required #passw="ngModel">
+      <div class="error" *ngIf="passw.invalid && (passw.dirty || passw.touched)">
+        <div *ngIf="passw.errors.required">campo password es obligatorio</div>
+      </div>
+      <input type="password" id="pass2" class="fadeIn third" name="pass2" placeholder="confirm password"[(ngModel)]="pass2" required #passw2="ngModel">
+      <div class="error" *ngIf="passw2.invalid && (passw2.dirty || passw2.touched)">
+        <div *ngIf="passw2.errors.required">campo password es obligatorio</div>
+      </div>
+      <div class="error" *ngIf="passwordmismatch">
+        <div>las contraseñas no coinciden</div>
+      </div>
+      <div class="error" *ngIf="userExists">
+        <div>el usuario ya existe</div>
+      </div>
+      <input type="submit" class="fadeIn fourth" value="Crear" [disabled]="!form.valid">
     </form>
     <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fas fa-gamepad"></i>Login</a>
   </div>
