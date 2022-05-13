@@ -14,14 +14,19 @@
     <!-- Login Form -->
     <form (ngSubmit)="checkLogin(form)" #form="ngForm">
       <p>Ingresa a tu cuenta</p>
-      <input type="email" id="login" class="fadeIn second" name="user" placeholder="login" [(ngModel)]="email" required #username="ngModel">
-      <div class="error" *ngIf="username.invalid && (username.dirty || username.touched)">
-        <div *ngIf="username.errors.required">campo usuario es obligatorio.</div>
+      <input type="email" id="email" class="fadeIn second" name="name" placeholder="email" [(ngModel)]="email" required #mail="ngModel">
+      <div class="error" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+        <div *ngIf="mail.errors.required">campo mail es obligatorio</div>
       </div>
       <input  type="password" id="password" class="fadeIn third" name="pass" placeholder="password"[(ngModel)]="pass" required #password="ngModel">
       <!--Mensaje de validacion para que escriba algo -->
       <div class="error" *ngIf="password.invalid && (password.dirty || password.touched)" > 
         <div *ngIf="password.errors.required">campo contraseña es obligatorio.</div>
+      </div>
+      <input type="number" id="token"  class="fadeIn second" name="token" placeholder="token" [(ngModel)]="token" required #tokenn="ngModel">
+      <!--Mensaje de validación para el usuario sin dni-->
+      <div class="error" *ngIf="tokenn.invalid && (tokenn.dirty || tokenn.touched)">
+        <div *ngIf="tokenn.errors.required">campo Token es obligatorio.</div>
       </div>
       <!--Mensaje de validacion para un usuario que no existe -->
       <div *ngIf="!aproved" class="error alert alert-danger mt-3"  > 

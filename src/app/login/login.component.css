@@ -44,6 +44,18 @@ html {
     min-height: 100%;
     padding: 20px;
   }
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
   
   #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
@@ -144,7 +156,7 @@ html {
     background-color: #696969;
   }
   
-  input[type=password],input[type=email] {
+  input[type=password],input[type=email],input[type=number] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -165,12 +177,12 @@ html {
     border-radius: 5px 5px 5px 5px;
   }
   
-  input[type=password]:focus,input[type=email]:focus {
+  input[type=password]:focus,input[type=email]:focus,input[type=number]:focus {
     background-color: #fff;
     border-bottom: 2px solid #000000;
   }
   
-  input[type=password]:placeholder,input[type=email]::placeholder {
+  input[type=password]:placeholder,input[type=email]:placeholder ,input[type=number]:placeholder{
     color: #cccccc;
   }
   

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service' 
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms'; 
-import { User } from '../Modelo/User';
+import { Paciente } from '../Modelo/Paciente';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,9 @@ import { User } from '../Modelo/User';
 export class LoginComponent implements OnInit {
   pass:string;
   email:string;
-  encontrado:User=new User();
+  dni:number;
+  token:number;
+  encontrado:Paciente=new Paciente();
   approved=false;
   message: string;  
   aproved=true;
@@ -33,11 +35,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
         usuario=>{
           this.encontrado=usuario;
-          if(this.approved==false && this.encontrado!=null  && this.encontrado.username===this.email && this.encontrado.password==this.pass ){
-              console.log("Login successful");  
+          if(this.approved==false && this.encontrado!=null  && this.encontrado.email===this.email && this.encontrado.password==this.pass ){
               // this.authService.authLogin(this.model);  
               localStorage.setItem('isLoggedIn', "true");  
-              localStorage.setItem('token', this.encontrado.username);  
+              localStorage.setItem('token', this.encontrado.email);  
               this.router.navigate([this.returnUrl]); 
           }
           else

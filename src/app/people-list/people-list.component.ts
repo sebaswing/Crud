@@ -9,20 +9,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./people-list.component.css']
 })
 export class PeopleListComponent implements OnInit {
-
-  personas:any;
+   
+  filteredProducts:Persona[]=[];
+  private _filterList='';  
   per:Persona[];
+  get listFilter():string
+    {
+      return this._filterList;
+    }
+  set listFilter(value:string)
+    {
+      this._filterList=value;
+      this.filteredProducts=this.performFilter(value);
+    } 
+    personas:any;
+    ngOnInit(): void {
+      this.service.getTodas()
+        .subscribe(
+          resulta => {
+            this.personas=resulta;
+          }
+        );
+    }
   constructor(private service: PersonasService,private router:Router) {
   }
-   
-  ngOnInit(): void {
-    this.service.getTodas()
-      .subscribe(
-        resulta => {
-          this.personas=resulta;
-        }
-      );
-  }
+  performFilter(filterBy:string):Persona[]
+    {
+      filterBy = filterBy.toLocaleLowerCase();
+      return this.personas.filter((product:Persona)=> 
+      product.nombre.toLocaleLowerCase().includes(filterBy));
+    }
   Editar(persona:Persona){
       localStorage.setItem("id",persona.id.toString());
       this.router.navigate(['editarPersonas']);
@@ -33,6 +49,6 @@ export class PeopleListComponent implements OnInit {
       this.personas=this.personas.filter((p: Persona) =>{
         return p !== persona;
       });
-      alert("Usuario elimnado...");
+      alert("Usuario eliminado...");
     })}
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Persona } from '../Modelo/Persona';
-import{User}from '../Modelo/User';
+import{Paciente}from '../Modelo/Paciente';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   url='http://localhost:8080/users';  
-  checkLog(username:String){
-    return this.http.get<User>(`${this.url}/userExist/`+username);
+  checkLog(email:string){
+    return this.http.get<Paciente>(`${this.url}/userExist/`+email);
   }
 
   logout() :void {    
@@ -20,11 +20,11 @@ export class AuthService {
     localStorage.removeItem('token');    
     }  
 
-    createUser(user:User){
-      return this.http.post<User>(this.url,user);
+    createUser(user:Paciente){
+      return this.http.post<Paciente>(this.url,user);
     }
 
-    checkUser(username:String){
-      return this.http.get<User>(`${this.url}/userExist/`+username);     
+    checkUser(email:string){
+      return this.http.get<Paciente>(`${this.url}/userExist/`+email);     
     }
 }

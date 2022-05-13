@@ -28,7 +28,8 @@
       </div>
       <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password"[(ngModel)]="pass" required #passw="ngModel">
       <div class="error" *ngIf="passw.invalid && (passw.dirty || passw.touched)">
-        <div *ngIf="passw.errors.required">campo password es obligatorio</div>
+        <div *ngIf="passw.errors.required"> campo password es obligatorio</div>
+        
       </div>
       <input type="password" id="pass2" class="fadeIn third" name="pass2" placeholder="confirm password"[(ngModel)]="pass2" required #passw2="ngModel">
       <div class="error" *ngIf="passw2.invalid && (passw2.dirty || passw2.touched)">
@@ -39,6 +40,9 @@
       </div>
       <div class="error" *ngIf="userExists">
         <div>el usuario ya existe</div>
+      </div>
+      <div class="error" *ngIf="shortPass">
+        <div>la constraseña debe tener 6 o mas caracteres</div>
       </div>
       <input type="submit" class="fadeIn fourth" value="Crear" [disabled]="!form.valid">
     </form>

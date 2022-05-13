@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../Modelo/User';
+import { Paciente } from '../Modelo/Paciente';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -17,15 +17,16 @@ export class CreateUserComponent implements OnInit {
   email:string;
   passwordmismatch=false;
   userExists=false;
-  encontrado:User=new User();
-  us:User=new User();
+  shortPass=false;
+  encontrado:Paciente=new Paciente();
+  us:Paciente=new Paciente();
   constructor(private route:Router,private service:AuthService) { }
 
   ngOnInit(): void {
-    us:new User();
+    us:new Paciente();
   }
 
-  guardarUser(usuario:User){
+  guardarUser(usuario:Paciente){
       this.service.createUser(usuario)
       .subscribe(
         usuario=>{
@@ -36,16 +37,19 @@ export class CreateUserComponent implements OnInit {
   }
 
   buscarUser(form:NgForm):void{
-    this.service.checkUser(this.username)
+    this.service.checkUser(this.email)
     .subscribe(
       usuario=>{ 
         this.encontrado=usuario;
-        if (this.encontrado!=null || this.pass!=this.pass2){
+        if (this.encontrado!=null || this.pass!=this.pass2 || this.pass.length<6){
           if(this.encontrado!=null){
             this.userExists=true;
           }          
-          if(this.pass!=this.pass2){
+         if(this.pass!=this.pass2){
             this.passwordmismatch=true;
+          }
+          if(this.pass.length<6) {
+            this.shortPass=true; 
           }
         }
         else {
@@ -53,12 +57,11 @@ export class CreateUserComponent implements OnInit {
       }
     })
   }
-  cargarUser():User{
-    let us=new User();
+  cargarUser():Paciente{
+    let us=new Paciente();
     us.dni=this.dni;
     us.email=this.email;
     us.password=this.pass;
-    us.username=this.username;
     return us;
   }
 }
