@@ -12,9 +12,11 @@ import { AuthService } from '../services/auth.service';
 export class CreateUserComponent implements OnInit {
   pass:string;
   pass2:string;
-  username:string;
+  nombre:string;
+  apellido:string;
   dni:number;
   email:string;
+  nacimiento:Date;
   passwordmismatch=false;
   userExists=false;
   shortPass=false;
@@ -59,7 +61,10 @@ export class CreateUserComponent implements OnInit {
   }
   cargarUser():Paciente{
     let us=new Paciente();
+    us.nombre=this.nombre;
+    us.apellido=this.apellido;
     us.dni=this.dni;
+    us.fechaNacimiento=this.nacimiento;
     us.email=this.email;
     us.password=this.pass;
     return us;

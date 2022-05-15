@@ -14,13 +14,22 @@
     <!-- Login Form -->
     <form (ngSubmit)="buscarUser(form)" #form="ngForm">
       <p>Crea tu usuario</p>
-      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" [(ngModel)]="username" required #user="ngModel">
-      <div class="error" *ngIf="user.invalid && (user.dirty || user.touched)">
-        <div *ngIf="user.errors.required">campo usuario es obligatorio.</div>
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="nombre" [(ngModel)]="nombre" required #nombre1="ngModel">
+      <div class="error" *ngIf="nombre1.invalid && (nombre1.dirty || nombre1.touched)">
+        <div *ngIf="nombre1.errors.required">campo nombre es obligatorio.</div>
+      </div>
+      <input type="text" id="usersurname" class="fadeIn second" name="usersurname" placeholder="apellido" [(ngModel)]="apellido" required #apellido1="ngModel">
+      <div class="error" *ngIf="apellido1.invalid && (apellido1.dirty || apellido1.touched)">
+        <div *ngIf="apellido1.errors.required">campo apellido es obligatorio.</div>
       </div>
       <input type="number" id="dni"  class="fadeIn second" name="dni" placeholder="dni" [(ngModel)]="dni" required #id="ngModel">
       <div class="error" *ngIf="id.invalid && (id.dirty || id.touched)">
         <div *ngIf="id.errors.required">campo DNI es obligatorio.</div>
+      </div>
+      <br>fecha de nacimiento
+      <input type="date" id="nacimiento" class="fadeIn second" name="nacimiento" value="FechaDeNacimiento" [(ngModel)]="nacimiento" required #born="ngModel">
+      <div class="error" *ngIf="born.invalid && (born.dirty || born.touched)">
+        <div *ngIf="born.errors.required">campo Fecha de Nacimiento es obligatorio.</div>
       </div>
       <input type="email" id="email" class="fadeIn second" name="name" placeholder="email" [(ngModel)]="email" required #mail="ngModel">
       <div class="error" *ngIf="mail.invalid && (mail.dirty || mail.touched)">

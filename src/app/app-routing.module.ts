@@ -58,7 +58,6 @@ function checkbasic(): string  {
   }
   else  {
   return "refresh";
-  console.log(localStorage.getItem('isLoggedIn') === "false");
   }
 }
 

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         usuario=>{
           this.encontrado=usuario;
-          if(this.approved==false && this.encontrado!=null  && this.encontrado.email===this.email && this.encontrado.password==this.pass ){
+          if(this.approved==false && this.encontrado!=null  && this.encontrado.email===this.email && this.encontrado.password==this.pass && this.encontrado.token==this.token){
               // this.authService.authLogin(this.model);  
               localStorage.setItem('isLoggedIn', "true");  
               localStorage.setItem('token', this.encontrado.email);  
