@@ -11,7 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { EditPeopleComponent } from './edit-people/edit-people.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
-import { CreateUserComponent } from './create-user/create-user.component'; 
+import { CreateUserComponent } from './create-user/create-user.component';
+import { IngresoVacunasComponent } from './ingreso-vacunas/ingreso-vacunas.component'; 
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
     EditPeopleComponent,
     LoginComponent,
     CreateUserComponent,
+    IngresoVacunasComponent,
   ],
   imports: [
     BrowserModule,

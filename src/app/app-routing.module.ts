@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { EditPeopleComponent } from './edit-people/edit-people.component';
 import { AuthGuard } from './guards/auth.guard';
+import { IngresoVacunasComponent } from './ingreso-vacunas/ingreso-vacunas.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleListComponent } from './people-list/people-list.component';
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path:'createUser',
     component:CreateUserComponent
+  },
+  {
+    path:'agregarVacunas',
+    component:IngresoVacunasComponent
   }
 ];
 

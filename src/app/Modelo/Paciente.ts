@@ -6,6 +6,7 @@ export class Paciente
     apellido:string;
     email:string;
     password:string;
-    fechaNacimiento:Date;
     token:number;
+    fechaNacimiento:Date;
+    completo_vacunas:number;
 }

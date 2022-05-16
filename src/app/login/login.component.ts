@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   message: string;  
   aproved=true;
   returnUrl='/listarPersonas';  
+
   constructor(  
     private router : Router,  
     private authService : AuthService  ) { 
@@ -36,10 +37,14 @@ export class LoginComponent implements OnInit {
         usuario=>{
           this.encontrado=usuario;
           if(this.approved==false && this.encontrado!=null  && this.encontrado.email===this.email && this.encontrado.password==this.pass && this.encontrado.token==this.token){
-              // this.authService.authLogin(this.model);  
-              localStorage.setItem('isLoggedIn', "true");  
-              localStorage.setItem('token', this.encontrado.email);  
-              this.router.navigate([this.returnUrl]); 
+              // this.authService.authLogin(this.model);                
+              if(this.encontrado.completo_vacunas==1){
+                this.router.navigate([this.returnUrl]); 
+                localStorage.setItem('isLoggedIn', "true");  
+                localStorage.setItem('token', this.encontrado.email); 
+              }
+              else
+              this.router.navigate(['agregarVacunas']);
           }
           else
           {

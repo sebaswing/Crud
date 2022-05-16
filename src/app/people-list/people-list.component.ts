@@ -28,7 +28,6 @@ export class PeopleListComponent implements OnInit {
         .subscribe(
           resulta => {
             this.personas=resulta;
-            
           }
         );
     }
