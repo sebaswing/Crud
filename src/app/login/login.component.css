@@ -3,7 +3,9 @@
 html {
     background-color: #56baed;
   }
-  
+  img{
+    width: 30%;
+  }
   body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
