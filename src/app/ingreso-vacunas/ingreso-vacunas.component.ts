@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-ingreso-vacunas',
@@ -12,4 +13,7 @@ export class IngresoVacunasComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  guardarVacunas(form:NgForm){
+    
+  }
 }
