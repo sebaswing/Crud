@@ -6,6 +6,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { EditPeopleComponent } from './edit-people/edit-people.component';
 import { AuthGuard } from './guards/auth.guard';
 import { IngresoVacunasComponent } from './ingreso-vacunas/ingreso-vacunas.component';
+import { LoginAdministradoresComponent } from './login-administradores/login-administradores.component';
+import { LoginVacunadoresComponent } from './login-vacunadores/login-vacunadores.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleListComponent } from './people-list/people-list.component';
@@ -20,6 +22,14 @@ const routes: Routes = [
   {
     path:'login',
     component: LoginComponent
+  },
+  {
+    path:'loginAdministrador',
+    component: LoginAdministradoresComponent
+  },
+  {
+    path:'loginVacunador',
+    component: LoginVacunadoresComponent
   },
   {
     path:'listarPersonas',

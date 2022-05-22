@@ -12,7 +12,11 @@ import { EditPeopleComponent } from './edit-people/edit-people.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CreateUserComponent } from './create-user/create-user.component';
-import { IngresoVacunasComponent } from './ingreso-vacunas/ingreso-vacunas.component'; 
+import { IngresoVacunasComponent } from './ingreso-vacunas/ingreso-vacunas.component';
+import { LoginVacunadoresComponent } from './login-vacunadores/login-vacunadores.component';
+import { LoginAdministradoresComponent } from './login-administradores/login-administradores.component'; 
+import { AdministradoresService } from './services/administradores.service';
+import { VacunadoresService } from './services/vacunadores.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,8 @@ import { IngresoVacunasComponent } from './ingreso-vacunas/ingreso-vacunas.compo
     LoginComponent,
     CreateUserComponent,
     IngresoVacunasComponent,
+    LoginVacunadoresComponent,
+    LoginAdministradoresComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +38,8 @@ import { IngresoVacunasComponent } from './ingreso-vacunas/ingreso-vacunas.compo
     HttpClientModule,
   ],
   providers: [
+    VacunadoresService,
+    AdministradoresService,
     PersonasService,
     AuthGuard
   ],

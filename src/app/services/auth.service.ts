@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Persona } from '../Modelo/Persona';
 import{Paciente}from '../Modelo/Paciente';
+import { Administrador } from '../Modelo/Administrador';
+import { Vacunador } from '../Modelo/Vacunador';
 
 @Injectable({
   providedIn: 'root'

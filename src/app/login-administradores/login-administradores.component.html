@@ -12,7 +12,7 @@
     </div>
 
     <!-- Login Form -->
-    <form (ngSubmit)="checkLogin(form)" #form="ngForm">
+    <form (ngSubmit)="checkLoginAdministrador(form)" #form="ngForm">
       
       <p><img src="../../assets/logocortado.png">
         <br>Ingresa a tu cuenta</p>
@@ -38,8 +38,8 @@
        <!--botón --> 
       <input  type="submit" class="fadeIn fourth" value="Log In" [disabled]="!form.valid">
     </form>
-    <a class="nav-link" routerLink="/createUser" routerLinkActive="active"><i class="fas fa-gamepad"></i>Crear Usuario</a>
+    <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fas fa-gamepad"></i>Ingresar como paciente</a>
     <a class="nav-link" routerLink="/loginVacunador" routerLinkActive="active"><i class="fas fa-gamepad"></i>Ingresar como vacunador</a>
-    <a class="nav-link" routerLink="/loginAdministrador" routerLinkActive="active"><i class="fas fa-gamepad"></i>Ingresar como administrador</a>
   </div>
 </div>
+
