@@ -38,17 +38,20 @@ export class AgregarVacunadorComponent implements OnInit {
 
   crearVacunador(){
     //Verificar que esten todos los valores para CREAR!!
-    
-    this.nuevoVacunador = new Vacunador();
-    this.nuevoVacunador.apellido = this.apellidoFormControl.value
-    this.nuevoVacunador.nombre = this.nombreFormControl.value
-    this.nuevoVacunador.email = this.emailFormControl.value
-    this.nuevoVacunador.dni = this.dniFormControl.value
-    let wzona : Zona = { nombre: this.zonaFormControl.value, fechaAplicacion : "12/3/2022"}
-    this.nuevoVacunador.centro_vacunatorio = wzona
-    this._usuarioService.agregarVacunador(this.nuevoVacunador)
+    if(this.emailFormControl.valid && this.nombreFormControl.valid && this.apellidoFormControl.valid &&
+      this.dniFormControl.valid && this.fechaFormControl.valid && this.zonaFormControl.valid ){
 
-    this.dialogRef.close(true);
+        this.nuevoVacunador = new Vacunador();
+        this.nuevoVacunador.apellido = this.apellidoFormControl.value
+        this.nuevoVacunador.nombre = this.nombreFormControl.value
+        this.nuevoVacunador.email = this.emailFormControl.value
+        this.nuevoVacunador.dni = this.dniFormControl.value
+        let wzona : Zona = { nombre: this.zonaFormControl.value, fechaAplicacion : "12/3/2022"}
+        this.nuevoVacunador.centro_vacunatorio = wzona
+        this._usuarioService.agregarVacunador(this.nuevoVacunador)
+    
+        this.dialogRef.close(true);
+      }
 
   }
 

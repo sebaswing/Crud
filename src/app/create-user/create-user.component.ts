@@ -66,7 +66,7 @@ export class CreateUserComponent implements OnInit {
     us.dni=this.dni;
     us.fechaNacimiento=this.nacimiento;
     us.email=this.email;
-    us.password=this.pass;
+    us.clave=this.pass;
     return us;
   }
 }

@@ -29,4 +29,15 @@ export class AuthService {
     checkUser(email:string){
       return this.http.get<Paciente>(`${this.url}/userExist/`+email);     
     }
+
+    userData(){
+      let user: Administrador
+      if (localStorage.getItem('user')){
+        return JSON.parse (localStorage.getItem('user')!)
+      }
+    }
+
+    usertype(){
+      return localStorage.getItem('tipo')!
+    }
 }

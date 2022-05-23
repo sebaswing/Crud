@@ -21,6 +21,10 @@ export class LoginAdministradoresComponent implements OnInit {
   aproved=true;
   returnUrl='/listarPersonas';  
 
+
+  //Mock
+  admin:Administrador
+
   constructor(  
     private router : Router,  
     private authService : AuthService,
@@ -34,6 +38,16 @@ export class LoginAdministradoresComponent implements OnInit {
       this.authService.logout();  
   }
   checkLoginAdministrador(form:NgForm){
+
+    if ( this.email == "admin@gmail.com"){
+      this.admin = {id:1, nombre:'Admin', apellido: 'Jonsales', dni: 87672345, email: 'admin@gmail.com', clave: '123456', token:987654, borrado:false}
+      localStorage.setItem('user', JSON.stringify(this.admin))
+      localStorage.setItem('isLoggedIn', "true");  
+      localStorage.setItem('token', "algo@algo.com"); 
+      localStorage.setItem('tipo',"admin") // Esto se debe manejar encubierto. CAMBIAR a un servicio
+      this.router.navigate(["listaVacunadores"]); 
+    }else{
+
       this.administradoresService.checkLogAdministrador(this.email)
       .subscribe(
         usuario=>{
@@ -48,6 +62,8 @@ export class LoginAdministradoresComponent implements OnInit {
           {
             this.aproved=false;
           } 
-      })   
+      }) 
+      
+    }
   }
 }

@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { EditPeopleComponent } from './edit-people/edit-people.component';
 import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './home/home.component';
 import { IngresoVacunasComponent } from './ingreso-vacunas/ingreso-vacunas.component';
 import { ListoVacunadoresComponent } from './listo-vacunadores/listo-vacunadores.component';
 import { LoginAdministradoresComponent } from './login-administradores/login-administradores.component';
@@ -12,6 +13,7 @@ import { LoginVacunadoresComponent } from './login-vacunadores/login-vacunadores
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleListComponent } from './people-list/people-list.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   {
@@ -60,7 +62,16 @@ const routes: Routes = [
   {
     path:'listaVacunadores',
     component:ListoVacunadoresComponent
+  },
+  {
+    path:'home',
+    component:HomeComponent
+  },
+  {
+    path:'perfil',
+    component:PerfilComponent
   }
+
 ];
 
 @NgModule({

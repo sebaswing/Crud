@@ -28,4 +28,8 @@ export class NavbarComponent implements OnInit {
     this.authService.logout(); 
     this.router.navigate(['/login']);  
   } 
+
+  mostrar(roles: string[]){
+   return(this.islogged() && roles.includes(this.authService.usertype()) )
+  }
 }

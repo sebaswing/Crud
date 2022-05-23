@@ -21,7 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { ListoVacunadoresComponent,DialogOverviewExampleDialog } from './listo-vacunadores/listo-vacunadores.component';
 import { AgregarVacunadorComponent } from './agregar-vacunador/agregar-vacunador.component';
-import { DetalleVacunadorComponent } from './detalle-vacunador/detalle-vacunador.component'
+import { DetalleVacunadorComponent } from './detalle-vacunador/detalle-vacunador.component';
+import { HomeComponent } from './home/home.component';
+import { PerfilComponent } from './perfil/perfil.component'
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { DetalleVacunadorComponent } from './detalle-vacunador/detalle-vacunador
     ListoVacunadoresComponent,
     DialogOverviewExampleDialog,
     AgregarVacunadorComponent,
-    DetalleVacunadorComponent
+    DetalleVacunadorComponent,
+    HomeComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

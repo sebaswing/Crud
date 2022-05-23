@@ -1,3 +1,5 @@
+import { Zona } from "./Zona";
+
 export class Paciente
 {
     id:number;
@@ -5,8 +7,9 @@ export class Paciente
     nombre:string;
     apellido:string;
     email:string;
-    password:string;
+    clave:string;
     fechaNacimiento:Date;
     token:number;
     completo_vacunas:number;
+    centro_vacunatorio: Zona
 }
