@@ -9,6 +9,9 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav " style="margin-left: auto;">
         <li  *ngIf=islogged() class="nav-item active">
+          <a class="nav-link"  routerLink="/listaVacunadores"  routerLinkActive="active"><i class="fas fa-gamepad"></i>Listado Vacunadores</a>
+        </li>
+        <li  *ngIf=islogged() class="nav-item active">
           <a class="nav-link" routerLink="/listarPersonas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Listar</a>
         </li>
         <li *ngIf=islogged() class="nav-item active">

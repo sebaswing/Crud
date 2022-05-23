@@ -17,6 +17,11 @@ import { LoginVacunadoresComponent } from './login-vacunadores/login-vacunadores
 import { LoginAdministradoresComponent } from './login-administradores/login-administradores.component'; 
 import { AdministradoresService } from './services/administradores.service';
 import { VacunadoresService } from './services/vacunadores.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { ListoVacunadoresComponent,DialogOverviewExampleDialog } from './listo-vacunadores/listo-vacunadores.component';
+import { AgregarVacunadorComponent } from './agregar-vacunador/agregar-vacunador.component';
+import { DetalleVacunadorComponent } from './detalle-vacunador/detalle-vacunador.component'
 
 @NgModule({
   declarations: [
@@ -30,12 +35,18 @@ import { VacunadoresService } from './services/vacunadores.service';
     IngresoVacunasComponent,
     LoginVacunadoresComponent,
     LoginAdministradoresComponent,
+    ListoVacunadoresComponent,
+    DialogOverviewExampleDialog,
+    AgregarVacunadorComponent,
+    DetalleVacunadorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [
     VacunadoresService,
