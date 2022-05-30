@@ -8,9 +8,9 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav " style="margin-left: auto;">
-        <li  *ngIf="mostrar( ['paciente','vacunador'] )" class="nav-item active">
+        <!--<li  *ngIf="mostrar( ['paciente','vacunador'] )" class="nav-item active">
           <a class="nav-link"  routerLink="/home" routerLinkActive="active"><i class="fas fa-gamepad"></i>Home</a>
-        </li>
+        </li>-->
         <li  *ngIf="mostrar( ['vacunador'] )"   class="nav-item active">
           <a class="nav-link" routerLinkActive="active"><i class="fas fa-gamepad"></i>Registrar Paciente</a>
         </li>
@@ -20,16 +20,16 @@
         <li  *ngIf="mostrar( ['admin'] )"   class="nav-item active">
           <a class="nav-link"  routerLink="/listaVacunadores"  routerLinkActive="active"><i class="fas fa-gamepad"></i>Listado Vacunadores</a>
         </li>
-        <!-- <li  *ngIf=islogged() class="nav-item active">
+        <li  *ngIf=islogged() class="nav-item active">
           <a class="nav-link" routerLink="/listarPersonas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Listar</a>
-        </li> -->
-        <!-- <li *ngIf=islogged() class="nav-item active">
+        </li> 
+         <li *ngIf=islogged() class="nav-item active">
           <a class="nav-link" routerLink="/argegarPersonas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Agregar</a>
-        </li> -->
-        <li *ngIf="mostrar( ['admin','paciente','vacunador'] )"   class="nav-item active">
+        </li> 
+        <!--<li *ngIf="mostrar( ['admin','paciente','vacunador'] )"   class="nav-item active">
           <a class="nav-link"  routerLink="/perfil" routerLinkActive="active"><i class="fas fa-gamepad"></i>Perfil</a>
-        </li>
-        <button  *ngIf="mostrar( ['admin','paciente','vacunador'] )" (click)="logout()" class="btn btn-outline-success" >logout</button>
+        -->
+        <button  *ngIf="islogged()" (click)="logout()" class="btn btn-outline-success" >logout</button>
 
       </ul>
     </div>
