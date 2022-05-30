@@ -40,4 +40,9 @@ export class AuthService {
     usertype(){
       return localStorage.getItem('tipo')!
     }
+
+    editarUsuario(paciente:Paciente ){
+      return this.http.put<Paciente>(this.url+"/"+Number(localStorage.getItem(('idPaciente'))),paciente);
+    }
+
 }
