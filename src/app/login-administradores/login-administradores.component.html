@@ -18,17 +18,17 @@
         <br>Ingresa a tu cuenta</p>
       <input type="email" id="email" class="fadeIn second" name="name" placeholder="email" [(ngModel)]="email" required #mail="ngModel">
       <div class="error" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
-        <div *ngIf="mail.errors.required">campo mail es obligatorio</div>
+        <div *ngIf="mail.errors!.required">campo mail es obligatorio</div>
       </div>
       <input  type="password" id="password" class="fadeIn third" name="pass" placeholder="password"[(ngModel)]="pass" required #password="ngModel">
       <!--Mensaje de validacion para que escriba algo -->
       <div class="error" *ngIf="password.invalid && (password.dirty || password.touched)" > 
-        <div *ngIf="password.errors.required">campo contraseña es obligatorio.</div>
+        <div *ngIf="password.errors!.required">campo contraseña es obligatorio.</div>
       </div>
       <input type="number" id="token"  class="fadeIn second" name="token" placeholder="token" [(ngModel)]="token" required #tokenn="ngModel">
       <!--Mensaje de validación para el usuario sin dni-->
       <div class="error" *ngIf="tokenn.invalid && (tokenn.dirty || tokenn.touched)">
-        <div *ngIf="tokenn.errors.required">campo Token es obligatorio.</div>
+        <div *ngIf="tokenn.errors!.required">campo Token es obligatorio.</div>
       </div>
       <!--Mensaje de validacion para un usuario que no existe -->
       <div *ngIf="!aproved" class="error alert alert-danger mt-3"  > 
@@ -37,6 +37,8 @@
       </div>
        <!--botón --> 
       <input  type="submit" class="fadeIn fourth" value="Log In" [disabled]="!form.valid">
+      <br>
+      <a class="nav-link" onClick routerLink="/recuperarClave" routerLinkActive="active"><i class="fas fa-gamepad"></i>Recuperar contraseña</a>
     </form>
     <a class="nav-link" routerLink="/login" routerLinkActive="active"><i class="fas fa-gamepad"></i>Ingresar como paciente</a>
     <a class="nav-link" routerLink="/loginVacunador" routerLinkActive="active"><i class="fas fa-gamepad"></i>Ingresar como vacunador</a>

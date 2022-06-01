@@ -40,4 +40,9 @@ export class AuthService {
     usertype(){
       return localStorage.getItem('tipo')!
     }
-}
+
+    recuperarClave(email:string){
+      return this.http.get<Paciente>(`${this.url}/recuperarClave/`+email);
+    }
+     
+  }

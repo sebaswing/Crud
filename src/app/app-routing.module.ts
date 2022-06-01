@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleListComponent } from './people-list/people-list.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
+
 
 const routes: Routes = [
   {
@@ -70,6 +72,10 @@ const routes: Routes = [
   {
     path:'perfil',
     component:PerfilComponent
+  },
+  {
+    path:'recuperarClave',
+    component:RecuperarClaveComponent
   }
 
 ];

@@ -10,6 +10,9 @@ export class AdministradoresService {
   constructor(private http:HttpClient) { }
 
   url='http://localhost:8080/administradores';  
+  recuperarClave(email:string){
+    return this.http.get<Administrador>(`${this.url}/recuperarClave/`+email);
+  }
   checkLogAdministrador(email:string){
     return this.http.get<Administrador>(`${this.url}/userExist/`+email);
   }

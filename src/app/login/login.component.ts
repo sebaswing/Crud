@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
       this.email='';
       this.pass=''; 
-      this.authService.logout();  
+      this.authService.logout(); 
   }
   checkLogin(form:NgForm){
   
