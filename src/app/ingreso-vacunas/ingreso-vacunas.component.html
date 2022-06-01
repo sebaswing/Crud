@@ -21,7 +21,7 @@
             </label>
             <br>
             <div *ngIf="gripe">
-                fecha de aplicación<input type="date" >
+                fecha de aplicación<input type="date" [(ngModel)]="gripeFecha" name="gripeFecha">
             </div>
             <input *ngIf="resetCovid()"class="form-check-input" type="checkbox" [(ngModel)]="covid" name="covid">
             <label class="form-check-label" for="flexRadioDefault1">
@@ -38,9 +38,14 @@
                 Gripe Amarilla
             </label>
             <br>
-            <div *ngIf="checkAmarilla()">fecha de aplicación<input type="date" ></div>
+            <div *ngIf="checkAmarilla()">fecha de aplicación<input type="date" [(ngModel)]="fechaAmarilla" name="fechaAmarilla"></div>
+        
+        <input class="form-check-input" type="checkbox" [(ngModel)]="acepto" name="acepto">
+        <label class="form-check-label" >
+            Acepto que la información que brindo es la correcta
+        </label>
         </div>
-        <input  type="submit" class="fadeIn fourth" value="Ingresar Vacunas" >
+        <input   type="submit" class="fadeIn fourth" value="Ingresar Vacunas" [disabled]="!acepto">
     </form>
   </div>
 </div>

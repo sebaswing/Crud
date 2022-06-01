@@ -17,12 +17,14 @@ export class EditPeopleComponent implements OnInit {
   ngOnInit(): void {
     this.Editar();
   }
+  
   Editar(){
     const id=localStorage.getItem("id");
-    this.service.getPersonaId(+id)
+    this.service.getPersonaId(+!id)
     .subscribe(data =>
         this.persona=data
       )}
+
   Actualizar(persona:Persona){
     this.service.updatePersona(this.persona)
     .subscribe( data=>{

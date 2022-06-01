@@ -41,8 +41,12 @@ export class AuthService {
       return localStorage.getItem('tipo')!
     }
 
+    editarUsuario(paciente:Paciente ){
+      return this.http.put<Paciente>(this.url+"/"+Number(localStorage.getItem(('idPaciente'))),paciente);
+    }
+    
     recuperarClave(email:string){
       return this.http.get<Paciente>(`${this.url}/recuperarClave/`+email);
     }
      
-  }
+}
