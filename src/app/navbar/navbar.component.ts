@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
   } 
 
   mostrar(roles: string[]){
-   return(this.islogged() && roles.includes(this.authService.usertype()) )
+   return(this.islogged() && roles.includes(this.authService.usertype()) );
   }
+
 }

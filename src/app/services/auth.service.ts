@@ -26,6 +26,10 @@ export class AuthService {
       return this.http.post<Paciente>(this.url,user);
     }
 
+    checkByDni(dni:number){
+      return this.http.get<Paciente>(`${this.url}/userExistdni/`+dni); //SI FUNCA
+    }
+
     checkUser(email:string){
       return this.http.get<Paciente>(`${this.url}/userExist/`+email);     
     }

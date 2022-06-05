@@ -1,6 +1,11 @@
-<h1>Perfil: {{data.nombre}} </h1>
+<h1>Perfil: {{data|json}} </h1>
 <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input placeholder="hola mundo">
+    </mat-form-field>
+    
+    <!--<mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email</mat-label>
         <input *ngIf="!editarEmail" matInput [disabled]="!editarEmail" value=" {{data.email}} ">
         <input *ngIf="editarEmail" type="email" matInput [formControl]="emailFormControl"  placeholder="Ej. pat@ejemplo.com">
@@ -78,4 +83,5 @@
             <mat-icon>save</mat-icon>
         </button>
     </mat-form-field>
+-->
   </form>

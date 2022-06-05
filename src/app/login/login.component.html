@@ -31,10 +31,16 @@
         <div *ngIf="tokenn.errors!.required">campo Token es obligatorio.</div>
       </div>
       <!--Mensaje de validacion para un usuario que no existe -->
+      <div *ngIf="!tokenIncorrecto" class="error alert alert-danger mt-3"  > 
+        <div >Error al ingresar a la aplicación.
+          <br>Su token es incorrecto.</div>
+      </div>
+      <!--Mensaje de validacion para un usuario que no existe -->
       <div *ngIf="!aproved" class="error alert alert-danger mt-3"  > 
         <div >Error al ingresar a la aplicación.
           <br>Revise sus datos y vuelva a intentarlo.</div>
       </div>
+      
        <!--botón --> 
       <input  type="submit" class="fadeIn fourth" value="Log In" [disabled]="!form.valid">
       <br>

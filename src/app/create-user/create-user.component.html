@@ -50,8 +50,14 @@
       <div class="error" *ngIf="userExists">
         <div>el usuario ya existe</div>
       </div>
+      <div class="error" *ngIf="existeDni">
+        <div>el dni ya existe</div>
+      </div>
       <div class="error" *ngIf="shortPass">
         <div>la constraseña debe tener 6 o mas caracteres</div>
+      </div>
+      <div class="error" *ngIf="!fechaNAcimientoIncorrecta">
+        <div>error en la fecha de nacimiento, debe ser menor a la fecha actual</div>
       </div>
       <input type="submit" class="fadeIn fourth" value="Crear" [disabled]="!form.valid">
     </form>

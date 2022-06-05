@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   approved=false;
   message: string;  
   aproved=true;
+  tokenIncorrecto=true;
   returnUrl='/listarPersonas';  
 
 
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('user', JSON.stringify(this.paciente))
       localStorage.setItem('isLoggedIn', "true");  
       localStorage.setItem('token', this.encontrado.email); 
-      localStorage.setItem('tipo',"paciente") // Esto se debe manejar encubierto. CAMBIAR a un servicio
+      localStorage.setItem('tipo','paciente') // Esto se debe manejar encubierto. CAMBIAR a un servicio
       this.router.navigate(["home"]); 
     }else
     { 
@@ -65,11 +66,16 @@ export class LoginComponent implements OnInit {
           }
           else
           {
-            this.aproved=false;
+            if(this.encontrado.token!=this.token)
+            this.tokenIncorrecto=false;
+            else 
+              this.aproved=false;
           } 
       }) 
       
     }
       
   }
+
+
 }

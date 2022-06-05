@@ -20,6 +20,8 @@ export class CreateUserComponent implements OnInit {
   passwordmismatch=false;
   userExists=false;
   shortPass=false;
+  existeDni=false;
+  fechaNAcimientoIncorrecta=true;
   encontrado:Paciente=new Paciente();
   us:Paciente=new Paciente();
   constructor(private route:Router,private service:AuthService) { }
@@ -39,25 +41,39 @@ export class CreateUserComponent implements OnInit {
   }
 
   buscarUser(form:NgForm):void{
-    this.service.checkUser(this.email)
-    .subscribe(
-      usuario=>{ 
-        this.encontrado=usuario;
-        if (this.encontrado!=null || this.pass!=this.pass2 || this.pass.length<6){
-          if(this.encontrado!=null){
-            this.userExists=true;
-          }          
-         if(this.pass!=this.pass2){
-            this.passwordmismatch=true;
+
+    if(this.validarFechaNacimiento()){
+      this.service.checkUser(this.email)
+      .subscribe(
+        usuario=>{ 
+          this.encontrado=usuario;
+          if (this.encontrado!=null || this.pass!=this.pass2 || this.pass.length<6){
+            if(this.encontrado!=null){
+              this.userExists=true;
+            }          
+          if(this.pass!=this.pass2){
+              this.passwordmismatch=true;
+            }
+            if(this.pass.length<6) {
+              this.shortPass=true; 
+            }
           }
-          if(this.pass.length<6) {
-            this.shortPass=true; 
-          }
+          else {
+            
+            this.service.checkByDni(this.dni).subscribe(
+              user=> {
+              this.encontrado = user,
+                this.existeDni=this.encontrado!==null
+                
+              //this.guardarUser(this.cargarUser());
+            })
+            
         }
-        else {
-          this.guardarUser(this.cargarUser());
-      }
-    })
+      })
+    } 
+    else {
+        this.fechaNAcimientoIncorrecta=this.validarFechaNacimiento();
+    }
   }
   cargarUser():Paciente{
     let us=new Paciente();
@@ -68,5 +84,12 @@ export class CreateUserComponent implements OnInit {
     us.email=this.email;
     us.clave=this.pass;
     return us;
+  }
+
+  validarFechaNacimiento()//valida que la fecha de nacimiento es menor
+  {
+    let FechaHoy=new Date(Date.now());
+    let fechaNcimiento=new Date(this.nacimiento);
+    return fechaNcimiento.getTime()<FechaHoy.getTime();
   }
 }
