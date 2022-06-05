@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from '../Modelo/Persona';
-import { PersonasService } from '../services/personas.service';
-import { Router } from '@angular/router';
+import { Vacuna } from '../Modelo/Vacuna';
+import { VacunasService } from '../services/vacunas.service';
+
+enum nombreVacuna {
+  'Gripe'= 1,
+  'Covid' = 2,
+  'Fiebre Amarilla' = 3
+};
 
 @Component({
   selector: 'app-people-list',
@@ -9,10 +14,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./people-list.component.css']
 })
 export class PeopleListComponent implements OnInit {
-   
+
   //filteredProducts:Persona[]=[];
-  //rivate _filterList='';  
-  per:Persona[];
+  //rivate _filterList='';
   //get listFilter():string
    // {
    //   return this._filterList;
@@ -21,34 +25,26 @@ export class PeopleListComponent implements OnInit {
     //{
     //  this._filterList=value;
     //  this.filteredProducts=this.performFilter(value);
-   // } 
-    personas:any;
-    ngOnInit(): void {
-      this.service.getTodas()
-        .subscribe(
-          resulta => {
-            this.personas=resulta;
-          }
-        );
-    }
-  constructor(private service: PersonasService,private router:Router) {
-  }
+   // }
+  public nombreVacunasEnum = nombreVacuna;
+  vacunas: Vacuna[];
+
+  constructor(
+    private vacunaService:VacunasService
+  ) {}
   //performFilter(filterBy:string):Persona[]
    //// {
      // filterBy = filterBy.toLocaleLowerCase();
-     // return this.personas.filter((product:Persona)=> 
+     // return this.personas.filter((product:Persona)=>
      // product.nombre.toLocaleLowerCase().includes(filterBy));
     //}
-  Editar(persona:Persona){
-      localStorage.setItem("id",persona.id.toString());
-      this.router.navigate(['editarPersonas']);
+
+  ngOnInit(): void {
+    const id = Number(localStorage.getItem('idPaciente')) || 0;
+
+    this.vacunaService.obtenerVacunas(id).subscribe(
+      vacunas => this.vacunas = vacunas
+    );
   }
-  Delete(persona:Persona){
-    this.service.deletePersona(persona)
-    .subscribe(data=>{
-      this.personas=this.personas.filter((p: Persona) =>{
-        return p !== persona;
-      });
-      alert("Usuario eliminado...");
-    })}
+
 }

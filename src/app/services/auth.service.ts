@@ -12,15 +12,15 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  url='http://localhost:8080/users';  
+  url='http://localhost:8080/users';
   checkLog(email:string){
     return this.http.get<Paciente>(`${this.url}/userExist/`+email);
   }
 
-  logout() :void {    
-    localStorage.setItem('isLoggedIn','false');    
-    localStorage.removeItem('token');    
-    }  
+  logout() :void {
+    localStorage.setItem('isLoggedIn','false');
+    localStorage.removeItem('token');
+    }
 
     createUser(user:Paciente){
       return this.http.post<Paciente>(this.url,user);
@@ -31,7 +31,7 @@ export class AuthService {
     }
 
     checkUser(email:string){
-      return this.http.get<Paciente>(`${this.url}/userExist/`+email);     
+      return this.http.get<Paciente>(`${this.url}/userExist/`+email);
     }
 
     userData(){
@@ -48,9 +48,9 @@ export class AuthService {
     editarUsuario(paciente:Paciente ){
       return this.http.put<Paciente>(this.url+"/"+Number(localStorage.getItem(('idPaciente'))),paciente);
     }
-    
+
     recuperarClave(email:string){
       return this.http.get<Paciente>(`${this.url}/recuperarClave/`+email);
     }
-     
+
 }

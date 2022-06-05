@@ -25,12 +25,15 @@
         </li> -->
          <li *ngIf=islogged() class="nav-item active">
           <a class="nav-link" routerLink="/argegarPersonas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Agregar</a>
-        </li> 
-        <li *ngIf="mostrar( ['admin','paciente','vacunador'] )"   class="nav-item active">
+        </li>
+        <li *ngIf="mostrar( ['admin','vacunador'] )"   class="nav-item active">
           <a  class="nav-link"  routerLink="/perfil" routerLinkActive="active"><i class="fas fa-gamepad"></i>Perfil</a>
         </li>
+        <li *ngIf="mostrar( ['paciente'] )"   class="nav-item active">
+          <a  class="nav-link"  routerLink="/perfilPaciente" routerLinkActive="active"><i class="fas fa-gamepad"></i>Perfil</a>
+        </li>
         <button  *ngIf="islogged()" (click)="logout()" class="btn btn-outline-success" >logout</button>
-        
+
       </ul>
     </div>
   </div>

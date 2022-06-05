@@ -24,17 +24,17 @@ export class IngresoVacunasComponent implements OnInit {
   covid2:any;
   fechaAmarilla:Date;
   acepto:boolean;
-  returnUrl='/listarPersonas'; 
+  returnUrl='/listarPersonas';
   pacienteEditar:Paciente = new Paciente();
 
-  constructor(private route:Router,private service:VacunasService,private authService:AuthService) { 
+  constructor(private route:Router,private service:VacunasService,private authService:AuthService) {
 
   }
 
   ngOnInit(): void {
   }
 
-  
+
   guardarVacunas(form:NgForm){
       this.llenarVacuna();
       this.buscaUsuario();
@@ -43,7 +43,7 @@ export class IngresoVacunasComponent implements OnInit {
 
   // 1 gripe, 2 covid 3 gripaAmarilla
   llenarVacuna(){
-    let vacu=new Vacuna();
+    let vacu:any = {};
     vacu.id_usuario=Number(localStorage.getItem(('idPaciente')));
     if(this.gripe)
     {
@@ -67,7 +67,7 @@ export class IngresoVacunasComponent implements OnInit {
             vacu.fecha_aplicacion=fecha2;
             this.service.createVacuna(vacu).subscribe();
           }
-      } 
+      }
     }
     if(this.amarilla){
       vacu.dosis=1;
@@ -104,7 +104,7 @@ export class IngresoVacunasComponent implements OnInit {
     if(email!=null){
       this.authService.checkLog(email).subscribe(
         encontrado=>{
-          localStorage.setItem('isLoggedIn', "true");  
+          localStorage.setItem('isLoggedIn', "true");
           localStorage.setItem('tipo','paciente');
           encontrado.completo_vacunas=1
           this.authService.editarUsuario(encontrado).subscribe();

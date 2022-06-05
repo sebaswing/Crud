@@ -13,4 +13,8 @@ export class VacunasService {
   createVacuna(vacuna:Vacuna){
     return this.http.post<Vacuna>(this.url,vacuna);
   }
+
+  obtenerVacunas(idPaciente:number){
+    return this.http.get<Vacuna[]>(this.url+'/listarVacunas/'+idPaciente);
+  }
 }

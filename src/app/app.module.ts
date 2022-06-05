@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleListComponent } from './people-list/people-list.component';
 import { AddPeopleComponent } from './add-people/add-people.component';
-import{FormsModule} from '@angular/forms'
+import{FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {PersonasService} from '../app/services/personas.service'
 import {HttpClientModule} from '@angular/common/http';
 import { EditPeopleComponent } from './edit-people/edit-people.component';
@@ -24,7 +24,8 @@ import { AgregarVacunadorComponent } from './agregar-vacunador/agregar-vacunador
 import { DetalleVacunadorComponent } from './detalle-vacunador/detalle-vacunador.component';
 import { HomeComponent } from './home/home.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component'
+import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
+import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.component'
 
 @NgModule({
   declarations: [
@@ -44,12 +45,14 @@ import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.compo
     DetalleVacunadorComponent,
     HomeComponent,
     PerfilComponent,
-    RecuperarClaveComponent
+    RecuperarClaveComponent,
+    PerfilPacienteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,
