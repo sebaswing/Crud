@@ -20,7 +20,7 @@ export class LoginVacunadoresComponent implements OnInit {
   approved=false;
   message: string;  
   aproved=true;
-  returnUrl='/home';  
+  returnUrl='/listoTurnos';  
 
   //mock
   vacunador: Vacunador
