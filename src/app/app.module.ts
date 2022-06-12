@@ -23,7 +23,8 @@ import { ListoVacunadoresComponent,DialogOverviewExampleDialog } from './listo-v
 import { AgregarVacunadorComponent } from './agregar-vacunador/agregar-vacunador.component';
 import { DetalleVacunadorComponent } from './detalle-vacunador/detalle-vacunador.component';
 import { HomeComponent } from './home/home.component';
-import { PerfilComponent } from './perfil/perfil.component'
+import { PerfilComponent } from './perfil/perfil.component';
+import { ListaFiebreAmComponent,DialogConfirm,AsigFechaTurno } from './lista-fiebre-am/lista-fiebre-am.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +43,10 @@ import { PerfilComponent } from './perfil/perfil.component'
     AgregarVacunadorComponent,
     DetalleVacunadorComponent,
     HomeComponent,
-    PerfilComponent
+    PerfilComponent,
+    ListaFiebreAmComponent,
+    DialogConfirm,
+    AsigFechaTurno
   ],
   imports: [
     BrowserModule,

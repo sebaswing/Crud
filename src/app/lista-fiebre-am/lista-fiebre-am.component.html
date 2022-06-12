@@ -1,0 +1,48 @@
+<div class="container">
+    <mat-toolbar>
+        <span>Turnos Fiebre Amarilla</span>
+        <div class="example-spacer"></div>
+    </mat-toolbar>
+    <div *ngIf="listaPacTFA.length > 0"> 
+       <!-- <mat-form-field appearance="standard">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Busque por cualquier término" #input autocomplete="off">
+      </mat-form-field> -->
+      <div class="mat-elevation-z5">
+        <table mat-table [dataSource]="dataSource" matSort>  
+          <!-- Position Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+          </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+            <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+          </ng-container>          
+          <!-- Weight Column -->
+           <ng-container matColumnDef="aprobada">
+            <th mat-header-cell *matHeaderCellDef>Aprobado</th>
+            <td mat-cell *matCellDef="let element" > {{element.aprobada? "aprobado": "Pendiente"}} </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Acciones">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element; let i = index" style="text-align: right;">
+              <a class="pointer" style="color: #1878B0" matTooltip="Fecha turno" (click)="asignarFecha(element,i)">
+                <span class="material-icons">check_circle_outline</span>
+              </a>
+              <a class="pointer" (click)="cancelarTurno(element)" style="color: #FF0000" matTooltip="Cancelar turno">
+                <mat-icon>delete</mat-icon>
+              </a>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+    </div>
+    <h2 *ngIf="listaPacTFA.length == 0">No existen Pacientes con turnos para fiebre amarilla</h2>
+</div>
+
