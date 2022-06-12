@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { VacunadoresService } from '../services/vacunadores.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

@@ -1,0 +1,62 @@
+<form [formGroup]="profileForm" class="profile-form">
+    <p>
+      <mat-form-field class="profile-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName='email' required>
+  
+          <mat-error *ngIf="emailField?.errors?.required">
+            Email requerido.
+          </mat-error>
+          <mat-error *ngIf="emailField?.errors?.pattern">
+            Ingrese un formato de email válido.
+          </mat-error>
+      </mat-form-field>
+    </p>
+  
+    <p>
+      <mat-form-field class="profile-full-width" appearance="fill">
+        <mat-label>DNI</mat-label>
+        <input matInput type="number" formControlName="dni" >
+      </mat-form-field>
+    </p>
+  
+  <table class="profile-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="profile-full-width" appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" formControlName="name" >
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="profile-full-width" appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input matInput type="text" formControlName="lastname" >
+        </mat-form-field
+      ></td>
+    </tr>
+  </table>
+  
+    <p>
+      <mat-form-field class="profile-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" required>
+  
+        <mat-error *ngIf="passwordField?.hasError('required')">
+          Contraseña requerida.
+        </mat-error>
+      </mat-form-field>
+    </p>
+  
+    <p>
+      <mat-form-field class="profile-full-width" appearance="fill">
+        <mat-label>Zona</mat-label>
+            <input matInput type="string"  formControlName="zona" >
+      </mat-form-field>
+    </p>
+  
+    <p>
+      <button type="submit" [disabled]="!profileForm.valid" (click)="submitForm()" class="btn btn-success">Actualizar</button>
+    </p>
+  </form>
+  

@@ -20,7 +20,7 @@ export class LoginVacunadoresComponent implements OnInit {
   approved=false;
   message: string;  
   aproved=true;
-  returnUrl='/listarPersonas';  
+  returnUrl='/home';  
 
   //mock
   vacunador: Vacunador
@@ -53,7 +53,7 @@ export class LoginVacunadoresComponent implements OnInit {
   checkLoginVacunador(form:NgForm){
     
     if ( this.email == "vacunador1@gmail.com"){
-      this.vacunador = {id:1, nombre:'vacunador1', apellido: 'Gonsales', dni: 87672345, email: 'vacunador1@gmail.com', centro_vacunatorio:{nombre:"Zona 1", fechaAplicacion:"12/04/2021"} ,clave: '123456', token:987654, borrado:false}
+      this.vacunador = {id:1, nombre:'vacunador1', apellido: 'Gonsales', dni: 87672345, email: 'vacunador1@gmail.com', centro_vacunatorio:'1' ,clave: '123456', token:987654, borrado:false}
       localStorage.setItem('user', JSON.stringify(this.vacunador))
       localStorage.setItem('isLoggedIn', "true");  
       localStorage.setItem('token', "algo@algo.com"); 
@@ -69,6 +69,8 @@ export class LoginVacunadoresComponent implements OnInit {
           if(this.approved==false && this.encontrado!=null  && this.encontrado.email===this.email && this.encontrado.clave==this.pass && this.encontrado.token==this.token){
               // this.authService.authLogin(this.model);                
                 this.router.navigate([this.returnUrl]); 
+                localStorage.setItem('idVacunador',this.encontrado.id+""); 
+                localStorage.setItem('tipo','vacunador');
                 localStorage.setItem('isLoggedIn', "true");  
                 localStorage.setItem('token', this.encontrado.email); 
           }

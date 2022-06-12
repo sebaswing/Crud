@@ -25,7 +25,9 @@ import { DetalleVacunadorComponent } from './detalle-vacunador/detalle-vacunador
 import { HomeComponent } from './home/home.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
-import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.component'
+import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.component';
+import { PerfilVacunadorComponent } from './perfil-vacunador/perfil-vacunador.component';
+import { ListoTurnosComponent } from './listo-turnos/listo-turnos.component'
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.compo
     HomeComponent,
     PerfilComponent,
     RecuperarClaveComponent,
-    PerfilPacienteComponent
+    PerfilPacienteComponent,
+    PerfilVacunadorComponent,
+    ListoTurnosComponent
   ],
   imports: [
     BrowserModule,

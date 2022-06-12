@@ -7,13 +7,9 @@ export class Vacunador
     apellido:string;
     dni:number;
     email:string;
-    centro_vacunatorio:Zona;
+    centro_vacunatorio:string;
     clave:string;
     token:number;
     borrado:boolean;
 
-    constructor(){
-        this.centro_vacunatorio= new Zona();
-        
-    }
 }

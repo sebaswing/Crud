@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleListComponent } from './people-list/people-list.component';
 import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.component';
+import { PerfilVacunadorComponent } from './perfil-vacunador/perfil-vacunador.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
 
@@ -77,6 +78,10 @@ const routes: Routes = [
   {
     path:'perfilPaciente',
     component:PerfilPacienteComponent
+  },
+  {
+    path:'perfilVacunador',
+    component:PerfilVacunadorComponent
   },
   {
     path:'recuperarClave',

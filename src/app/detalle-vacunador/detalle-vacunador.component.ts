@@ -25,7 +25,7 @@ export class DetalleVacunadorComponent implements OnInit {
   constructor( @Inject(MAT_DIALOG_DATA) public data: Vacunador) {
      console.log(data) 
     this.emailFormControl.setValue(data.email)
-    this.zonaFormControl.setValue(data.centro_vacunatorio.nombre)
+    this.zonaFormControl.setValue(data.centro_vacunatorio)
     this.passFormControl.setValue(data.clave)
    }
 
@@ -46,7 +46,7 @@ export class DetalleVacunadorComponent implements OnInit {
   cambiarZona(){
     console.log('Cambiar Zona')
     this.editarZona = !this.editarZona
-    this.data.centro_vacunatorio.nombre = this.zonaFormControl.value
+    this.data.centro_vacunatorio = this.zonaFormControl.value
   }
 
   cambiarPass(){
