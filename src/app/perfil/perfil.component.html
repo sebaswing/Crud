@@ -1,8 +1,13 @@
-<h1>Perfil: {{data.nombre}} </h1>
+<h1>Perfil: {{data|json}} </h1>
 <form class="example-form">
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="hola mundo">
+    </mat-form-field>
+    
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email</mat-label>
-        <input *ngIf="!editarEmail" matInput [disabled]="!editarEmail" value=" {{data.email}} ">
+        <input *ngIf="!editarEmail" matInput [disabled]="!editarEmail" value=" {{data?.email}} ">
         <input *ngIf="editarEmail" type="email" matInput [formControl]="emailFormControl"  placeholder="Ej. pat@ejemplo.com">
         <button *ngIf="!editarEmail" mat-icon-button matSuffix (click)="editarEmail =!editarEmail" >
             <mat-icon>edit</mat-icon>
@@ -21,22 +26,22 @@
     <table class="example-full-width" cellspacing="0"><tr>
       <td><mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nombre</mat-label>
-        <input matInput  disabled value=" {{data.nombre}} " >
+        <input matInput  disabled value=" {{data?.nombre}} " >
       </mat-form-field></td>
       <td><mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Apellido</mat-label>
-        <input matInput disabled value=" {{data.apellido}} " >
+        <input matInput disabled value=" {{data?.apellido}} " >
       </mat-form-field></td>
     </tr></table>
 
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>DNI</mat-label>
-        <input matInput type="number" disabled value={{data.dni}} >
+        <input matInput type="number" disabled value={{data?.dni}} >
     </mat-form-field>
 
     <mat-form-field  class="example-full-width" appearance="fill">
         <mat-label>Contraseña</mat-label>
-        <input matInput *ngIf="!editarPass"  [type]="hide ? 'password' : 'text'"  [disabled]="!editarPass" value=" {{data.clave}} " >
+        <input matInput *ngIf="!editarPass"  [type]="hide ? 'password' : 'text'"  [disabled]="!editarPass" value=" {{data?.clave}} " >
         <input matInput *ngIf="editarPass"  [type]="hide ? 'password' : 'text'"  [formControl]="passFormControl" >
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -53,9 +58,9 @@
         <mat-error *ngIf="passFormControl.hasError('required')">
             Contraseña es <strong>requerido</strong>
         </mat-error>
-      </mat-form-field>
+    </mat-form-field>
   
-    <mat-form-field  *ngIf="roles([''] )" class="example-full-width" appearance="fill">
+    <mat-form-field  *ngIf="roles(['paciente'] )" class="example-full-width" appearance="fill">
         <mat-label>Fecha de nacimiento</mat-label>
         <input matInput [matDatepicker]="picker" disabled  >
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -63,7 +68,7 @@
     </mat-form-field>
   
 
-    <mat-form-field *ngIf="roles(['vacunador', 'paciente'] )" class="example-full-width" appearance="fill">
+     <!-- <mat-form-field *ngIf="roles(['vacunador', 'paciente'] )" class="example-full-width" appearance="fill">
         <mat-label>Zona</mat-label>
         <input matInput  *ngIf="!editarZona"  [disabled]="!editarZona" value=" {{data.centro_vacunatorio.nombre}} " >
         <mat-select  *ngIf="editarZona" [formControl]="zonaFormControl">
@@ -71,11 +76,13 @@
             <mat-option value="Zona 2">Zona 2</mat-option>
             <mat-option value="Zona 3">Zona 3</mat-option>
           </mat-select>
-        <button *ngIf="!editarZona" mat-icon-button matSuffix (click)="editarZona =!editarZona"  >
+        <button *ngIf="!editarZona" mat-icon-button  (click)="editarZona =!editarZona"  >
             <mat-icon>edit</mat-icon>
         </button>
-        <button *ngIf="editarZona" mat-icon-button matSuffix (click)="cambiarZona()" >
+        <button *ngIf="editarZona" mat-icon-button  (click)="cambiarZona()" >
             <mat-icon>save</mat-icon>
         </button>
-    </mat-form-field>
-  </form>
+        <mat-icon>edit</mat-icon>
+        <mat-icon>save</mat-icon>
+    </mat-form-field>  -->
+</form>

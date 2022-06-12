@@ -9,7 +9,10 @@ export class VacunadoresService {
   vacunador:Vacunador[];
   constructor(private http:HttpClient) { }
 
-  url='http://localhost:8080/vacunadores';  
+  url='http://localhost:8080/vacunadores'; 
+  recuperarClave(email:string){
+    return this.http.get<Vacunador>(`${this.url}/recuperarClave/`+email);
+  }
   checkLogVacunador(email:string){
     return this.http.get<Vacunador>(`${this.url}/userExist/`+email);
   }
@@ -27,6 +30,9 @@ export class VacunadoresService {
   }
   updateVacunador(vacunador:Vacunador){
     return this.http.put<Vacunador>(this.url+"/"+vacunador.id,vacunador);
+  }
+  editarUsuario(vacunador:Vacunador ){
+    return this.http.put<Vacunador>(this.url+"/"+Number(localStorage.getItem(('idVacunador'))),vacunador);
   }
   deleteVacunador(vacunador:Vacunador){
     return this.http.delete<Vacunador>(this.url+"/"+vacunador.id)

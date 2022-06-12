@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleListComponent } from './people-list/people-list.component';
 import { AddPeopleComponent } from './add-people/add-people.component';
-import{FormsModule} from '@angular/forms'
+import{FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {PersonasService} from '../app/services/personas.service'
 import {HttpClientModule} from '@angular/common/http';
 import { EditPeopleComponent } from './edit-people/edit-people.component';
@@ -24,6 +24,10 @@ import { AgregarVacunadorComponent } from './agregar-vacunador/agregar-vacunador
 import { DetalleVacunadorComponent } from './detalle-vacunador/detalle-vacunador.component';
 import { HomeComponent } from './home/home.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
+import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.component';
+import { PerfilVacunadorComponent } from './perfil-vacunador/perfil-vacunador.component';
+import { ListoTurnosComponent } from './listo-turnos/listo-turnos.component'
 import { ListaFiebreAmComponent,DialogConfirm,AsigFechaTurno } from './lista-fiebre-am/lista-fiebre-am.component'
 
 @NgModule({
@@ -44,6 +48,10 @@ import { ListaFiebreAmComponent,DialogConfirm,AsigFechaTurno } from './lista-fie
     DetalleVacunadorComponent,
     HomeComponent,
     PerfilComponent,
+    RecuperarClaveComponent,
+    PerfilPacienteComponent,
+    PerfilVacunadorComponent,
+    ListoTurnosComponent,
     ListaFiebreAmComponent,
     DialogConfirm,
     AsigFechaTurno
@@ -52,6 +60,7 @@ import { ListaFiebreAmComponent,DialogConfirm,AsigFechaTurno } from './lista-fie
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     SharedModule,

@@ -15,29 +15,37 @@
         <p><img src="../../assets/logocortado.png">
             <br>Ingresa a tus vacunas<span class="tooltip">?</span></p>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="gripe" name="gripe">
             <label class="form-check-label" for="flexRadioDefault1">
-                Influenza
+                Gripe 
             </label>
             <br>
-            fecha de aplicación<input type="date" >
-            <br>
-            <input class="form-check-input" type="checkbox" id="">
+            <div *ngIf="gripe">
+                fecha de aplicación<input type="date" [(ngModel)]="gripeFecha" name="gripeFecha">
+            </div>
+            <input *ngIf="resetCovid()"class="form-check-input" type="checkbox" [(ngModel)]="covid" name="covid">
             <label class="form-check-label" for="flexRadioDefault1">
                 Covid
             </label>
             <br>
-            fecha de aplicación dosis 1<input type="date" >
-            <br>
-            fecha de aplicación dosis 2<input type="date" >
-            <br>
-            <input class="form-check-input" type="checkbox" id="">
-            <label class="form-check-label" for="flexRadioDefault1">
+            <div *ngIf="covid">
+                fecha de aplicación dosis 1<input type="date" [(ngModel)]="covid1" name="covid1">
+                <br>
+                <div *ngIf="checkDosis1()" >fecha de aplicación dosis 2<input type="date" [(ngModel)]="covid2" name="covid2"></div>
+            </div>
+            <input class="form-check-input" type="checkbox" [(ngModel)]="amarilla" name="amarilla">
+            <label  class="form-check-label" for="flexRadioDefault1">
                 Gripe Amarilla
             </label>
             <br>
-            fecha de aplicación<input type="date" >
+            <div *ngIf="checkAmarilla()">fecha de aplicación<input type="date" [(ngModel)]="fechaAmarilla" name="fechaAmarilla"></div>
+        
+        <input class="form-check-input" type="checkbox" [(ngModel)]="acepto" name="acepto">
+        <label class="form-check-label" >
+            Acepto que la información que brindo es la correcta
+        </label>
         </div>
+        <input   type="submit" class="fadeIn fourth" value="Ingresar Vacunas" [disabled]="!acepto">
     </form>
   </div>
 </div>

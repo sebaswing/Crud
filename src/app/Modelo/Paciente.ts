@@ -11,5 +11,6 @@ export class Paciente
     fechaNacimiento:Date;
     token:number;
     completo_vacunas:number;
-    centro_vacunatorio: Zona
+    zona: number;
+    //centro_vacunatorio: Zona;
 }

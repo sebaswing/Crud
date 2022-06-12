@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-perfil',
@@ -22,13 +23,20 @@ export class PerfilComponent implements OnInit {
 
 
   constructor(private userService: AuthService) { 
-    this.data = this.userService.userData()
-    console.log(this.data)
-    this.emailFormControl.setValue(this.data.email)
-    if (this.userService.usertype() != "admin") {
-      this.zonaFormControl.setValue(this.data.centro_vacunatorio.nombre)
-    }
-    this.passFormControl.setValue(this.data.clave)
+    const id=localStorage.getItem('token');
+    this.userService.checkUser(id)
+    .subscribe(data =>
+      this.data=data
+    );
+    // else{
+    // this.data = this.userService.userData().subscribe();
+    // console.log(this.data);
+    // this.emailFormControl.setValue(this.data.email);
+    // if (this.userService.usertype() != "admin") {
+    //   this.zonaFormControl.setValue(this.data.centro_vacunatorio.nombre);
+    // }
+    // this.passFormControl.setValue(this.data.clave);
+    // }
   }
 
   ngOnInit(): void {

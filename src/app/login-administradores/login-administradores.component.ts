@@ -56,6 +56,8 @@ export class LoginAdministradoresComponent implements OnInit {
               // this.authService.authLogin(this.model);                
                 this.router.navigate([this.returnUrl]); 
                 localStorage.setItem('isLoggedIn', "true");  
+                localStorage.setItem('idAdministrador',this.encontrado.id+""); 
+                localStorage.setItem('tipo','administrador');
                 localStorage.setItem('token', this.encontrado.email); 
           }
           else

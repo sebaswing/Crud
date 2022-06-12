@@ -14,7 +14,11 @@ import { LoginVacunadoresComponent } from './login-vacunadores/login-vacunadores
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PeopleListComponent } from './people-list/people-list.component';
+import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.component';
+import { PerfilVacunadorComponent } from './perfil-vacunador/perfil-vacunador.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
+
 
 const routes: Routes = [
   {
@@ -73,6 +77,18 @@ const routes: Routes = [
     component:PerfilComponent
   },
   {
+    path:'perfilPaciente',
+    component:PerfilPacienteComponent
+  },
+  {
+    path:'perfilVacunador',
+    component:PerfilVacunadorComponent
+  },
+  {
+    path:'recuperarClave',
+    component:RecuperarClaveComponent
+  },
+  {
     path:'listFA',
     component:ListaFiebreAmComponent
   }
@@ -86,7 +102,7 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule {
-  
+
  }
 
 function checkbasic(): string  {

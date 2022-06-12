@@ -1,6 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { VacunadoresService } from '../services/vacunadores.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -30,6 +31,7 @@ export class NavbarComponent implements OnInit {
   } 
 
   mostrar(roles: string[]){
-   return(this.islogged() && roles.includes(this.authService.usertype()) )
+   return(this.islogged() && roles.includes(this.authService.usertype()) );
   }
+
 }

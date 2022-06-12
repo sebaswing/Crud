@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from '../Modelo/Persona';
-import { PersonasService } from '../services/personas.service';
 import { Router } from '@angular/router';
+import { Vacuna } from '../Modelo/Vacuna';
+import { VacunasService } from '../services/vacunas.service';
+
+enum nombreVacuna {
+  'Gripe'= 1,
+  'Covid' = 2,
+  'Fiebre Amarilla' = 3
+};
 
 @Component({
   selector: 'app-people-list',
@@ -9,10 +15,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./people-list.component.css']
 })
 export class PeopleListComponent implements OnInit {
-   
+
   //filteredProducts:Persona[]=[];
-  //rivate _filterList='';  
-  per:Persona[];
+  //rivate _filterList='';
   //get listFilter():string
    // {
    //   return this._filterList;
@@ -21,34 +26,68 @@ export class PeopleListComponent implements OnInit {
     //{
     //  this._filterList=value;
     //  this.filteredProducts=this.performFilter(value);
-   // } 
-    personas:any;
-    ngOnInit(): void {
-      this.service.getTodas()
-        .subscribe(
-          resulta => {
-            this.personas=resulta;
-          }
-        );
-    }
-  constructor(private service: PersonasService,private router:Router) {
-  }
+   // }
+  public nombreVacunasEnum = nombreVacuna;
+  vacunas: Vacuna[];
+  vacunasPasadas: Vacuna[];
+  covid:Vacuna[];
+  gripe:Vacuna[];
+  gripeAmarilla:Vacuna[];
+  mostrarBotonAmarilla:boolean;
+  mostrarCartelEsperando:boolean;
+  constructor(
+    private vacunaService:VacunasService,
+    private route:Router
+  ) {}
   //performFilter(filterBy:string):Persona[]
    //// {
      // filterBy = filterBy.toLocaleLowerCase();
-     // return this.personas.filter((product:Persona)=> 
+     // return this.personas.filter((product:Persona)=>
      // product.nombre.toLocaleLowerCase().includes(filterBy));
     //}
-  Editar(persona:Persona){
-      localStorage.setItem("id",persona.id.toString());
-      this.router.navigate(['editarPersonas']);
+
+  ngOnInit(): void {
+    this. mostrarBotonAmarilla=false;
+    this.mostrarCartelEsperando=false;
+    const id = Number(localStorage.getItem('idPaciente')) || 0;
+
+    this.vacunaService.obtenerVacunas(id).subscribe(
+      vac => {
+        this.vacunas = vac;
+        this.gripe= this.vacunas.filter(co=>co.id_vacuna==1 && !this.compararFechas(co));
+        this.covid= this.vacunas.filter(co=>co.id_vacuna==2 && !this.compararFechas(co));
+        this.gripeAmarilla= this.vacunas.filter(co=>co.id_vacuna==3 );
+        this.mostrarBotonAmarilla=this.gripeAmarilla.length===0;
+        this.vacunasPasadas= this.vacunas.filter(co=> this.compararFechas(co) && this.fechaValida(co));
+        this.gripeAmarilla=this.gripeAmarilla.filter(co=>!this.compararFechas(co));
+      }
+    );
   }
-  Delete(persona:Persona){
-    this.service.deletePersona(persona)
-    .subscribe(data=>{
-      this.personas=this.personas.filter((p: Persona) =>{
-        return p !== persona;
-      });
-      alert("Usuario eliminado...");
-    })}
+
+  compararFechas(vac:Vacuna){
+    let FechaHoy=new Date(Date.now());
+    let fechaNcimiento=new Date(vac.fecha_aplicacion);
+    return fechaNcimiento.getTime()<FechaHoy.getTime();
+  }
+
+  fechaValida(vac:Vacuna){
+    let fechaVacuna=new Date(vac.fecha_aplicacion);
+    if((fechaVacuna.getFullYear()+1)==1900)
+    {
+      this.mostrarCartelEsperando=true;
+    }
+    return fechaVacuna.getFullYear()+1!=1900;
+  }
+
+  solicitarTurnoAmarilla(){
+
+    let fiebre:any={};
+    fiebre.id_usuario=Number(localStorage.getItem('idPaciente'));
+    fiebre.id_vacuna=3;
+    fiebre.dosis=1;
+    fiebre.fecha_aplicacion=new Date("1900-01-01");
+    this.vacunaService.createVacuna(fiebre).subscribe();
+    this.route.navigate(['refresh']);
+  }
+
 }

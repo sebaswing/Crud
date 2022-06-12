@@ -3,49 +3,52 @@
 html {
     background-color: #56baed;
   }
-
+  img{
+    width: 30%;
+  }
   body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
   }
-
+  
+  p{
+    background-color: #A2CC84;
+    color: white;
+  }
+  
   a {
     color: #92badd;
     display:inline-block;
     text-decoration: none;
     font-weight: 400;
   }
-
+  
   h2 {
     text-align: center;
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
     display:inline-block;
-    margin: 40px 8px 10px 8px;
+    margin: 40px 8px 10px 8px; 
     color: #cccccc;
   }
-
-
-
+  
+  
+  
   /* STRUCTURE */
-
+  
   .wrapper {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; 
     justify-content: center;
     width: 100%;
     min-height: 100%;
     padding: 20px;
   }
 
-  p{
-    background-color: #0d0d0d;
-    color: #d9dee2;
-  }
-
-  input::-webkit-outer-spin-button,
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -55,7 +58,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
+  
   #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
@@ -69,7 +72,7 @@ input[type=number] {
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     text-align: center;
   }
-
+  
   #formFooter {
     background-color: #f6f6f6;
     border-top: 1px solid #dce8f1;
@@ -78,22 +81,20 @@ input[type=number] {
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
   }
-
-
-
+  
+  
+  
   /* TABS */
-
+  
   h2.inactive {
     color: #cccccc;
   }
-
+  
   h2.active {
-    color: #0d0d0d;
+    color: black;
     border-bottom: 2px solid #5fbae9;
   }
-
-
-
+  
   /* FORM TYPOGRAPHY*/
 
   .error{
@@ -118,10 +119,9 @@ input[type=number] {
     transition: all 0.3s ease-in-out;
     margin-bottom: 5px;
   }
-
-
-  input[type=button], input[type=submit] {
-    background-color: #0d0d0d;
+  
+  input[type=button], input[type=submit], input[type=reset]  {
+    background-color: #A2CC84;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -141,12 +141,12 @@ input[type=number] {
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
   }
-
-  input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover,select  {
-    background-color: #0d0d0d;
+  
+  input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+    background-color: #A2CC84;
   }
-
-  input[type=button]:active, input[type=submit]:active, input[type=reset]:active,select  {
+  
+  input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);
@@ -154,10 +154,14 @@ input[type=number] {
     transform: scale(0.95);
   }
 
-  input[type=password],input[type=email],input[type=text] ,input[type=number],input[type=date],select {
+  input[type=submit]:disabled{
+    background-color: rgb(210, 230, 196);
+  }
+  
+  input[type=password],input[type=email],input[type=number] {
     background-color: #f6f6f6;
     border: none;
-    color: #0d0d0d;
+    color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -174,22 +178,20 @@ input[type=number] {
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
   }
-
-  input[type=password]:focus,input[type=email]:focus,input[type=text]:focus ,input[type=number]:focus,input[type=date]:focus,select:focus{
+  
+  input[type=password]:focus,input[type=email]:focus,input[type=number]:focus {
     background-color: #fff;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid #A2CC84;
   }
-
-  input[type=password]::placeholder,input[type=email]::placeholder,input[type=text]::placeholder,input[type=number]::placeholder,input[type=date]::placeholder,select::placeholder {
+  
+  input[type=password]:placeholder,input[type=email]:placeholder ,input[type=number]:placeholder{
     color: #cccccc;
   }
-
-  input[type=submit]:disabled{
-    background-color: #696969;
-  }
-
+  
+  
+  
   /* ANIMATIONS */
-
+  
   /* Simple CSS3 Fade-in-down Animation */
   .fadeInDown {
     -webkit-animation-name: fadeInDown;
@@ -199,7 +201,7 @@ input[type=number] {
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
   }
-
+  
   @-webkit-keyframes fadeInDown {
     0% {
       opacity: 0;
@@ -212,7 +214,7 @@ input[type=number] {
       transform: none;
     }
   }
-
+  
   @keyframes fadeInDown {
     0% {
       opacity: 0;
@@ -225,51 +227,51 @@ input[type=number] {
       transform: none;
     }
   }
-
+  
   /* Simple CSS3 Fade-in Animation */
   @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
   @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
   @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
+  
   .fadeIn {
     opacity:0;
     -webkit-animation:fadeIn ease-in 1;
     -moz-animation:fadeIn ease-in 1;
     animation:fadeIn ease-in 1;
-
+  
     -webkit-animation-fill-mode:forwards;
     -moz-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
-
+  
     -webkit-animation-duration:1s;
     -moz-animation-duration:1s;
     animation-duration:1s;
   }
-
+  
   .fadeIn.first {
     -webkit-animation-delay: 0.4s;
     -moz-animation-delay: 0.4s;
     animation-delay: 0.4s;
   }
-
+  
   .fadeIn.second {
     -webkit-animation-delay: 0.6s;
     -moz-animation-delay: 0.6s;
     animation-delay: 0.6s;
   }
-
+  
   .fadeIn.third {
     -webkit-animation-delay: 0.8s;
     -moz-animation-delay: 0.8s;
     animation-delay: 0.8s;
   }
-
+  
   .fadeIn.fourth {
     -webkit-animation-delay: 1s;
     -moz-animation-delay: 1s;
     animation-delay: 1s;
   }
-
+  
   /* Simple CSS3 Fade-in Animation */
   .underlineHover:after {
     display: block;
@@ -281,23 +283,23 @@ input[type=number] {
     content: "";
     transition: width 0.2s;
   }
-
+  
   .underlineHover:hover {
-    color: #0d0d0d;
+    color: rgb(162, 204, 132);
   }
-
+  
   .underlineHover:hover:after{
     width: 100%;
   }
-
-
-
+  
+  
+  
   /* OTHERS */
-
+  
   *:focus {
       outline: none;
-  }
-
+  } 
+  
   #icon {
     width:60%;
   }
