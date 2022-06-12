@@ -142,11 +142,11 @@ input[type=number] {
     transition: all 0.3s ease-in-out;
   }
 
-  input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+  input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover,select  {
     background-color: #0d0d0d;
   }
 
-  input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+  input[type=button]:active, input[type=submit]:active, input[type=reset]:active,select  {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);
@@ -154,7 +154,7 @@ input[type=number] {
     transform: scale(0.95);
   }
 
-  input[type=password],input[type=email],input[type=text] ,input[type=number],input[type=date] {
+  input[type=password],input[type=email],input[type=text] ,input[type=number],input[type=date],select {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;

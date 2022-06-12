@@ -23,6 +23,7 @@ export class IngresoVacunasComponent implements OnInit {
   covid1ok:boolean;
   covid2:any;
   fechaAmarilla:Date;
+  email:string;
   acepto:boolean;
   returnUrl='/listarPersonas';
   pacienteEditar:Paciente = new Paciente();
@@ -38,6 +39,7 @@ export class IngresoVacunasComponent implements OnInit {
   guardarVacunas(form:NgForm){
       this.llenarVacuna();
       this.buscaUsuario();
+
       this.route.navigate([this.returnUrl]);
   }
 
@@ -106,6 +108,7 @@ export class IngresoVacunasComponent implements OnInit {
         encontrado=>{
           localStorage.setItem('isLoggedIn', "true");
           localStorage.setItem('tipo','paciente');
+          localStorage.setItem('token',encontrado.email);
           encontrado.completo_vacunas=1
           this.authService.editarUsuario(encontrado).subscribe();
           this.route.navigate([this.returnUrl]);

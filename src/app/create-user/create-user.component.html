@@ -31,7 +31,8 @@
       <div class="error" *ngIf="born.invalid && (born.dirty || born.touched)">
         <div *ngIf="born.errors?.required">campo Fecha de Nacimiento es obligatorio.</div>
       </div>
-      <select class="form-select fadeIn second" [(ngModel)]="zona" required>
+      <br>zona de elección
+      <select (change)="selectchangeHandler($event)" class="form-select fadeIn second" required placeholder="zona de ubicación">
         <option selected disabled>Seleccionar zona</option>
         <option value="1">Zona 1</option>
         <option value="2">Zona 2</option>

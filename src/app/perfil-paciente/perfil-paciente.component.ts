@@ -41,9 +41,9 @@ export class PerfilPacienteComponent implements OnInit {
     this.userService.checkUser(id)
     .subscribe(data => {
       this.pacienteActual = data,
+      console.log(data);
       this.fillForm(data)
     });
-
   }
 
   fillForm(data: any) {

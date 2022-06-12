@@ -43,7 +43,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   buscarUser(form:NgForm):void{
-
+    this.reiniciarValidadores();
     if(this.validarFechaNacimiento()){
       this.service.checkUser(this.email)
       .subscribe(
@@ -78,6 +78,10 @@ export class CreateUserComponent implements OnInit {
     }
   }
 
+  selectchangeHandler(event:any){
+    this.zona=event.target.value;
+  }
+
   cargarUser():Paciente{
     console.log(this.zona)
     let us=new Paciente();
@@ -96,5 +100,13 @@ export class CreateUserComponent implements OnInit {
     let FechaHoy=new Date(Date.now());
     let fechaNcimiento=new Date(this.nacimiento);
     return fechaNcimiento.getTime()<FechaHoy.getTime();
+  }
+
+  reiniciarValidadores(){
+    this.passwordmismatch=false;
+    this.userExists=false;
+    this.shortPass=false;
+    this.existeDni=false;
+    this.fechaNAcimientoIncorrecta=true;
   }
 }
