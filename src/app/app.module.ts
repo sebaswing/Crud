@@ -28,6 +28,7 @@ import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.compo
 import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.component';
 import { PerfilVacunadorComponent } from './perfil-vacunador/perfil-vacunador.component';
 import { ListoTurnosComponent } from './listo-turnos/listo-turnos.component'
+import { ListaFiebreAmComponent,DialogConfirm,AsigFechaTurno } from './lista-fiebre-am/lista-fiebre-am.component'
 
 @NgModule({
   declarations: [
@@ -50,7 +51,10 @@ import { ListoTurnosComponent } from './listo-turnos/listo-turnos.component'
     RecuperarClaveComponent,
     PerfilPacienteComponent,
     PerfilVacunadorComponent,
-    ListoTurnosComponent
+    ListoTurnosComponent,
+    ListaFiebreAmComponent,
+    DialogConfirm,
+    AsigFechaTurno
   ],
   imports: [
     BrowserModule,

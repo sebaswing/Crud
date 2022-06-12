@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Vacuna } from '../Modelo/Vacuna';
 import { VacunasService } from '../services/vacunas.service';
 
@@ -28,9 +29,15 @@ export class PeopleListComponent implements OnInit {
    // }
   public nombreVacunasEnum = nombreVacuna;
   vacunas: Vacuna[];
-
+  vacunasPasadas: Vacuna[];
+  covid:Vacuna[];
+  gripe:Vacuna[];
+  gripeAmarilla:Vacuna[];
+  mostrarBotonAmarilla:boolean;
+  mostrarCartelEsperando:boolean;
   constructor(
-    private vacunaService:VacunasService
+    private vacunaService:VacunasService,
+    private route:Router
   ) {}
   //performFilter(filterBy:string):Persona[]
    //// {
@@ -40,11 +47,47 @@ export class PeopleListComponent implements OnInit {
     //}
 
   ngOnInit(): void {
+    this. mostrarBotonAmarilla=false;
+    this.mostrarCartelEsperando=false;
     const id = Number(localStorage.getItem('idPaciente')) || 0;
 
     this.vacunaService.obtenerVacunas(id).subscribe(
-      vacunas => this.vacunas = vacunas
+      vac => {
+        this.vacunas = vac;
+        this.gripe= this.vacunas.filter(co=>co.id_vacuna==1 && !this.compararFechas(co));
+        this.covid= this.vacunas.filter(co=>co.id_vacuna==2 && !this.compararFechas(co));
+        this.gripeAmarilla= this.vacunas.filter(co=>co.id_vacuna==3 );
+        this.mostrarBotonAmarilla=this.gripeAmarilla.length===0;
+        this.vacunasPasadas= this.vacunas.filter(co=> this.compararFechas(co) && this.fechaValida(co));
+        this.gripeAmarilla=this.gripeAmarilla.filter(co=>!this.compararFechas(co));
+      }
     );
+  }
+
+  compararFechas(vac:Vacuna){
+    let FechaHoy=new Date(Date.now());
+    let fechaNcimiento=new Date(vac.fecha_aplicacion);
+    return fechaNcimiento.getTime()<FechaHoy.getTime();
+  }
+
+  fechaValida(vac:Vacuna){
+    let fechaVacuna=new Date(vac.fecha_aplicacion);
+    if((fechaVacuna.getFullYear()+1)==1900)
+    {
+      this.mostrarCartelEsperando=true;
+    }
+    return fechaVacuna.getFullYear()+1!=1900;
+  }
+
+  solicitarTurnoAmarilla(){
+
+    let fiebre:any={};
+    fiebre.id_usuario=Number(localStorage.getItem('idPaciente'));
+    fiebre.id_vacuna=3;
+    fiebre.dosis=1;
+    fiebre.fecha_aplicacion=new Date("1900-01-01");
+    this.vacunaService.createVacuna(fiebre).subscribe();
+    this.route.navigate(['refresh']);
   }
 
 }

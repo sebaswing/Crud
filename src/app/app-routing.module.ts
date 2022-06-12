@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { IngresoVacunasComponent } from './ingreso-vacunas/ingreso-vacunas.component';
 import { ListoTurnosComponent } from './listo-turnos/listo-turnos.component';
+import { ListaFiebreAmComponent } from './lista-fiebre-am/lista-fiebre-am.component';
 import { ListoVacunadoresComponent } from './listo-vacunadores/listo-vacunadores.component';
 import { LoginAdministradoresComponent } from './login-administradores/login-administradores.component';
 import { LoginVacunadoresComponent } from './login-vacunadores/login-vacunadores.component';
@@ -91,7 +92,12 @@ const routes: Routes = [
   {
     path:'recuperarClave',
     component:RecuperarClaveComponent
+  },
+  {
+    path:'listFA',
+    component:ListaFiebreAmComponent
   }
+
 
 ];
 

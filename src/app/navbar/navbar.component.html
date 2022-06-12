@@ -32,6 +32,9 @@
          <!--li *ngIf=islogged() class="nav-item active">
           <a class="nav-link" routerLink="/argegarPersonas" routerLinkActive="active"><i class="fas fa-gamepad"></i>Agregar</a>
         </li>-->
+        <li  *ngIf="mostrar( ['admin'] )"   class="nav-item active">
+          <a class="nav-link"  routerLink="/listFA"  routerLinkActive="active"><i class="fas fa-gamepad"></i>Turnos fiebre Amarilla</a>
+        </li>
         <li *ngIf="mostrar( ['admin'] )"   class="nav-item active">
           <a  class="nav-link"  routerLink="/perfil" routerLinkActive="active"><i class="fas fa-gamepad"></i>Perfil</a>
         </li>

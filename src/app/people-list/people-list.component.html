@@ -1,3 +1,103 @@
+<br><br>
+
+<br><br>
+<div class="card" >
+  <div class="card-header">
+    <h3>Turno gripe Amarilla</h3>
+  </div>
+  <!--<div class='col-md-2'>Filter by:</div>
+          <div class='col-md-4'>
+            <input type='text'
+              [(ngModel)]='listFilter'/> double binding
+          </div>-->
+  <div class='row'>
+    <div class='col-md-6'>
+      <!--<h4>Filtered by: {{listFilter}} </h4>-->
+   </div>
+</div>
+  <div class="card-body ">
+    <div *ngFor="let vacuna of gripeAmarilla" class="card" style=" width: 21Rem;margin: 10px;display: inline-block;">
+      <div class="card-header">
+        <h5 class="card-title">{{nombreVacunasEnum[vacuna.id_vacuna]}}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Fecha de aplicación: {{vacuna.fecha_aplicacion}}</p>
+        <p class="card-text">Dosis: {{vacuna.dosis}}</p>
+      </div>
+      <!-- <button (click)=Editar(persona) class="btn-warning">Editar</button>
+      <button (click)=Delete(persona) class="btn-danger" style="margin-left: inherit;">Eliminar</button> -->
+    </div>
+    <button *ngIf="mostrarBotonAmarilla" (click)="solicitarTurnoAmarilla()"  class="btn btn-outline-warning">Solicitar Turno</button>
+    <p *ngIf="mostrarCartelEsperando" >
+      esperando fecha
+    </p>
+  </div>
+</div>
+
+<br><br>
+
+<div class="card" >
+  <div class="card-header">
+    <h3>Turnos gripe</h3>
+  </div>
+  <!--<div class='col-md-2'>Filter by:</div>
+          <div class='col-md-4'>
+            <input type='text'
+              [(ngModel)]='listFilter'/> double binding
+          </div>-->
+  <div class='row'>
+    <div class='col-md-6'>
+      <!--<h4>Filtered by: {{listFilter}} </h4>-->
+   </div>
+</div>
+  <div class="card-body ">
+    <div *ngFor="let vacuna of gripe" class="card" style=" width: 21Rem;margin: 10px;display: inline-block;">
+      <div class="card-header">
+        <h5 class="card-title">{{nombreVacunasEnum[vacuna.id_vacuna]}}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Fecha de aplicación: {{vacuna.fecha_aplicacion}}</p>
+        <p class="card-text">Dosis: {{vacuna.dosis}}</p>
+      </div>
+      <!-- <button (click)=Editar(persona) class="btn-warning">Editar</button>
+      <button (click)=Delete(persona) class="btn-danger" style="margin-left: inherit;">Eliminar</button> -->
+    </div>
+  </div>
+</div>
+
+<br><br>
+
+<div class="card" >
+  <div class="card-header">
+    <h3>Turnos Covid</h3>
+  </div>
+  <!--<div class='col-md-2'>Filter by:</div>
+          <div class='col-md-4'>
+            <input type='text'
+              [(ngModel)]='listFilter'/> double binding
+          </div>-->
+  <div class='row'>
+    <div class='col-md-6'>
+      <!--<h4>Filtered by: {{listFilter}} </h4>-->
+   </div>
+</div>
+  <div class="card-body ">
+    <div *ngFor="let vacuna of covid" class="card" style=" width: 21Rem;margin: 10px;display: inline-block;">
+      <div class="card-header">
+        <h5 class="card-title">{{nombreVacunasEnum[vacuna.id_vacuna]}}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">Fecha de aplicación: {{vacuna.fecha_aplicacion}}</p>
+        <p class="card-text">Dosis: {{vacuna.dosis}}</p>
+      </div>
+      <!-- <button (click)=Editar(persona) class="btn-warning">Editar</button>
+      <button (click)=Delete(persona) class="btn-danger" style="margin-left: inherit;">Eliminar</button> -->
+    </div>
+  </div>
+</div>
+
+<br><br>
+
 <div class="card" >
   <div class="card-header">
     <h3>Historial Vacunas</h3>
@@ -13,7 +113,7 @@
    </div>
 </div>
   <div class="card-body ">
-    <div *ngFor="let vacuna of vacunas" class="card" style=" width: 21Rem;margin: 10px;display: inline-block;">
+    <div *ngFor="let vacuna of vacunasPasadas" class="card" style=" width: 21Rem;margin: 10px;display: inline-block;">
       <div class="card-header">
         <h5 class="card-title">{{nombreVacunasEnum[vacuna.id_vacuna]}}</h5>
       </div>
