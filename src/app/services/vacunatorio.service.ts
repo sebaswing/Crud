@@ -14,12 +14,12 @@ export class VacunatorioService {
   ]
 
   listVacunadores: Vacunador[] = [
-    { id: 1, nombre: 'Alejandro', apellido: 'Ramos', clave: '12098', dni: 33452334 ,email: 'alex@gmail', centro_vacunatorio:'1', token: 1234, borrado: false },
-    { id: 2,  nombre: 'Mariano', apellido: 'Garcia', clave: '12098', dni: 39456333 ,email: 'mariano@gmail', centro_vacunatorio:'0', token: 1234, borrado: false },
-    { id: 3,  nombre: 'Julieta', apellido: 'Vazquez', clave: '12098', dni: 37455336 ,email: 'ximena@gmail', centro_vacunatorio:'1', token: 1234, borrado: false },
-    { id: 4,  nombre: 'Victoria', apellido: 'Talerico', clave: '12098', dni: 35455336 ,email: 'vicky@gmail', centro_vacunatorio: '0', token: 1234, borrado: false },
-    { id: 5,  nombre: 'Ayllin', apellido: 'Gonzales', clave: '12098', dni: 38455336 ,email: 'lin@gmail', centro_vacunatorio: '1', token: 1234, borrado: false },
-    { id: 6,  nombre: 'Evelyn', apellido: 'Fernandez', clave: '12098', dni: 39457136 ,email: 'evy@gmail', centro_vacunatorio: '0', token: 1234, borrado: false },
+    { id: 1, nombre: 'Alejandro', apellido: 'Ramos', clave: '12098', dni: 33452334 ,email: 'alex@gmail', centro_vacunatorio:0, token: 1234, borrado: false },
+    { id: 2,  nombre: 'Mariano', apellido: 'Garcia', clave: '12098', dni: 39456333 ,email: 'mariano@gmail', centro_vacunatorio:0, token: 1234, borrado: false },
+    { id: 3,  nombre: 'Julieta', apellido: 'Vazquez', clave: '12098', dni: 37455336 ,email: 'ximena@gmail', centro_vacunatorio:1, token: 1234, borrado: false },
+    { id: 4,  nombre: 'Victoria', apellido: 'Talerico', clave: '12098', dni: 35455336 ,email: 'vicky@gmail', centro_vacunatorio: 0, token: 1234, borrado: false },
+    { id: 5,  nombre: 'Ayllin', apellido: 'Gonzales', clave: '12098', dni: 38455336 ,email: 'lin@gmail', centro_vacunatorio: 1, token: 1234, borrado: false },
+    { id: 6,  nombre: 'Evelyn', apellido: 'Fernandez', clave: '12098', dni: 39457136 ,email: 'evy@gmail', centro_vacunatorio: 0, token: 1234, borrado: false },
   ];
 
   listTFA: TurnoFiebreA[] = [

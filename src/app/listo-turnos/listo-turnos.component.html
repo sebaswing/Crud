@@ -1,1 +1,49 @@
-<p>listo-turnos EN PROCESO!</p>
+<br><br>
+<br><br>
+
+<form (ngSubmit)="asignarPresencialidad(form)" #form="ngForm">
+  <div class="card" >
+    <div class="card-header">
+      <h3>Turnos del dia</h3>
+    </div>
+    <div class='row'>
+      <div class='col-md-6'>
+      </div>
+    </div>
+    <div class="card-body ">
+      <div *ngFor="let turno of turnos" class="card" style=" width: 21Rem;margin: 10px;display: inline-block;">
+        <div class="card-header">
+          <h4 class="card-title">{{nombreVacunasEnum[turno.turno.id_vacuna]}}</h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Dosis: {{turno.turno.dosis}}</p>
+        </div>
+        <div class="card-header">
+          <h4 class="card-title">Paciente</h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text">DNI:{{turno.pac.dni}}</p>
+          <p class="card-text">Nombre:{{turno.pac.nombre}}</p>
+          <p class="card-text">Apellido:{{turno.pac.apellido}}</p>
+        </div>
+        <div class="card-header">
+          <label class="card-title">Asistencia</label>
+        </div>
+        <div class="card-body">
+          <input class="card-text" type="radio" name={{turno.turno.id_usuario}}  value="asistio" >Asistio
+          <input class="card-text" type="radio" name={{turno.turno.id_usuario}}  value="no asistio" >No Asistio
+        </div>
+        <div class="card-body">
+          <input type="text" name="observacion" placeholder="Observacion" >
+        </div>
+      </div>
+  <div *ngIf="tiene">
+    <input class="form-check-input" type="checkbox" [(ngModel)]="acepto" name="acepto">
+    <label class="form-check-label" >
+      Acepto que la información que brindo es la correcta
+    </label>
+    <br><br>
+    <input   type="submit" value="Ingresar Vacunas" [disabled]="!acepto">
+  </div>
+
+

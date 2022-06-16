@@ -17,6 +17,10 @@ export class AuthService {
     return this.http.get<Paciente>(`${this.url}/userExist/`+email);
   }
 
+  checkID(id:number){
+    return this.http.get<Paciente>(`${this.url}/userID/`+id);
+  }
+
   logout() :void {
     localStorage.setItem('isLoggedIn','false');
     localStorage.removeItem('token');

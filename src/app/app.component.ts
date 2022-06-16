@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
   }
   ngOnInit(): void {
     this.logedUser = localStorage.getItem('isLoggedIn')=="true";
-    this.router.navigate(["listarPersonas"]);
+    //this.router.navigate(["listarPersonas"]);
   }
   
   listar()

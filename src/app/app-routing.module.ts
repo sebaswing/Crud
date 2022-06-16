@@ -47,55 +47,68 @@ const routes: Routes = [
   },
   {
     path:'argegarPersonas',
-    component: AddPeopleComponent
+    component: AddPeopleComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'editarPersonas',
-    component: EditPeopleComponent
+    component: EditPeopleComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'refresh',
-    component:AppComponent
+    component:AppComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'createUser',
-    component:CreateUserComponent
+    component:CreateUserComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'agregarVacunas',
-    component:IngresoVacunasComponent
+    component:IngresoVacunasComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'listaVacunadores',
-    component:ListoVacunadoresComponent
+    component:ListoVacunadoresComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'listoTurnos',
-    component:ListoTurnosComponent
+    component:ListoTurnosComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'home',
-    component:HomeComponent
+    component:HomeComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'perfil',
-    component:PerfilComponent
+    component:PerfilComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'perfilPaciente',
-    component:PerfilPacienteComponent
+    component:PerfilPacienteComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'perfilVacunador',
-    component:PerfilVacunadorComponent
+    component:PerfilVacunadorComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'recuperarClave',
-    component:RecuperarClaveComponent
+    component:RecuperarClaveComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:'listFA',
-    component:ListaFiebreAmComponent
+    component:ListaFiebreAmComponent,
+    canActivate : [AuthGuard]
   }
 
 
