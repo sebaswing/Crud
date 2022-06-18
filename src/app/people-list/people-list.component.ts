@@ -89,8 +89,7 @@ export class PeopleListComponent implements OnInit {
   {
     if(this.mostrarBotonAmarilla===true){
     const id = Number(localStorage.getItem('idPaciente')) || 0;
-
-    this.vacunaService.obtenerVacunas(id).subscribe(
+     this.vacunaService.obtenerVacunas(id).subscribe(
       vac => {
         this.vacunas = vac;
         this.gripeAmarilla= this.vacunas.filter(co=>co.id_vacuna==3);
@@ -104,12 +103,12 @@ export class PeopleListComponent implements OnInit {
   }
 
   solicitarTurnoAmarilla(){
-
     let fiebre:any={};
     fiebre.id_usuario=Number(localStorage.getItem('idPaciente'));
     fiebre.id_vacuna=3;
     fiebre.dosis=1;
     fiebre.fecha_aplicacion=new Date("1900-01-01");
+    fiebre.observacion='';
     this.vacunaService.createVacuna(fiebre).subscribe();
     this.route.navigate(['refresh']);
   }

@@ -48,57 +48,46 @@ const routes: Routes = [
   {
     path:'argegarPersonas',
     component: AddPeopleComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'editarPersonas',
     component: EditPeopleComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'refresh',
     component:AppComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'createUser',
     component:CreateUserComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'agregarVacunas',
     component:IngresoVacunasComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'listaVacunadores',
     component:ListoVacunadoresComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'listoTurnos',
     component:ListoTurnosComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'home',
     component:HomeComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'perfil',
     component:PerfilComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'perfilPaciente',
     component:PerfilPacienteComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'perfilVacunador',
     component:PerfilVacunadorComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'recuperarClave',
@@ -108,7 +97,6 @@ const routes: Routes = [
   {
     path:'listFA',
     component:ListaFiebreAmComponent,
-    canActivate : [AuthGuard]
   }
 
 

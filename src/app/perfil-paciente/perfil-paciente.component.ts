@@ -44,8 +44,8 @@ export class PerfilPacienteComponent implements OnInit {
       lastname: new FormControl({value: '', disabled: true}),
       dni: new FormControl({value: '', disabled: true}),
       birth: new FormControl({value: '', disabled: true}),
-      password:this.fb.control('',Validators.minLength(6)),
-      password2:this.fb.control('',Validators.minLength(6)),
+      password:['',[Validators.required,Validators.minLength(6)]],
+      password2:['',[Validators.required,Validators.minLength(6)]],
       zona: new FormControl({value: ''})
     },{
       validators:this.checkPassword('password','password2'),
@@ -55,7 +55,6 @@ export class PerfilPacienteComponent implements OnInit {
     this.userService.checkUser(id)
     .subscribe(data => {
       this.pacienteActual = data,
-      console.log(data);
       this.fillForm(data)
     });
   }
@@ -104,9 +103,9 @@ export class PerfilPacienteComponent implements OnInit {
         console.log(passs2);
 
         if (passs1===passs2)
-          return {password2:false};
+          return null;
         else{
-          return {password2:true}
+          return {password2:true};
         }
     }
   }
