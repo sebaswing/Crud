@@ -48,13 +48,35 @@
     <mat-form-field class="profile-full-width" appearance="fill">
       <mat-label>Password</mat-label>
       <input matInput type="password" formControlName="password" required>
-
+      <mat-error *ngIf="!profileForm.get('password')?.errors?.minLength">
+        la constraseña debe ser mayor a 6 caracteres.
+      </mat-error>
       <mat-error *ngIf="passwordField?.hasError('required')">
         Contraseña requerida.
       </mat-error>
     </mat-form-field>
   </p>
 
+  <p>
+    <mat-form-field class="profile-full-width" appearance="fill">
+      <mat-label>confirm password</mat-label>
+      <input matInput type="password" formControlName="password2" required>
+      <mat-error *ngIf="!profileForm.get('password2')?.errors?.minLength">
+        la constraseña debe ser mayor a 6 caracteres.
+      </mat-error>
+      <mat-error *ngIf="passwordField?.hasError('required')">
+        Contraseña requerida.
+      </mat-error>
+      <!-- <mat-error *ngIf="profileForm.value.password2">
+        las contraseñas no coinciden.
+      </mat-error> -->
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-hint *ngIf="profileForm.errors?.password2" style="color: red;">
+      las contraseñas no son iguales
+    </mat-hint>
+  </p>
   <p>
     <mat-form-field class="profile-full-width" appearance="fill">
       <mat-label>Zona</mat-label>
@@ -74,8 +96,7 @@
       </mat-error>
     </mat-form-field>
   </p>
-
-  <p>
+  <p >
     <button type="submit" [disabled]="!profileForm.valid" (click)="submitForm()" class="btn btn-success">Actualizar</button>
   </p>
 </form>

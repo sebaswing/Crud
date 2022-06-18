@@ -35,6 +35,7 @@ export class PeopleListComponent implements OnInit {
   gripeAmarilla:Vacuna[];
   mostrarBotonAmarilla:boolean;
   mostrarCartelEsperando:boolean;
+
   constructor(
     private vacunaService:VacunasService,
     private route:Router
@@ -47,7 +48,7 @@ export class PeopleListComponent implements OnInit {
     //}
 
   ngOnInit(): void {
-    this. mostrarBotonAmarilla=false;
+    this.mostrarBotonAmarilla=false;
     this.mostrarCartelEsperando=false;
     const id = Number(localStorage.getItem('idPaciente')) || 0;
 
@@ -56,14 +57,16 @@ export class PeopleListComponent implements OnInit {
         this.vacunas = vac;
         this.gripe= this.vacunas.filter(co=>co.id_vacuna==1 && !this.compararFechas(co));
         this.covid= this.vacunas.filter(co=>co.id_vacuna==2 && !this.compararFechas(co));
-        this.gripeAmarilla= this.vacunas.filter(co=>co.id_vacuna==3 );
+        this.gripeAmarilla= this.vacunas.filter(co=>co.id_vacuna==3);
         this.mostrarBotonAmarilla=this.gripeAmarilla.length===0;
         this.vacunasPasadas= this.vacunas.filter(co=> this.compararFechas(co) && this.fechaValida(co));
         this.gripeAmarilla=this.gripeAmarilla.filter(co=>!this.compararFechas(co));
       }
     );
   }
-
+  edadValidaAmarilla(){
+    return Number(localStorage.getItem('edad'))>=18 && Number(localStorage.getItem('edad'))<60;
+  }
   compararFechas(vac:Vacuna){
     let FechaHoy=new Date(Date.now());
     let fechaNcimiento=new Date(vac.fecha_aplicacion);
@@ -77,6 +80,27 @@ export class PeopleListComponent implements OnInit {
       this.mostrarCartelEsperando=true;
     }
     return fechaVacuna.getFullYear()+1!=1900;
+  }
+
+  mostrarAConfirmar(){
+    return this.mostrarCartelEsperando;
+  }
+  checkBotonAmarilla()
+  {
+    if(this.mostrarBotonAmarilla===true){
+    const id = Number(localStorage.getItem('idPaciente')) || 0;
+
+    this.vacunaService.obtenerVacunas(id).subscribe(
+      vac => {
+        this.vacunas = vac;
+        this.gripeAmarilla= this.vacunas.filter(co=>co.id_vacuna==3);
+        this.mostrarBotonAmarilla=this.gripeAmarilla.length===0;
+        this.mostrarCartelEsperando = this.vacunas.filter(co=>co.id_vacuna==3 && !this.compararFechas(co)&&this.fechaValida(co)).length!==0;
+
+        }
+      )
+    }
+    return this.mostrarBotonAmarilla;
   }
 
   solicitarTurnoAmarilla(){

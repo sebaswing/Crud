@@ -64,10 +64,11 @@ export class CreateUserComponent implements OnInit {
 
             this.service.checkByDni(this.dni).subscribe(
               user=> {
-              this.encontrado = user,
+              this.encontrado = user
+              if(this.encontrado!=null )
                 this.existeDni=this.encontrado!==null
-
-              this.guardarUser(this.cargarUser());
+              else
+               this.guardarUser(this.cargarUser());
             })
 
         }
