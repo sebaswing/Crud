@@ -14,7 +14,7 @@ import { LoginAdministradoresComponent } from './login-administradores/login-adm
 import { LoginVacunadoresComponent } from './login-vacunadores/login-vacunadores.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PeopleListComponent } from './people-list/people-list.component';
+import { ListaVacunasComponent } from './lista-vacunas/lista-vacunas.component';
 import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.component';
 import { PerfilVacunadorComponent } from './perfil-vacunador/perfil-vacunador.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -41,8 +41,8 @@ const routes: Routes = [
     component: LoginVacunadoresComponent
   },
   {
-    path:'listarPersonas',
-    component: PeopleListComponent,
+    path:'lista-vacunas',
+    component: ListaVacunasComponent,
     canActivate : [AuthGuard]
   },
   {

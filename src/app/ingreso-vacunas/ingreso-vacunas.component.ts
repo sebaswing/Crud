@@ -25,7 +25,7 @@ export class IngresoVacunasComponent implements OnInit {
   fechaAmarilla:Date;
   email:string;
   acepto:boolean;
-  returnUrl='/listarPersonas';
+  returnUrl='/lista-vacunas';
   pacienteEditar:Paciente = new Paciente();
 
   constructor(private route:Router,private service:VacunasService,private authService:AuthService) {

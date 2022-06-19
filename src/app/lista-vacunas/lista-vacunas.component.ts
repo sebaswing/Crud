@@ -11,11 +11,11 @@ enum nombreVacuna {
 };
 
 @Component({
-  selector: 'app-people-list',
-  templateUrl: './people-list.component.html',
-  styleUrls: ['./people-list.component.css']
+  selector: 'app-lista-vacunas',
+  templateUrl: './lista-vacunas.component.html',
+  styleUrls: ['./lista-vacunas.component.css']
 })
-export class PeopleListComponent implements OnInit, OnDestroy {
+export class ListaVacunasComponent implements OnInit, OnDestroy {
 
   nombreVacunasEnum = nombreVacuna;
   vacunas: Vacuna[];

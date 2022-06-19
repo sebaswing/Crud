@@ -14,21 +14,21 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.logedUser = localStorage.getItem('isLoggedIn')=="true";
   }
-  
+
   listar(){
     console.log(localStorage.getItem('isLoggedIn')==="true");
-    this.router.navigate(["listarPersonas"]);
+    this.router.navigate(["lista-vacunas"]);
   }
 
   islogged(){
     return localStorage.getItem('isLoggedIn')=="true";
   }
 
-  logout() {  
-    console.log('logout');  
-    this.authService.logout(); 
-    this.router.navigate(['/login']);  
-  } 
+  logout() {
+    console.log('logout');
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 
   mostrar(roles: string[]){
    return(this.islogged() && roles.includes(this.authService.usertype()) );

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   message: string;
   aproved=true;
   tokenIncorrecto=true;
-  returnUrl='/listarPersonas';
+  returnUrl='/lista-vacunas';
   //moock
   paciente : Paciente;
 

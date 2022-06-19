@@ -17,7 +17,7 @@ export class EditPeopleComponent implements OnInit {
   ngOnInit(): void {
     this.Editar();
   }
-  
+
   Editar(){
     const id=localStorage.getItem("id");
     this.service.getPersonaId(+!id)
@@ -30,7 +30,7 @@ export class EditPeopleComponent implements OnInit {
     .subscribe( data=>{
         this.persona=data
         alert("se actualizó con exito");
-        this.route.navigate(["listarPersonas"]);
+        this.route.navigate(["lista-vacunas"]);
     })}
-    
+
 }

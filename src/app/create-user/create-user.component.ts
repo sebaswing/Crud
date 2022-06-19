@@ -20,11 +20,14 @@ export class CreateUserComponent implements OnInit {
   passwordmismatch=false;
   userExists=false;
   shortPass=false;
+  invalidEmail=false;
   existeDni=false;
   fechaNAcimientoIncorrecta=true;
   zona:number;
   encontrado:Paciente=new Paciente();
   us:Paciente=new Paciente();
+  fechaNacimientoLimite = new Date().toISOString().split('T')[0];
+  emailPattern = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
   constructor(private route:Router,private service:AuthService) { }
 
   ngOnInit(): void {
@@ -32,50 +35,55 @@ export class CreateUserComponent implements OnInit {
   }
 
   guardarUser(usuario:Paciente){
-      this.service.createUser(usuario)
-      .subscribe({
-        next: usuario=>{
-          alert("se creo el usuario con exito")
-          this.route.navigate(["login"]);
-        },
-        error: error => console.log(error)
-      })
+    this.service.createUser(usuario)
+    .subscribe({
+      next: usuario => {
+        alert("se creo el usuario con exito")
+        this.route.navigate(["login"]);
+      },
+      error: error => console.log(error)
+    })
   }
 
   buscarUser(form:NgForm):void{
     this.reiniciarValidadores();
-    if(this.validarFechaNacimiento()){
-      this.service.checkUser(this.email)
-      .subscribe(
-        usuario=>{
-          this.encontrado=usuario;
-          if (this.encontrado!=null || this.pass!=this.pass2 || this.pass.length<6){
-            if(this.encontrado!=null){
-              this.userExists=true;
-            }
-          if(this.pass!=this.pass2){
-              this.passwordmismatch=true;
-            }
-            if(this.pass.length<6) {
-              this.shortPass=true;
-            }
+
+    if (this.validarFechaNacimiento()) {
+      this.service.checkUser(this.email).subscribe(usuario => {
+        this.encontrado=usuario;
+
+        if (this.encontrado!=null || this.pass!=this.pass2 || this.pass.length<6||!this.emailPattern.test(this.email)){
+          if (this.encontrado!=null) {
+            this.userExists = true;
           }
-          else {
+          if (!this.emailPattern.test(this.email)) {
+            this.invalidEmail = true;
+          }
+          if (this.pass!=this.pass2) {
+            this.passwordmismatch = true;
+          }
+          if (this.pass.length<6) {
+            this.shortPass = true;
+          }
 
-            this.service.checkByDni(this.dni).subscribe(
-              user=> {
-              this.encontrado = user
-              if(this.encontrado!=null )
-                this.existeDni=this.encontrado!==null
-              else
-               this.guardarUser(this.cargarUser());
-            })
+        } else {
+          this.service.checkByDni(this.dni).subscribe({
+            next: user => {
+              this.encontrado = user;
 
+              if (this.encontrado!=null ) {
+                this.existeDni=this.encontrado!==null;
+
+              } else {
+                this.guardarUser(this.cargarUser());
+              }
+            }
+          })
         }
-      })
-    }
-    else {
-        this.fechaNAcimientoIncorrecta=this.validarFechaNacimiento();
+      });
+
+    } else {
+      this.fechaNAcimientoIncorrecta=this.validarFechaNacimiento();
     }
   }
 

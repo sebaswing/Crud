@@ -16,12 +16,12 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.logedUser = localStorage.getItem('isLoggedIn')=="true";
     if(localStorage.getItem('tipo')==="paciente")
-    this.router.navigate(["listarPersonas"]);
+    this.router.navigate(["lista-vacunas"]);
   }
 
   listar()
   {
     this.logedUser = localStorage.getItem('isLoggedIn')=="true";
-    this.router.navigate(["listarPersonas"]);
+    this.router.navigate(["lista-vacunas"]);
   }
 }
