@@ -27,8 +27,10 @@
       <!-- <button (click)=Editar(persona) class="btn-warning">Editar</button>
       <button (click)=Delete(persona) class="btn-danger" style="margin-left: inherit;">Eliminar</button> -->
     </div>
-    <button *ngIf="checkBotonAmarilla() && edadValidaAmarilla()" (click)="solicitarTurnoAmarilla()"  class="btn btn-outline-warning">Solicitar Turno</button>
-    <p *ngIf="mostrarAConfirmar()" >
+    <button *ngIf="mostrarBotonAmarilla" (click)="solicitarTurnoAmarilla()" class="btn btn-outline-warning">
+      Solicitar Turno
+    </button>
+    <p *ngIf="mostrarCartelEsperando" >
       fecha a confirmar
     </p>
   </div>
