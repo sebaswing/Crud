@@ -20,9 +20,7 @@ export class LoginComponent implements OnInit {
   message: string;
   aproved=true;
   tokenIncorrecto=true;
-  returnUrl='/listarPersonas';
-
-
+  returnUrl='/lista-vacunas';
   //moock
   paciente : Paciente;
 
@@ -56,6 +54,7 @@ export class LoginComponent implements OnInit {
               // this.authService.authLogin(this.model);
               localStorage.setItem('idPaciente',this.encontrado.id+"");
               localStorage.setItem('token', this.encontrado.email);
+              localStorage.setItem('edad',this.calcularEdad(this.encontrado.fechaNacimiento)+"");
               console.log(this.encontrado.email);
               if(this.encontrado.completo_vacunas==1){
                 localStorage.setItem('isLoggedIn', "true");
@@ -69,15 +68,16 @@ export class LoginComponent implements OnInit {
           else
           {
             if(this.encontrado.token!=this.token)
-            this.tokenIncorrecto=false;
+              this.tokenIncorrecto=false;
             else
               this.aproved=false;
           }
       })
-
     }
-
   }
-
+  calcularEdad(nacimiento:Date):number{
+      var timeDiff = Math.abs(Date.now() - new Date(nacimiento).getTime());
+      return Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+  }
 
 }

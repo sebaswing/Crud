@@ -22,7 +22,7 @@ export class AddPeopleComponent implements OnInit {
       .subscribe(
         data=>{
           alert("se agregó con exito");
-          this.route.navigate(["listarPersonas"]);
+          this.route.navigate(["lista-vacunas"]);
         }
    )}
 }

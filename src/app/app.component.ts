@@ -8,19 +8,20 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
   title = 'vistaPersonas';
-  
+
   logedUser = localStorage.getItem('isLoggedIn')=="true";
   constructor(private router: Router){
-    
+
   }
   ngOnInit(): void {
     this.logedUser = localStorage.getItem('isLoggedIn')=="true";
-    //this.router.navigate(["listarPersonas"]);
+    if(localStorage.getItem('tipo')==="paciente")
+    this.router.navigate(["lista-vacunas"]);
   }
-  
+
   listar()
   {
     this.logedUser = localStorage.getItem('isLoggedIn')=="true";
-    this.router.navigate(["listarPersonas"]);
+    this.router.navigate(["lista-vacunas"]);
   }
 }

@@ -14,7 +14,7 @@ import { LoginAdministradoresComponent } from './login-administradores/login-adm
 import { LoginVacunadoresComponent } from './login-vacunadores/login-vacunadores.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PeopleListComponent } from './people-list/people-list.component';
+import { ListaVacunasComponent } from './lista-vacunas/lista-vacunas.component';
 import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.component';
 import { PerfilVacunadorComponent } from './perfil-vacunador/perfil-vacunador.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -41,64 +41,53 @@ const routes: Routes = [
     component: LoginVacunadoresComponent
   },
   {
-    path:'listarPersonas',
-    component: PeopleListComponent,
+    path:'lista-vacunas',
+    component: ListaVacunasComponent,
     canActivate : [AuthGuard]
   },
   {
     path:'argegarPersonas',
     component: AddPeopleComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'editarPersonas',
     component: EditPeopleComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'refresh',
     component:AppComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'createUser',
     component:CreateUserComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'agregarVacunas',
     component:IngresoVacunasComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'listaVacunadores',
     component:ListoVacunadoresComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'listoTurnos',
     component:ListoTurnosComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'home',
     component:HomeComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'perfil',
     component:PerfilComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'perfilPaciente',
     component:PerfilPacienteComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'perfilVacunador',
     component:PerfilVacunadorComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'recuperarClave',
@@ -108,7 +97,6 @@ const routes: Routes = [
   {
     path:'listFA',
     component:ListaFiebreAmComponent,
-    canActivate : [AuthGuard]
   }
 
 
