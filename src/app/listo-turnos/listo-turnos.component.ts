@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Paciente } from '../Modelo/Paciente';
 import { TurnoVacunador } from '../Modelo/TurnoVacunador';
@@ -25,16 +25,14 @@ export class ListoTurnosComponent implements OnInit {
   turnos:TurnoVacunador[]=[];
   acepto:boolean;
   tiene=false;
-  form = new FormGroup({
-    asistio: new FormControl('',[Validators.required]),
-    observacion: new FormControl('',[Validators.required])
-  })
+  form:FormGroup;
   
   constructor(
     private vacunaService:VacunasService,
     private pacienteService:AuthService,
-    private route:Router
-  ) {}
+    private route:Router,
+    private fb:FormBuilder
+  ) {this.crearControles();}
 
   ngOnInit(): void {
     const zonaAsignada = Number(localStorage.getItem('zonaAsignada')) || 0;
@@ -51,10 +49,17 @@ export class ListoTurnosComponent implements OnInit {
         }
         }
     )
-    console.log(this.turnos.length)
-    /* if(this.turnos==null){
-      this.vacio=true;
-    } */
+  }
+
+  crearControles(){
+    this.form= this.fb.group({
+      asistio:'',
+      observacion:''
+    })
+  }
+
+  guardarAsistencia(){
+    console.log (this.form.value)
   }
 
   asignarPresencialidad(form:NgForm){
