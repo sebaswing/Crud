@@ -92,7 +92,6 @@ const routes: Routes = [
   {
     path:'recuperarClave',
     component:RecuperarClaveComponent,
-    canActivate : [AuthGuard]
   },
   {
     path:'listFA',

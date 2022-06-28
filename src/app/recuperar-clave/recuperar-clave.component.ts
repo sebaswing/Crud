@@ -13,15 +13,54 @@ import { VacunadoresService } from '../services/vacunadores.service';
 export class RecuperarClaveComponent implements OnInit {
 
   email:string;
-  constructor(private authService:AuthService,private vacunador:VacunadoresService,private administrador:AdministradoresService,private router : Router,  ) { }
+  aux:boolean;
+  constructor(private authService:AuthService,private vacunador:VacunadoresService,private administrador:AdministradoresService,private router : Router,  ) {
+    this.aux=false
+  }
 
   ngOnInit(): void {
   }
 
+  verificarAux (){
+    if(this.aux === false){
+      alert("El email ingresado no existe.")
+      this.router.navigate(['login']);
+    }
+  }
+
   checkLogin(form:NgForm){
-   this.authService.recuperarClave(this.email).subscribe();
-   this.vacunador.recuperarClave(this.email).subscribe();
-   this.administrador.recuperarClave(this.email).subscribe();
-   this.router.navigate(['login']);
+    
+   this.authService.recuperarClave(this.email).subscribe(
+    paciente => {
+      if (paciente !== null){
+        this.aux=true;
+        alert("Se envio un email con la contraseña.")
+        this.router.navigate(['login']);
+      }else{
+        this.vacunador.recuperarClave(this.email).subscribe(
+          vacunador => {
+            if (vacunador !== null){
+              this.aux=true;
+              alert("Se envio un email con la contraseña.")
+              this.router.navigate(['login']);
+            }else{
+              this.administrador.recuperarClave(this.email).subscribe(
+                administrador => {
+                  if (administrador !== null){
+                    this.aux=true;
+                    alert("Se envio un email con la contraseña.")
+                    this.router.navigate(['login']);
+                  }else if(this.aux == false){
+                    alert("El email ingresado no existe.")
+                    this.router.navigate(['login']);
+                  }
+                }
+              );
+            }
+          }
+        );
+      }
+    }
+   );
   }
 }
