@@ -15,6 +15,7 @@ export class VacunasService {
   }
 
   editarVacuna(vacuna:Vacuna){
+    console.log(vacuna)
     return this.http.put<Vacuna>(this.url+"/"+vacuna.id,vacuna);
   }
 

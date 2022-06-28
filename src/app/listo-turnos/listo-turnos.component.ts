@@ -54,18 +54,16 @@ export class ListoTurnosComponent implements OnInit {
   crearControles(){
     this.form= this.fb.group({
       asistio:'',
-      observacion:''
+      observacion:'',
+      id:''
     })
   }
 
-  guardarAsistencia(){
-    console.log (this.form.value)
+  guardarAsistencia(turno:TurnoVacunador){
+    if ((this.form.get('asistio')?.value || '') == "true"){
+      turno.turno.asistio=1
+    }
+    turno.turno.observacion=this.form.get('observacion')?.value || ''
+    this.vacunaService.editarVacuna(turno.turno).subscribe()
   }
-
-  asignarPresencialidad(form:NgForm){
-    console.log(this.form.get('asistio')?.value || '')
-    console.log(this.form.get('observacion')?.value || ''),
-    this.route.navigate(['refresh']);
-  }
-
 }
