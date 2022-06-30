@@ -1,4 +1,4 @@
-export interface Vacuna {
+export class Vacuna {
   id: number;
   id_vacuna:number;
   id_usuario: number;

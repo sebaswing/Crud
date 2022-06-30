@@ -65,5 +65,7 @@ export class ListoTurnosComponent implements OnInit {
     }
     turno.turno.observacion=this.form.get('observacion')?.value || ''
     this.vacunaService.editarVacuna(turno.turno).subscribe()
+    this.route.navigate(['/refresh']);
+    
   }
 }

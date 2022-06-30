@@ -19,6 +19,8 @@ import { PerfilPacienteComponent } from './perfil-paciente/perfil-paciente.compo
 import { PerfilVacunadorComponent } from './perfil-vacunador/perfil-vacunador.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
+import { CrearPacienteComponent } from './crear-paciente/crear-paciente.component';
+import { IngresoVacunasDesdeVacunadorComponent } from './ingreso-vacunas-desde-vacunador/ingreso-vacunas-desde-vacunador.component';
 
 
 const routes: Routes = [
@@ -62,8 +64,16 @@ const routes: Routes = [
     component:CreateUserComponent,
   },
   {
+    path:'crearPaciente',
+    component:CrearPacienteComponent,
+  },
+  {
     path:'agregarVacunas',
     component:IngresoVacunasComponent,
+  },
+  {
+    path:'agregarVacunasDesdeVacunador',
+    component:IngresoVacunasDesdeVacunadorComponent,
   },
   {
     path:'listaVacunadores',

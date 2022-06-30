@@ -1,0 +1,74 @@
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+    </div>
+
+    <!-- Login Form -->
+    <form (ngSubmit)="buscarUser(form)" #form="ngForm">
+      <p>Crea tu usuario</p>
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="nombre" [(ngModel)]="nombre" required #nombre1="ngModel">
+      <div class="error" *ngIf="nombre1.invalid && (nombre1.dirty || nombre1.touched)">
+        <div *ngIf="nombre1.errors?.required">campo nombre es obligatorio.</div>
+      </div>
+      <input type="text" id="usersurname" class="fadeIn second" name="usersurname" placeholder="apellido" [(ngModel)]="apellido" required #apellido1="ngModel">
+      <div class="error" *ngIf="apellido1.invalid && (apellido1.dirty || apellido1.touched)">
+        <div *ngIf="apellido1.errors?.required">campo apellido es obligatorio.</div>
+      </div>
+      <input type="text" pattern="\d*" id="dni" class="fadeIn second" name="dni" placeholder="dni" maxlength="8" [(ngModel)]="dni" required #id="ngModel">
+      <div class="error" *ngIf="id.invalid && (id.dirty || id.touched)">
+        <div *ngIf="id.errors?.required">campo DNI es obligatorio.</div>
+      </div>
+      <br>fecha de nacimiento
+      <input type="date" id="nacimiento" class="fadeIn second" name="nacimiento" value="FechaDeNacimiento" [(ngModel)]="nacimiento" [max]="fechaNacimientoLimite" required #born="ngModel">
+      <div class="error" *ngIf="born.invalid && (born.dirty || born.touched)">
+        <div *ngIf="born.errors?.required">campo Fecha de Nacimiento es obligatorio.</div>
+      </div>
+      <br>zona de elección
+      <select (change)="selectchangeHandler($event)" class="form-select fadeIn second" required placeholder="zona de ubicación">
+        <option selected disabled>Seleccionar zona</option>
+        <option value="1">Zona 1</option>
+        <option value="2">Zona 2</option>
+        <option value="3">Zona 3</option>
+      </select>
+      <input type="email" id="email" class="fadeIn second" name="name" placeholder="email" [(ngModel)]="email" required #mail="ngModel">
+      <div class="error" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
+        <div *ngIf="mail.errors?.required">campo mail es obligatorio</div>
+      </div>
+      <div class="error" *ngIf="invalidEmail">
+        <div>Formato de Email incorrecto</div>
+      </div>
+      <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password"[(ngModel)]="pass" required #passw="ngModel">
+      <div class="error" *ngIf="passw.invalid && (passw.dirty || passw.touched)">
+        <div *ngIf="passw.errors?.required"> campo password es obligatorio</div>
+      </div>
+      <input type="password" id="pass2" class="fadeIn third" name="pass2" placeholder="confirm password"[(ngModel)]="pass2" required #passw2="ngModel">
+      <div class="error" *ngIf="passw2.invalid && (passw2.dirty || passw2.touched)">
+        <div *ngIf="passw2.errors?.required">campo password es obligatorio</div>
+      </div>
+      <div class="error" *ngIf="passwordmismatch">
+        <div>las contraseñas no coinciden</div>
+      </div>
+      <div class="error" *ngIf="userExists">
+        <div>el usuario ya existe</div>
+      </div>
+      <div class="error" *ngIf="existeDni">
+        <div>el dni ya existe</div>
+      </div>
+      <div class="error" *ngIf="shortPass">
+        <div>la constraseña debe tener 6 o mas caracteres</div>
+      </div>
+      <div class="error" *ngIf="!fechaNAcimientoIncorrecta">
+        <div>error en la fecha de nacimiento, debe ser menor a la fecha actual</div>
+      </div>
+      <input type="submit" class="fadeIn fourth" value="Crear" [disabled]="!form.valid">
+    </form>
+  </div>
+</div>
