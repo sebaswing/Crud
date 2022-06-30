@@ -23,8 +23,8 @@ export class ListoTurnosComponent implements OnInit {
   public nombreVacunasEnum = nombreVacuna;
   aux:Vacuna[];
   turnos:TurnoVacunador[]=[];
-  acepto:boolean;
   tiene=false;
+  zonaAsignada = Number(localStorage.getItem('zonaAsignada')) || 0;
   form:FormGroup;
   
   constructor(
@@ -35,8 +35,20 @@ export class ListoTurnosComponent implements OnInit {
   ) {this.crearControles();}
 
   ngOnInit(): void {
-    const zonaAsignada = Number(localStorage.getItem('zonaAsignada')) || 0;
-    this.vacunaService.traerTurnos(zonaAsignada).subscribe(
+    this.mostrar();
+    this.route.navigate(['listoTurnos']);
+  }
+
+  crearControles(){
+    this.form= this.fb.group({
+      asistio:'',
+      observacion:'',
+      id:''
+    })
+  }
+
+  mostrar(){
+    this.vacunaService.traerTurnos(this.zonaAsignada).subscribe(
       tur => {
           this.aux=tur;
           for (let index = 0; index < this.aux.length; index++) {
@@ -51,21 +63,13 @@ export class ListoTurnosComponent implements OnInit {
     )
   }
 
-  crearControles(){
-    this.form= this.fb.group({
-      asistio:'',
-      observacion:'',
-      id:''
-    })
-  }
-
   guardarAsistencia(turno:TurnoVacunador){
     if ((this.form.get('asistio')?.value || '') == "true"){
       turno.turno.asistio=1
     }
     turno.turno.observacion=this.form.get('observacion')?.value || ''
     this.vacunaService.editarVacuna(turno.turno).subscribe()
-    this.route.navigate(['/refresh']);
-    
+    this.mostrar();
+    this.route.navigate(['actualizar']);
   }
 }

@@ -56,6 +56,10 @@ const routes: Routes = [
     component: EditPeopleComponent,
   },
   {
+    path:'actualizar',
+    component:ListoTurnosComponent,
+  },
+  {
     path:'refresh',
     component:AppComponent,
   },

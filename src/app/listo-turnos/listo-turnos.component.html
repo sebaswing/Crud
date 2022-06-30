@@ -32,17 +32,17 @@
             <div class="card-body">
               <div class="form-group">
                 <label for={{turno.turno.id_usuario}}>Asistio</label>
-                <input class="form-control" class="card-text" type="radio" value=true formControlName="asistio" id={{turno.turno.id_usuario}} >
+                <input class="form-control" class="card-text" type="radio" [(ngModel)]="turno.acepto2" value=true formControlName="asistio" id={{turno.turno.id_usuario}} >
               </div>
               <div class="form-group">
                 <label for={{turno.turno.id_usuario}}>No asistio</label>
-                <input class="form-control" class="card-text" type="radio" value=false formControlName="asistio" id={{turno.turno.id_usuario}} >
+                <input class="form-control" class="card-text" type="radio" [(ngModel)]='turno.acepto3' value=false formControlName="asistio" id={{turno.turno.id_usuario}} >
               </div>
               <br><br>
               <div class="form-group">
-                <input type="text" class="form-control" name="observacion" formControlName="observacion" placeholder="Observacion" >
+                <input type="text" class="form-control"  formControlName="observacion" placeholder="Observacion" id={{turno.turno.observacion}}>
               </div>
-                <input class="form-check-input" type="checkbox" (change)="turno.acepto=!turno.acepto" name="acepto">
+                <input class="form-check-input" type="checkbox" (change)="turno.acepto=!turno.acepto" [disabled]="!turno.acepto2 && !turno.acepto3" name="acepto">
                 <label class="form-check-label" >
                   Acepto la responsabilidad de lo que ingreso
                 </label>
