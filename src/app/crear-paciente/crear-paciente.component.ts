@@ -40,6 +40,7 @@ export class CrearPacienteComponent implements OnInit {
       next: usuario => {
         alert("se creo el usuario con exito")
         localStorage.setItem('idPaciente',usuario.id+"");
+        localStorage.setItem('edadPaciente',this.calcularEdad(usuario.fechaNacimiento)+'');
         localStorage.setItem('tokenPaciente',usuario.email);
         this.route.navigate(['agregarVacunasDesdeVacunador']);
       },
@@ -91,6 +92,11 @@ export class CrearPacienteComponent implements OnInit {
 
   selectchangeHandler(event:any){
     this.zona=event.target.value;
+  }
+
+  calcularEdad(nacimiento:Date):number{
+    var timeDiff = Math.abs(Date.now() - new Date(nacimiento).getTime());
+    return Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
   }
 
   cargarUser():Paciente{

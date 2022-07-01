@@ -36,6 +36,8 @@ export class ListoTurnosComponent implements OnInit {
 
   ngOnInit(): void {
     this.mostrar();
+    this.route.navigate(['actualizar']);
+    this.mostrar();
     this.route.navigate(['listoTurnos']);
   }
 

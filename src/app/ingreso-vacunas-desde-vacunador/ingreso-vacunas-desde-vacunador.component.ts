@@ -19,6 +19,7 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
   gripeFecha:Date;
   covid:boolean;
   amarilla:boolean;
+  solicitud:boolean;
   covid1:any;
   covid1ok:boolean;
   covid2:any;
@@ -44,14 +45,15 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
   guardarVacunas(form:NgForm){
       this.llenarVacuna();
       this.buscaUsuario();
-
-      this.route.navigate([this.returnUrl]);
-      this.route.navigate(['/refresh']);
+      this.route.navigate([this.returnUrl])
+      this.route.navigate(['/actualizar'])
+      
   }
 
   // 1 gripe, 2 covid 3 gripaAmarilla
   llenarVacuna(){
     this.vacu.id_usuario=Number(localStorage.getItem(('idPaciente')));
+    const edad=Number(localStorage.getItem(('edadPaciente')));
     this.vacu.observacion="";
     if(this.gripe)
     {
@@ -81,9 +83,20 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
             this.vacu.id_vacuna=2;
             this.vacu.fecha_aplicacion=fecha2;
             this.service.createVacuna(this.vacu).subscribe();
+          }else{
+            this.vacu.dosis=2;
+            this.vacu.id_vacuna=2;
+            this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+            fecha.setDate(fecha.getDate()+22)
+            if(fecha>new Date(this.ano,this.mes,this.dia)){
+                this.vacu.fecha_aplicacion= new Date(fecha.getFullYear(),fecha.getMonth(),fecha.getDate());
+            }else{
+                this.vacu.fecha_aplicacion= new Date(this.ano,this.mes,this.dia);
+            }
+            this.service.createVacuna(this.vacu).subscribe();
           }
       }
-    }else{
+    }else if (edad>18){
       this.vacu.dosis=1;
       this.vacu.id_vacuna=2;
       this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
@@ -96,12 +109,14 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
       this.vacu.fecha_aplicacion= new Date(this.ano,this.mes,this.dia+21);
       this.service.createVacuna(this.vacu).subscribe();
     }
+
+
     if(this.amarilla){
       this.vacu.dosis=1;
       this.vacu.id_vacuna=3;
       this.vacu.fecha_aplicacion=this.fechaAmarilla;
       this.service.createVacuna(this.vacu).subscribe();
-    }else{
+    }else if(this.solicitud && edad<=60){
       this.vacu.dosis=1;
       this.vacu.id_vacuna=3;
       this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
@@ -121,6 +136,7 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
     }
     return true;
   }
+
   checkDosis1(){
     var fecha = new Date(this.covid1);
     if(fecha.getDay().toString()=="NaN")
