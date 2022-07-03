@@ -12,6 +12,8 @@ export class PerfilPacienteComponent implements OnInit {
 
   pacienteActual!: Paciente;
   contraseñasIguales:boolean=true;
+
+  emailExiste:boolean=false;
   profileForm:FormGroup;
 
   constructor(
@@ -75,6 +77,8 @@ export class PerfilPacienteComponent implements OnInit {
   }
 
   submitForm() {
+    const id = localStorage.getItem('token') || '';
+    this.emailExiste=false;
     let paciente = {
       id: this.pacienteActual.id,
       token: this.pacienteActual.token,
@@ -87,21 +91,26 @@ export class PerfilPacienteComponent implements OnInit {
       fechaNacimiento: this.profileForm.get('birth')?.value,
       zona: this.zonaField?.value
     };
-    console.log('se completó')
-    this.userService.editarUsuario(paciente).subscribe({
-      next: data => console.log(data), //se ejecuta cuando la petición termina OK
-      complete: () => console.log('se completó'), // se ejecuta siempre que termina
-      error: error => console.log(error) // se ejecuta cuando la petición termina con errores.
-    });
+    this.userService.checkUser(paciente.email).subscribe({
+      next: user =>{
+        if(user==null ||user.email===id){
+        this.userService.editarUsuario(paciente).subscribe({
+          next: data => console.log(data), //se ejecuta cuando la petición termina OK
+          complete: () => console.log('se completo'), // se ejecuta siempre que termina
+          error: error => console.log(error) // se ejecuta cuando la petición termina con errores.
+        });}
+        else {
+          this.emailExiste=true;
+        }
+      },
+  });
   }
+
   checkPassword(pass1:string,pass2:string):ValidatorFn{
     return (control:AbstractControl):ValidationErrors|null=>{
         const FormGroup=control as FormGroup;
         const passs1 = FormGroup.get(pass1)?.value;
         const passs2 = FormGroup.get(pass2)?.value;
-        console.log(passs1);
-        console.log(passs2);
-
         if (passs1===passs2)
           return null;
         else{

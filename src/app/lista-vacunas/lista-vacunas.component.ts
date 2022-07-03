@@ -69,7 +69,7 @@ export class ListaVacunasComponent implements OnInit, OnDestroy {
   edadValidaAmarilla(): boolean {
     const edad = Number(localStorage.getItem('edad'))
 
-    return edad >= 18 && edad < 60;
+    return edad < 60;
   }
 
   compararFechas(vac:Vacuna): boolean {
