@@ -9,6 +9,7 @@
 
 # dependencies
 /node_modules
+/babel-webpack
 
 # profiling files
 chrome-profiler-events*.json
