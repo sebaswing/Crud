@@ -38,6 +38,7 @@ export class LoginAdministradoresComponent implements OnInit {
       this.authService.logout();
   }
   checkLoginAdministrador(form:NgForm){
+    console.log('ingrtesa aca loginadm')
 
     if ( this.email == "admin@gmail.com"){
       this.admin = {id:1, nombre:'Admin', apellido: 'Jonsales', dni: 87672345, email: 'admin@gmail.com', clave: '123456', token:987654, borrado:false}

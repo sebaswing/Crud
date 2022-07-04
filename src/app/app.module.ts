@@ -30,7 +30,8 @@ import { PerfilVacunadorComponent } from './perfil-vacunador/perfil-vacunador.co
 import { ListoTurnosComponent } from './listo-turnos/listo-turnos.component'
 import { ListaFiebreAmComponent,DialogConfirm,AsigFechaTurno } from './lista-fiebre-am/lista-fiebre-am.component';
 import { CrearPacienteComponent } from './crear-paciente/crear-paciente.component';
-import { IngresoVacunasDesdeVacunadorComponent } from './ingreso-vacunas-desde-vacunador/ingreso-vacunas-desde-vacunador.component'
+import { IngresoVacunasDesdeVacunadorComponent } from './ingreso-vacunas-desde-vacunador/ingreso-vacunas-desde-vacunador.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component'
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { IngresoVacunasDesdeVacunadorComponent } from './ingreso-vacunas-desde-v
     DialogConfirm,
     AsigFechaTurno,
     CrearPacienteComponent,
-    IngresoVacunasDesdeVacunadorComponent
+    IngresoVacunasDesdeVacunadorComponent,
+    EstadisticasComponent
   ],
   imports: [
     BrowserModule,

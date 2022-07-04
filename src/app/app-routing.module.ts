@@ -21,6 +21,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.component';
 import { CrearPacienteComponent } from './crear-paciente/crear-paciente.component';
 import { IngresoVacunasDesdeVacunadorComponent } from './ingreso-vacunas-desde-vacunador/ingreso-vacunas-desde-vacunador.component';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 
 const routes: Routes = [
@@ -110,7 +111,11 @@ const routes: Routes = [
   {
     path:'listFA',
     component:ListaFiebreAmComponent,
-  }
+  },
+  {
+    path:'estadisticas',
+    component:EstadisticasComponent,
+  },
 
 
 ];
