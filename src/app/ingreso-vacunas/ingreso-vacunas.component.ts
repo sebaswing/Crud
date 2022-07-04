@@ -1,8 +1,7 @@
-import { ConditionalExpr } from '@angular/compiler';
+
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Paciente } from '../Modelo/Paciente';
 import { Vacuna } from '../Modelo/Vacuna';
 import { AuthService } from '../services/auth.service';
