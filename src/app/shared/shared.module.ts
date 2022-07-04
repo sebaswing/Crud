@@ -21,6 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion'
 @NgModule({
   declarations: [],
   imports: [
@@ -46,6 +47,8 @@ import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRippleModule,
+    MatExpansionModule
+    
 
   ],
   exports: [
@@ -68,7 +71,8 @@ import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRippleModule
+    MatRippleModule,
+    MatExpansionModule
   ]
 })
 export class SharedModule { }

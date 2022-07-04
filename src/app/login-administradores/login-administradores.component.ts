@@ -41,6 +41,7 @@ export class LoginAdministradoresComponent implements OnInit {
     console.log('ingrtesa aca loginadm')
 
     if ( this.email == "admin@gmail.com"){
+      console.log('ingresa por aca ')
       this.admin = {id:1, nombre:'Admin', apellido: 'Jonsales', dni: 87672345, email: 'admin@gmail.com', clave: '123456', token:987654, borrado:false}
       localStorage.setItem('user', JSON.stringify(this.admin))
       localStorage.setItem('isLoggedIn', "true");

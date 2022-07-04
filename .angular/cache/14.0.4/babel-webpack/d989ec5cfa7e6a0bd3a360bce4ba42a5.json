@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class TurnoVacunador {\n  constructor(v, p) {\n    this.turno = v;\n    this.pac = p;\n    this.acepto = false;\n    this.acepto2 = false;\n    this.acepto3 = false;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

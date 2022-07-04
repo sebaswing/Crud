@@ -32,6 +32,7 @@ import { ListaFiebreAmComponent,DialogConfirm,AsigFechaTurno } from './lista-fie
 import { CrearPacienteComponent } from './crear-paciente/crear-paciente.component';
 import { IngresoVacunasDesdeVacunadorComponent } from './ingreso-vacunas-desde-vacunador/ingreso-vacunas-desde-vacunador.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component'
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -65,11 +66,13 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxChartsModule,
     FormsModule,
+    
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SharedModule,
+    SharedModule
   ],
   providers: [
     VacunadoresService,
