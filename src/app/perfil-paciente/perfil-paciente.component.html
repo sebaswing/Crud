@@ -12,7 +12,11 @@
         </mat-error>
     </mat-form-field>
   </p>
-
+  <p>
+    <mat-hint *ngIf="emailExiste" style="color: red;">
+      el email que quiere modificar ya existe.
+    </mat-hint>
+  </p>
   <p>
     <mat-form-field class="profile-full-width" appearance="fill">
       <mat-label>DNI</mat-label>

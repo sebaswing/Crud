@@ -107,8 +107,9 @@ export class CreateUserComponent implements OnInit {
   validarFechaNacimiento()//valida que la fecha de nacimiento es menor
   {
     let FechaHoy=new Date(Date.now());
+
     let fechaNcimiento=new Date(this.nacimiento);
-    return fechaNcimiento.getTime()<FechaHoy.getTime();
+    return fechaNcimiento<FechaHoy;
   }
 
   reiniciarValidadores(){
