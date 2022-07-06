@@ -66,10 +66,15 @@ export class ListoTurnosComponent implements OnInit {
   }
 
   guardarAsistencia(turno:TurnoVacunador){
+    
     if ((this.form.get('asistio')?.value || '') == "true"){
       turno.turno.asistio=1
+    }else{
+        turno.turno.fecha_aplicacion.setMonth((turno.turno.fecha_aplicacion.getMonth()+6) || 0)
+        console.log(turno.turno.fecha_aplicacion)
     }
     turno.turno.observacion=this.form.get('observacion')?.value || ''
+    
     this.vacunaService.editarVacuna(turno.turno).subscribe()
     this.mostrar();
     this.route.navigate(['actualizar']);

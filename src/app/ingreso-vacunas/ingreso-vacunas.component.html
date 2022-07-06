@@ -35,16 +35,23 @@
             </div>
             <input class="form-check-input" type="checkbox" [(ngModel)]="amarilla" name="amarilla">
             <label  class="form-check-label" for="flexRadioDefault1">
-                Gripe Amarilla
+                Fiebre Amarilla
             </label>
             <br>
             <div *ngIf="checkAmarilla()">fecha de aplicación<input type="date" [(ngModel)]="fechaAmarilla" name="fechaAmarilla"></div>
         
+        
+        <input class="form-check-input" type="checkbox" [(ngModel)]="riesgo" name="riesgo">
+        <label class="form-check-label" >
+            Es de riesgo
+        </label>
+    </div>
+    <br>
         <input class="form-check-input" type="checkbox" [(ngModel)]="acepto" name="acepto">
         <label class="form-check-label" >
             Acepto que la información que brindo es la correcta
         </label>
-        </div>
+        
         <input   type="submit" class="fadeIn fourth" value="Ingresar Vacunas" [disabled]="!acepto">
     </form>
   </div>

@@ -20,6 +20,7 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
   covid:boolean;
   amarilla:boolean;
   solicitud:boolean;
+  riesgo:boolean;
   covid1:any;
   covid1ok:boolean;
   covid2:any;
@@ -154,6 +155,11 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
       this.authService.checkLog(email).subscribe(
         encontrado=>{
           encontrado.completo_vacunas=1
+          if (this.riesgo = true){
+            localStorage.setItem('riesgo',"true");
+          }else{
+            localStorage.setItem('riesgo',"false");
+          }
           this.authService.editarUsuario(encontrado).subscribe();
           this.route.navigate([this.returnUrl]);
       })

@@ -39,6 +39,7 @@ export class CreateUserComponent implements OnInit {
     .subscribe({
       next: usuario => {
         alert("se creo el usuario con exito")
+        localStorage.setItem('edadPaciente',this.calcularEdad(usuario.fechaNacimiento)+'');
         this.route.navigate(["login"]);
       },
       error: error => console.log(error)
@@ -89,6 +90,11 @@ export class CreateUserComponent implements OnInit {
 
   selectchangeHandler(event:any){
     this.zona=event.target.value;
+  }
+
+  calcularEdad(nacimiento:Date):number{
+    var timeDiff = Math.abs(Date.now() - new Date(nacimiento).getTime());
+    return Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
   }
 
   cargarUser():Paciente{

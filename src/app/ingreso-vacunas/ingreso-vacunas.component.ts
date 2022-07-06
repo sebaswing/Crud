@@ -18,12 +18,18 @@ export class IngresoVacunasComponent implements OnInit {
   gripeFecha:Date;
   covid:boolean;
   amarilla:boolean;
+  riesgo:boolean;
   covid1:any;
   covid1ok:boolean;
   covid2:any;
   fechaAmarilla:Date;
+  hoy:Date = new Date()
+  ano=this.hoy.getUTCFullYear();
+  mes=this.hoy.getUTCMonth();
+  dia=this.hoy.getUTCDate();
   email:string;
   acepto:boolean;
+  vacu:Vacuna=new Vacuna();
   returnUrl='/lista-vacunas';
   pacienteEditar:Paciente = new Paciente();
 
@@ -34,7 +40,6 @@ export class IngresoVacunasComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   guardarVacunas(form:NgForm){
       this.llenarVacuna();
       this.buscaUsuario();
@@ -44,37 +49,88 @@ export class IngresoVacunasComponent implements OnInit {
 
   // 1 gripe, 2 covid 3 gripaAmarilla
   llenarVacuna(){
-    let vacu:any = {};
-    vacu.id_usuario=Number(localStorage.getItem(('idPaciente')));
-    if(this.gripe)
-    {
-      vacu.dosis=1;
-      vacu.id_vacuna=1;
-      vacu.fecha_aplicacion=this.gripeFecha;
-      this.service.createVacuna(vacu).subscribe();
+    this.vacu.id_usuario=Number(localStorage.getItem(('idPaciente')));
+    const edad=Number(localStorage.getItem(('edadPaciente')));
+    this.vacu.observacion="";
+  
+    if(this.gripe){
+      this.vacu.dosis=1;
+      this.vacu.id_vacuna=1;
+      this.vacu.fecha_aplicacion=this.gripeFecha;
+      this.service.createVacuna(this.vacu).subscribe();
+    }else if((this.riesgo)||(edad > 60)){
+      this.vacu.dosis=1;
+      this.vacu.id_vacuna=1;
+      this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+      this.vacu.fecha_aplicacion= new Date(this.ano,this.mes+3,this.dia);
+      this.service.createVacuna(this.vacu).subscribe();
+    }else{
+      this.vacu.dosis=1;
+      this.vacu.id_vacuna=1;
+      this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+      this.vacu.fecha_aplicacion= new Date(this.ano,this.mes+6,this.dia);
+      this.service.createVacuna(this.vacu).subscribe();
     }
+
     if(this.covid){
       var fecha = new Date(this.covid1);
       var fecha2 = new Date(this.covid2);
       if(fecha.getDay().toString()!="NaN")
       {
-          vacu.dosis=1;
-          vacu.id_vacuna=2;
-          vacu.fecha_aplicacion=fecha;
-          this.service.createVacuna(vacu).subscribe();
+          this.vacu.dosis=1;
+          this.vacu.id_vacuna=2;
+          this.vacu.fecha_aplicacion=fecha;
+          this.service.createVacuna(this.vacu).subscribe();
           if(fecha2.getDay().toString()!="NaN"){
-            vacu.dosis=2;
-            vacu.id_vacuna=2;
-            vacu.fecha_aplicacion=fecha2;
-            this.service.createVacuna(vacu).subscribe();
+            this.vacu.dosis=2;
+            this.vacu.id_vacuna=2;
+            this.vacu.fecha_aplicacion=fecha2;
+            this.service.createVacuna(this.vacu).subscribe();
+          }else if(this.riesgo || edad>60){
+            this.vacu.dosis=2;
+            this.vacu.id_vacuna=2;
+            this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+            this.vacu.fecha_aplicacion= new Date(this.ano,this.mes,this.dia+7);
+            this.service.createVacuna(this.vacu).subscribe();
+          }else{
+            this.vacu.dosis=2;
+            this.vacu.id_vacuna=2;
+            this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+            this.vacu.fecha_aplicacion= new Date(this.ano,this.mes+6,this.dia);
+            this.service.createVacuna(this.vacu).subscribe();
           }
       }
+    }else if((this.riesgo || edad>60)&&(edad>18)){
+      this.vacu.dosis=1;
+      this.vacu.id_vacuna=2;
+      this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+      this.vacu.fecha_aplicacion= new Date(this.ano,this.mes,this.dia+7);
+      this.service.createVacuna(this.vacu).subscribe();
+
+      this.vacu.dosis=2;
+      this.vacu.id_vacuna=2;
+      this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+      this.vacu.fecha_aplicacion= new Date(this.ano,this.mes,this.dia+28);
+      this.service.createVacuna(this.vacu).subscribe();
+    }else if(edad>18) {
+      this.vacu.dosis=1;
+      this.vacu.id_vacuna=2;
+      this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+      this.vacu.fecha_aplicacion= new Date(this.ano,this.mes+6,this.dia);
+      this.service.createVacuna(this.vacu).subscribe();
+
+      this.vacu.dosis=2;
+      this.vacu.id_vacuna=2;
+      this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+      this.vacu.fecha_aplicacion= new Date(this.ano,this.mes+6,this.dia+21);
+      this.service.createVacuna(this.vacu).subscribe();
     }
+
     if(this.amarilla){
-      vacu.dosis=1;
-      vacu.id_vacuna=3;
-      vacu.fecha_aplicacion=this.fechaAmarilla;
-      this.service.createVacuna(vacu).subscribe();
+      this.vacu.dosis=1;
+      this.vacu.id_vacuna=3;
+      this.vacu.fecha_aplicacion=this.fechaAmarilla;
+      this.service.createVacuna(this.vacu).subscribe();
     }
   }
 
@@ -108,6 +164,11 @@ export class IngresoVacunasComponent implements OnInit {
           localStorage.setItem('isLoggedIn', "true");
           localStorage.setItem('tipo','paciente');
           localStorage.setItem('token',encontrado.email);
+          if (this.riesgo = true){
+            localStorage.setItem('riesgo',"true");
+          }else{
+            localStorage.setItem('riesgo',"false");
+          }
           encontrado.completo_vacunas=1
           this.authService.editarUsuario(encontrado).subscribe();
           this.route.navigate([this.returnUrl]);
