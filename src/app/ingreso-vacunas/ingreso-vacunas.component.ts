@@ -52,7 +52,6 @@ export class IngresoVacunasComponent implements OnInit {
     this.vacu.id_usuario=Number(localStorage.getItem(('idPaciente')));
     const edad=Number(localStorage.getItem(('edadPaciente')));
     this.vacu.observacion="";
-  
     if(this.gripe){
       this.vacu.dosis=1;
       this.vacu.id_vacuna=1;
@@ -138,6 +137,14 @@ export class IngresoVacunasComponent implements OnInit {
     return this.amarilla;
   }
 
+  fechasMayorAUnAño(fechaDeVacuna:any){
+    const fluDate= new Date (this.gripeFecha);
+    const unAñoAtras = new Date();
+    unAñoAtras.setFullYear(unAñoAtras.getFullYear()-1);
+    return fluDate<unAñoAtras;
+  }
+
+
   resetCovid(){
     if(this.covid==false){
       this.covid1=this.resetDate();
@@ -156,6 +163,7 @@ export class IngresoVacunasComponent implements OnInit {
     var reset:any;
     return reset;
   }
+
   buscaUsuario(){
     var email=localStorage.getItem('token');
     if(email!=null){
