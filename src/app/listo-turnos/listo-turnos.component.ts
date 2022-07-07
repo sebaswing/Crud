@@ -26,6 +26,10 @@ export class ListoTurnosComponent implements OnInit {
   tiene=false;
   zonaAsignada = Number(localStorage.getItem('zonaAsignada')) || 0;
   form:FormGroup;
+  hoy:Date = new Date()
+  ano=this.hoy.getUTCFullYear();
+  mes=this.hoy.getUTCMonth();
+  dia=this.hoy.getUTCDate();
   
   constructor(
     private vacunaService:VacunasService,
@@ -70,13 +74,50 @@ export class ListoTurnosComponent implements OnInit {
     if ((this.form.get('asistio')?.value || '') == "true"){
       turno.turno.asistio=1
     }else{
-        turno.turno.fecha_aplicacion.setMonth((turno.turno.fecha_aplicacion.getMonth()+6) || 0)
-        console.log(turno.turno.fecha_aplicacion)
+        console.log(localStorage.getItem(turno.pac.email) || "")
+        if(turno.turno.id_vacuna==1){
+            if((localStorage.getItem(turno.pac.email)||"") == "true"){
+                turno.turno.fecha_aplicacion=new Date(this.ano,this.mes+3,this.dia)  
+            }else{
+                turno.turno.fecha_aplicacion=new Date(this.ano,this.mes+6,this.dia)  
+            }
+          }else if(turno.turno.id_vacuna==2){
+              if((localStorage.getItem(turno.pac.email)||"") == "true"){
+                  if(turno.turno.dosis==1){
+                    console.log('hola1')
+                    this.vacunaService.traerTurno(turno.turno.id_usuario).subscribe(
+                        t => {
+                        t.fecha_aplicacion= new Date (this.ano,this.mes,this.dia+28)
+                        console.log('entro')
+                        this.vacunaService.editarVacuna(t).subscribe()
+                        })
+                    turno.turno.fecha_aplicacion=new Date(this.ano,this.mes,this.dia+7)
+                  }else{
+                      console.log('hola2')
+                      turno.turno.fecha_aplicacion=new Date(this.ano,this.mes,this.dia+7)
+                  }  
+              }else{
+                  if(turno.turno.dosis==1){
+                      this.vacunaService.traerTurno(turno.turno.id_usuario).subscribe(
+                          t => {
+                              t.fecha_aplicacion= new Date (this.ano,this.mes+6,this.dia+21)
+                              this.vacunaService.editarVacuna(t).subscribe()
+                          })
+                      turno.turno.fecha_aplicacion=new Date(this.ano,this.mes+6,this.dia)  
+                  }else{
+                      turno.turno.fecha_aplicacion=new Date(this.ano,this.mes+6,this.dia)  
+                  }
+              }
+          }
     }
-    turno.turno.observacion=this.form.get('observacion')?.value || ''
+    if(turno.turno.id_vacuna==3){
+      this.vacunaService.borrarTurno(turno.turno,turno.turno.id_usuario).subscribe();
+    }else{
+        turno.turno.observacion=this.form.get('observacion')?.value || ''
     
-    this.vacunaService.editarVacuna(turno.turno).subscribe()
-    this.mostrar();
-    this.route.navigate(['actualizar']);
+        this.vacunaService.editarVacuna(turno.turno).subscribe()
+        this.mostrar();
+        this.route.navigate(['actualizar']);
+    }
   }
 }

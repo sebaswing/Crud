@@ -16,16 +16,16 @@
       
       <p><img src="../../assets/logocortado.png">
         <br>Ingresa a tu cuenta</p>
-      <input type="email" id="email" class="fadeIn second" name="name" placeholder="email" [(ngModel)]="email" required #mail="ngModel">
+      <input type="email" id="email" class="fadeIn second" name="name" placeholder="EMAIL" [(ngModel)]="email" required #mail="ngModel">
       <div class="error" *ngIf="mail.invalid && (mail.dirty || mail.touched)">
         <div *ngIf="mail.errors!.required">campo mail es obligatorio</div>
       </div>
-      <input  type="password" id="password" class="fadeIn third" name="pass" placeholder="password"[(ngModel)]="pass" required #password="ngModel">
+      <input  type="password" id="password" class="fadeIn third" name="pass" placeholder="CLAVE"[(ngModel)]="pass" required #password="ngModel">
       <!--Mensaje de validacion para que escriba algo -->
       <div class="error" *ngIf="password.invalid && (password.dirty || password.touched)" > 
         <div *ngIf="password.errors!.required">campo contraseña es obligatorio.</div>
       </div>
-      <input type="number" id="token"  class="fadeIn second" name="token" placeholder="token" [(ngModel)]="token" required #tokenn="ngModel">
+      <input type="number" id="token"  class="fadeIn second" name="token" placeholder="TOKEN" [(ngModel)]="token" required #tokenn="ngModel">
       <!--Mensaje de validación para el usuario sin dni-->
       <div class="error" *ngIf="tokenn.invalid && (tokenn.dirty || tokenn.touched)">
         <div *ngIf="tokenn.errors!.required">campo Token es obligatorio.</div>

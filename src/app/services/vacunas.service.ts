@@ -23,6 +23,14 @@ export class VacunasService {
     return this.http.get<Vacuna[]>(this.url+'/listarVacunas/'+idPaciente);
   }
 
+  traerTurno(id:number){
+    return this.http.get<Vacuna>(this.url+'/traerTurno/'+id);
+  }
+
+  borrarTurno(vacuna: Vacuna,id:number){
+    return this.http.put<Vacuna>(this.url+'/borrar/'+vacuna.id,id)
+  }
+
   traerTurnos(zona:number){
     return this.http.get<Vacuna[]>(this.url+'/traerTurnos/'+zona);
   }
