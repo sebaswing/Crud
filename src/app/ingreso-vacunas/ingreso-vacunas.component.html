@@ -21,7 +21,7 @@
             </label>
             <br>
             <div *ngIf="gripe">
-                fecha de aplicación<input type="date" [(ngModel)]="gripeFecha" name="gripeFecha">
+                Fecha de aplicación<input type="date" [(ngModel)]="gripeFecha" name="gripeFecha">
             </div>
             <input *ngIf="resetCovid()"class="form-check-input" type="checkbox" [(ngModel)]="covid" name="covid">
             <label class="form-check-label" for="flexRadioDefault1">
@@ -29,16 +29,16 @@
             </label>
             <br>
             <div *ngIf="covid">
-                fecha de aplicación dosis 1<input type="date" [(ngModel)]="covid1" name="covid1">
+                Fecha de aplicación dosis 1<input type="date" [(ngModel)]="covid1" name="covid1">
                 <br>
-                <div *ngIf="checkDosis1()" >fecha de aplicación dosis 2<input type="date" [(ngModel)]="covid2" name="covid2"></div>
+                <div *ngIf="checkDosis1()" >Fecha de aplicación dosis 2<input type="date" [(ngModel)]="covid2" name="covid2"></div>
             </div>
             <input class="form-check-input" type="checkbox" [(ngModel)]="amarilla" name="amarilla">
             <label  class="form-check-label" for="flexRadioDefault1">
                 Fiebre Amarilla
             </label>
             <br>
-            <div *ngIf="checkAmarilla()">fecha de aplicación<input type="date" [(ngModel)]="fechaAmarilla" name="fechaAmarilla"></div>
+            <div *ngIf="checkAmarilla()">Fecha de aplicación<input type="date" [(ngModel)]="fechaAmarilla" name="fechaAmarilla"></div>
 
 
         <input class="form-check-input" type="checkbox" [(ngModel)]="riesgo" name="riesgo">
