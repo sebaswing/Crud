@@ -82,14 +82,14 @@
     <mat-form-field class="profile-full-width" appearance="fill">
       <mat-label>Zona</mat-label>
       <mat-select formControlName="zona" required>
+        <mat-option [value]="0">
+          {{zonas[0].nombre}}
+        </mat-option>
         <mat-option [value]="1">
-          Zona 1
+          {{zonas[1].nombre}}
         </mat-option>
         <mat-option [value]="2">
-          Zona 2
-        </mat-option>
-        <mat-option [value]="3">
-          Zona 3
+          {{zonas[2].nombre}}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="zonaField?.hasError('required')">

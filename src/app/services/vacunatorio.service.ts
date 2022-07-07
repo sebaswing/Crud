@@ -9,8 +9,8 @@ import { Zona } from '../Modelo/Zona';
 export class VacunatorioService {
 
   zonas : Zona[] = [
-    {nombre: 'Zona 1', fechaAplicacion: '12/05/2022' },
-    {nombre: 'Zona 2', fechaAplicacion: '26/02/2022' }
+    {nombre: 'Zona 1', ubicacion: '12/05/2022' },
+    {nombre: 'Zona 2', ubicacion: '26/02/2022' }
   ]
 
   listVacunadores: Vacunador[] = [

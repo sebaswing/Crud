@@ -4,8 +4,10 @@ import { AbstractControl, FormControl,FormBuilder, FormGroup, ValidationErrors, 
 import { Router } from '@angular/router';
 import { Paciente } from '../Modelo/Paciente';
 import { Vacunador } from '../Modelo/Vacunador';
+import { Zona } from '../Modelo/Zona';
 import { AuthService } from '../services/auth.service';
 import { VacunadoresService } from '../services/vacunadores.service';
+import { ZonaService } from '../services/zona.service';
 
 @Component({
   selector: 'app-perfil-vacunador',
@@ -15,13 +17,16 @@ import { VacunadoresService } from '../services/vacunadores.service';
 export class PerfilVacunadorComponent implements OnInit {
 
   vacunadorActual!: Vacunador;
+  zonas:Zona [];
+  zona:number;
   contraseñasIguales:boolean=true;
   profileForm:FormGroup;
 
   constructor(
     private userService: VacunadoresService,
     private router: Router,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private serviceZona:ZonaService
   ) { }
 
   get emailField() {
@@ -38,6 +43,14 @@ export class PerfilVacunadorComponent implements OnInit {
   
 
   ngOnInit(): void {
+
+    this.serviceZona.traerZonas().subscribe(
+      z => { 
+        this.zonas=z;
+      }
+    )
+
+
     this.profileForm = this.fb.group({
       email:['',[Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       name: new FormControl({value: '', disabled: true}),
@@ -72,6 +85,7 @@ export class PerfilVacunadorComponent implements OnInit {
         password2: data?.clave,
         zona: data?.centro_vacunatorio,
       })
+      this.zona=this.profileForm.get('zona')?.value || '';
     }
   }
 

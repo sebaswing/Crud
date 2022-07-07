@@ -34,9 +34,9 @@
       <br>zona de elección
       <select (change)="selectchangeHandler($event)" class="form-select fadeIn second" required placeholder="zona de ubicación">
         <option selected disabled>Seleccionar zona</option>
-        <option value="1">Zona 1</option>
-        <option value="2">Zona 2</option>
-        <option value="3">Zona 3</option>
+        <option value="0">{{zonas[0].nombre}}</option>
+        <option value="1">{{zonas[1].nombre}}</option>
+        <option value="2">{{zonas[2].nombre}}</option>
       </select>
       <input type="email" id="email" class="fadeIn second" name="name" placeholder="email" [(ngModel)]="email" required #mail="ngModel">
       <div class="error" *ngIf="mail.invalid && (mail.dirty || mail.touched)">

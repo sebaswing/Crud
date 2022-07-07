@@ -46,7 +46,7 @@ export class AgregarVacunadorComponent implements OnInit {
         this.nuevoVacunador.nombre = this.nombreFormControl.value
         this.nuevoVacunador.email = this.emailFormControl.value
         this.nuevoVacunador.dni = this.dniFormControl.value
-        let wzona : Zona = { nombre: this.zonaFormControl.value, fechaAplicacion : "12/3/2022"}
+        let wzona : Zona = { nombre: this.zonaFormControl.value, ubicacion : "12/3/2022"}
         this.nuevoVacunador.centro_vacunatorio = 1
         this._usuarioService.agregarVacunador(this.nuevoVacunador)
     

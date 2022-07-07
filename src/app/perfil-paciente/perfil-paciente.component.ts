@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Paciente } from '../Modelo/Paciente';
+import { Zona } from '../Modelo/Zona';
 import { AuthService } from '../services/auth.service';
+import { ZonaService } from '../services/zona.service';
 
 @Component({
   selector: 'app-perfil-paciente',
@@ -12,12 +15,15 @@ export class PerfilPacienteComponent implements OnInit {
 
   pacienteActual!: Paciente;
   contraseñasIguales:boolean=true;
+  zonas:Zona [];
 
   emailExiste:boolean=false;
   profileForm:FormGroup;
 
   constructor(
+    private serviceZona:ZonaService,
     private userService: AuthService,
+    private router: Router,
     private fb:FormBuilder
   ) { }
 
@@ -38,6 +44,12 @@ export class PerfilPacienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.serviceZona.traerZonas().subscribe(
+      z => { 
+        this.zonas=z;
+      }
+    )
 
     this.profileForm = this.fb.group({
       //email: new FormControl({value: '', Validators: [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]}),
@@ -91,12 +103,14 @@ export class PerfilPacienteComponent implements OnInit {
       fechaNacimiento: this.profileForm.get('birth')?.value,
       zona: this.zonaField?.value
     };
+    localStorage.setItem('token',paciente.email);
+
     this.userService.checkUser(paciente.email).subscribe({
       next: user =>{
         if(user==null ||user.email===id){
         this.userService.editarUsuario(paciente).subscribe({
-          next: data => console.log(data), //se ejecuta cuando la petición termina OK
-          complete: () => console.log('se completo'), // se ejecuta siempre que termina
+          next: data => alert("Los datos del perfil fueron actualizados correctamente"), //se ejecuta cuando la petición termina OK
+          complete: () => this.router.navigate(['perfilPaciente']), // se ejecuta siempre que termina
           error: error => console.log(error) // se ejecuta cuando la petición termina con errores.
         });}
         else {
