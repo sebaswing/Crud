@@ -27,8 +27,8 @@ export class VacunasService {
     return this.http.get<Vacuna>(this.url+'/traerTurno/'+id);
   }
 
-  borrarTurno(vacuna: Vacuna,id:number){
-    return this.http.put<Vacuna>(this.url+'/borrar/'+vacuna.id,id)
+  borrarTurno(vacuna: Vacuna){
+    return this.http.delete<Vacuna>(this.url+'/'+vacuna.id)
   }
 
   traerTurnos(zona:number){

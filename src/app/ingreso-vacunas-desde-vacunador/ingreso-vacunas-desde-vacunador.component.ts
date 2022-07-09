@@ -63,7 +63,15 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
       this.vacu.dosis=1;
       this.vacu.id_vacuna=1;
       this.vacu.fecha_aplicacion=this.gripeFecha;
+      this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
       this.service.createVacuna(this.vacu).subscribe();
+      if(this.fechasMayorAUnAño(this.gripeFecha)){
+        this.vacu.dosis=1;
+        this.vacu.id_vacuna=1;
+        this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+        this.vacu.fecha_aplicacion= new Date(this.ano,this.mes,this.dia);
+        this.service.createVacuna(this.vacu).subscribe();
+      }
     }else{
       this.vacu.dosis=1;
       this.vacu.id_vacuna=1;
@@ -132,6 +140,11 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
     return this.amarilla;
   }
 
+  fechasMayorAUnAño(fechaDeVacuna:any){
+    const fluDate= new Date (fechaDeVacuna);
+    const unAñoAtras = new Date(this.ano-1,this.mes,this.dia);
+    return fluDate<unAñoAtras;
+  }
 
   resetGripe(){
     if(this.gripe==false){

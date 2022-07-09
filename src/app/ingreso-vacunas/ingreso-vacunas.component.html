@@ -15,7 +15,7 @@
         <p><img src="../../assets/logocortado.png">
             <br>Ingresa a tus vacunas<span class="tooltip">?</span></p>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" [(ngModel)]="gripe" name="gripe">
+            <input *ngIf="resetGripe()" class="form-check-input" type="checkbox" [(ngModel)]="gripe" name="gripe">
             <label class="form-check-label" for="flexRadioDefault1">
                 Gripe
             </label>
@@ -33,7 +33,7 @@
                 <br>
                 <div *ngIf="checkDosis1()" >Fecha de aplicación dosis 2<input type="date" [(ngModel)]="covid2" name="covid2"></div>
             </div>
-            <input class="form-check-input" type="checkbox" [(ngModel)]="amarilla" name="amarilla">
+            <input *ngIf="resetFiebreAmarilla()" class="form-check-input" type="checkbox" [(ngModel)]="amarilla" name="amarilla">
             <label  class="form-check-label" for="flexRadioDefault1">
                 Fiebre Amarilla
             </label>

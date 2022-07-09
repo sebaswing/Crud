@@ -84,16 +84,14 @@ export class ListoTurnosComponent implements OnInit {
           }else if(turno.turno.id_vacuna==2){
               if((localStorage.getItem(turno.pac.email)||"") == "true"){
                   if(turno.turno.dosis==1){
-                    console.log('hola1')
                     this.vacunaService.traerTurno(turno.turno.id_usuario).subscribe(
                         t => {
                         t.fecha_aplicacion= new Date (this.ano,this.mes,this.dia+28)
-                        console.log('entro')
+
                         this.vacunaService.editarVacuna(t).subscribe()
                         })
                     turno.turno.fecha_aplicacion=new Date(this.ano,this.mes,this.dia+7)
                   }else{
-                      console.log('hola2')
                       turno.turno.fecha_aplicacion=new Date(this.ano,this.mes,this.dia+7)
                   }  
               }else{
@@ -111,7 +109,9 @@ export class ListoTurnosComponent implements OnInit {
           }
     }
     if(turno.turno.id_vacuna==3){
-      this.vacunaService.borrarTurno(turno.turno,turno.turno.id_usuario).subscribe();
+      this.vacunaService.borrarTurno(turno.turno).subscribe();
+      this.mostrar();
+      this.route.navigate(['actualizar']);
     }else{
         turno.turno.observacion=this.form.get('observacion')?.value || ''
     

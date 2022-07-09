@@ -52,11 +52,29 @@ export class IngresoVacunasComponent implements OnInit {
     this.vacu.id_usuario=Number(localStorage.getItem(('idPaciente')));
     const edad=Number(localStorage.getItem(('edadPaciente')));
     this.vacu.observacion="";
+
     if(this.gripe){
       this.vacu.dosis=1;
       this.vacu.id_vacuna=1;
       this.vacu.fecha_aplicacion=this.gripeFecha;
+      this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
       this.service.createVacuna(this.vacu).subscribe();
+      console.log(this.fechasMayorAUnAño(this.gripeFecha))
+      if (this.fechasMayorAUnAño(this.gripeFecha)){
+        if((this.riesgo)||(edad > 60)){
+          this.vacu.dosis=1;
+          this.vacu.id_vacuna=1;
+          this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+          this.vacu.fecha_aplicacion= new Date(this.ano,this.mes+3,this.dia);
+          this.service.createVacuna(this.vacu).subscribe();
+        }else{
+          this.vacu.dosis=1;
+          this.vacu.id_vacuna=1;
+          this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+          this.vacu.fecha_aplicacion= new Date(this.ano,this.mes+6,this.dia);
+          this.service.createVacuna(this.vacu).subscribe();
+        }
+      }
     }else if((this.riesgo)||(edad > 60)){
       this.vacu.dosis=1;
       this.vacu.id_vacuna=1;
@@ -138,12 +156,24 @@ export class IngresoVacunasComponent implements OnInit {
   }
 
   fechasMayorAUnAño(fechaDeVacuna:any){
-    const fluDate= new Date (this.gripeFecha);
-    const unAñoAtras = new Date();
-    unAñoAtras.setFullYear(unAñoAtras.getFullYear()-1);
+    const fluDate= new Date (fechaDeVacuna);
+    const unAñoAtras = new Date(this.ano-1,this.mes,this.dia);
     return fluDate<unAñoAtras;
   }
 
+  resetGripe(){
+    if(this.gripe==false){
+      this.gripeFecha=this.resetDate();
+    }
+    return true;
+  }
+
+  resetFiebreAmarilla(){
+    if(this.amarilla==false){
+      this.fechaAmarilla=this.resetDate();
+    }
+    return true;
+  }
 
   resetCovid(){
     if(this.covid==false){
