@@ -37,5 +37,8 @@ export class VacunadoresService {
   deleteVacunador(vacunador:Vacunador){
     return this.http.delete<Vacunador>(this.url+"/"+vacunador.id)
   }
+  buscarDni(dni:number){
+    return this.http.get<Vacunador>(`${this.url}/existeDNI/`+dni)
+  }
 }
 

@@ -1,9 +1,7 @@
 export class Zona{
+    id: number
     nombre:string
-    fechaAplicacion: string
+    ubicacion: string
 
-    constructor(){
-        this.nombre =""
-        this.fechaAplicacion= ""
-    }
+   
 }

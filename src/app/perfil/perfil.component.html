@@ -1,19 +1,17 @@
-<h1>Perfil: {{data|json}} </h1>
+<h1>Perfil: {{adminLogger.nombre}} </h1>
 <form class="example-form">
-    <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="hola mundo">
-    </mat-form-field>
-    
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Email</mat-label>
-        <input *ngIf="!editarEmail" matInput [disabled]="!editarEmail" value=" {{data?.email}} ">
+        <input *ngIf="!editarEmail" matInput [disabled]="!editarEmail" value=" {{adminLogger.email}} ">
         <input *ngIf="editarEmail" type="email" matInput [formControl]="emailFormControl"  placeholder="Ej. pat@ejemplo.com">
         <button *ngIf="!editarEmail" mat-icon-button matSuffix (click)="editarEmail =!editarEmail" >
             <mat-icon>edit</mat-icon>
         </button>
         <button *ngIf="editarEmail" mat-icon-button matSuffix (click)="cambiarEmail()" >
             <mat-icon>save</mat-icon>
+        </button>
+        <button *ngIf="editarEmail" mat-icon-button matSuffix (click)="editarEmail =!editarEmail"  >
+            <mat-icon>cancel</mat-icon>
         </button>
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Ingrese un email valido
@@ -26,22 +24,22 @@
     <table class="example-full-width" cellspacing="0"><tr>
       <td><mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nombre</mat-label>
-        <input matInput  disabled value=" {{data?.nombre}} " >
+        <input matInput  disabled value=" {{adminLogger.nombre}} " >
       </mat-form-field></td>
       <td><mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Apellido</mat-label>
-        <input matInput disabled value=" {{data?.apellido}} " >
+        <input matInput disabled value=" {{adminLogger.apellido}} " >
       </mat-form-field></td>
     </tr></table>
 
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>DNI</mat-label>
-        <input matInput type="number" disabled value={{data?.dni}} >
+        <input matInput type="number" disabled value={{adminLogger.dni}} >
     </mat-form-field>
 
     <mat-form-field  class="example-full-width" appearance="fill">
         <mat-label>Contraseña</mat-label>
-        <input matInput *ngIf="!editarPass"  [type]="hide ? 'password' : 'text'"  [disabled]="!editarPass" value=" {{data?.clave}} " >
+        <input matInput *ngIf="!editarPass"  [type]="hide ? 'password' : 'text'"  [disabled]="!editarPass" value=" {{adminLogger.clave}} " >
         <input matInput *ngIf="editarPass"  [type]="hide ? 'password' : 'text'"  [formControl]="passFormControl" >
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -51,6 +49,9 @@
         </button>
         <button *ngIf="editarPass" mat-icon-button matSuffix (click)="cambiarPass()" >
             <mat-icon>save</mat-icon>
+        </button>
+        <button *ngIf="editarPass" mat-icon-button matSuffix (click)="editarPass =!editarPass"  >
+            <mat-icon>cancel</mat-icon>
         </button>
         <mat-error *ngIf="passFormControl.hasError('minlength')">
             Ingrese mas de 6 caracteres

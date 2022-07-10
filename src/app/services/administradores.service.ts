@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { Administrador } from '../Modelo/Administrador';
+import { Vacunador } from '../Modelo/Vacunador';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,8 +20,8 @@ export class AdministradoresService {
   getAdministradorId(id:number){
     return this.http.get<Administrador>(this.url+"/"+id);
   }
-  updatePersona(administrador:Administrador){
-    return this.http.put<Administrador>(this.url+"/"+administrador.id,administrador);
+  updateAdministrador(administrador:Administrador){
+    return this.http.post<Administrador>(this.url+"/actualizar/"+administrador.id,administrador);
   }
 }
 

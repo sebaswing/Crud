@@ -19,7 +19,7 @@ export class ListoVacunadoresComponent implements OnInit {
   listVacunadores: Vacunador[] = []; 
   
   //Datos a mostrar
-  displayedColumns: string[] = ['nombre', 'apellido','zona', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'apellido', 'acciones'];
 
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -29,14 +29,15 @@ export class ListoVacunadoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarVacunadores();
+    
   }
 
  
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -44,8 +45,12 @@ export class ListoVacunadoresComponent implements OnInit {
    }
 
   cargarVacunadores(){
-    this.listVacunadores = this._usuarioService.getVacunadores();
-    this.dataSource = new MatTableDataSource(this.listVacunadores)
+    this._usuarioService.getVacunadores().subscribe( vacunadores => {
+      this.listVacunadores = vacunadores
+      this.dataSource = new MatTableDataSource(this.listVacunadores)
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
   }
 
   eliminarUsuario(index: number){
@@ -71,6 +76,12 @@ export class ListoVacunadoresComponent implements OnInit {
    
   }
 
+  detalleVacunador(data:any){
+    const dialogRef = this.dialog.open(DetalleVacunadorComponent,{
+      data: data
+    } );
+  }
+
   agregarVacunador(){
     const dialogRef = this.dialog.open(AgregarVacunadorComponent);
 
@@ -86,11 +97,8 @@ export class ListoVacunadoresComponent implements OnInit {
     })
   }
 
-  detalleVacunador(data:any){
-    const dialogRef = this.dialog.open(DetalleVacunadorComponent,{
-      data: data
-    } );
-  }
+
+
 
 }
 

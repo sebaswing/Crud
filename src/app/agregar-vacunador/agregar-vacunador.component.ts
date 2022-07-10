@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Vacunador } from '../Modelo/Vacunador';
 import { Zona } from '../Modelo/Zona';
+import { VacunadoresService } from '../services/vacunadores.service';
 import { VacunatorioService } from '../services/vacunatorio.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -25,32 +27,71 @@ export class AgregarVacunadorComponent implements OnInit {
   nombreFormControl = new FormControl('', [Validators.required]);
   apellidoFormControl = new FormControl('', [Validators.required]);
   dniFormControl = new FormControl('', [Validators.required, Validators.pattern(/^[0-9]\d*$/)]);
-  fechaFormControl = new FormControl('', [Validators.required]);
   zonaFormControl = new FormControl('', [Validators.required]);
+  passFormControl = new FormControl('',[Validators.required,Validators.minLength(6)])
+  tokenFormControl = new FormControl('',[Validators.required,Validators.minLength(4)])
   matcher = new MyErrorStateMatcher();
+  zonas : Zona[]
 
   nuevoVacunador : Vacunador;
   
-  constructor(private _usuarioService: VacunatorioService, private dialogRef: MatDialogRef<AgregarVacunadorComponent>) { }
+  constructor(private _usuarioService: VacunatorioService, private dialogRef: MatDialogRef<AgregarVacunadorComponent>, 
+    private _snackBar: MatSnackBar, private vacunadorService: VacunadoresService) { }
 
   ngOnInit(): void {
+    this._usuarioService.getZonas().subscribe( responseZonas => {
+      this.zonas = responseZonas
+    })
   }
 
   crearVacunador(){
     //Verificar que esten todos los valores para CREAR!!
     if(this.emailFormControl.valid && this.nombreFormControl.valid && this.apellidoFormControl.valid &&
-      this.dniFormControl.valid && this.fechaFormControl.valid && this.zonaFormControl.valid ){
+      this.dniFormControl.valid && this.zonaFormControl.valid && this.passFormControl.valid && this.tokenFormControl.valid){
 
-        this.nuevoVacunador = new Vacunador();
-        this.nuevoVacunador.apellido = this.apellidoFormControl.value
-        this.nuevoVacunador.nombre = this.nombreFormControl.value
-        this.nuevoVacunador.email = this.emailFormControl.value
-        this.nuevoVacunador.dni = this.dniFormControl.value
-        let wzona : Zona = { nombre: this.zonaFormControl.value, fechaAplicacion : "12/3/2022"}
-        this.nuevoVacunador.centro_vacunatorio = 1
-        this._usuarioService.agregarVacunador(this.nuevoVacunador)
+        //Validar que no exista el mail
+        this.vacunadorService.checkLogVacunador(this.emailFormControl.value).subscribe( responseEmail  => {
+          console.log(responseEmail)
+          if (responseEmail) {
+            this._snackBar.open("El email esta registrado en el sistema, elija otra ", "Cerrar", {duration: 10 * 1000});
+          }else{
+
+            this.vacunadorService.buscarDni(this.dniFormControl.value).subscribe( responseDni  => {
+              
+              if (responseDni) {
+                this._snackBar.open("No se puede crear el usuario, el dni esta registrado en el sistema ", "Cerrar", {duration: 20 * 1000});
+              }else{
+
+                this.nuevoVacunador = new Vacunador();
+                this.nuevoVacunador.apellido = this.apellidoFormControl.value
+                this.nuevoVacunador.nombre = this.nombreFormControl.value
+                this.nuevoVacunador.email = this.emailFormControl.value
+                this.nuevoVacunador.dni = this.dniFormControl.value
+                this.nuevoVacunador.centro_vacunatorio = this.zonaFormControl.value
+                this.nuevoVacunador.clave = this.passFormControl.value
+                this.nuevoVacunador.token = this.tokenFormControl.value
+                this.nuevoVacunador.borrado = false
     
-        this.dialogRef.close(true);
+                console.log(this.nuevoVacunador)
+                
+                this._usuarioService.crearVacunador(this.nuevoVacunador).subscribe( responseVacunador =>{
+                  console.log('resultado del creoar')
+                  console.log(responseVacunador)
+                })
+    
+                this._snackBar.open("Se registrara el nuevo usuario ", "Cerrar", {duration: 10 * 1000});
+                this.dialogRef.close(true);
+
+
+              }
+            } )
+           
+          }
+        })
+
+
+      }else{
+        this._snackBar.open("Debe completar todos los campos correctamente", "Cerrar", {duration: 4 * 1000});
       }
 
   }

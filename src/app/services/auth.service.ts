@@ -45,6 +45,11 @@ export class AuthService {
       }
     }
 
+    updateData(admin: Administrador ){
+      localStorage.removeItem('user')
+      localStorage.setItem('user', JSON.stringify(admin))
+    }
+
     usertype(){
       return localStorage.getItem('tipo')!
     }

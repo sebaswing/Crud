@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TurnoFiebreA } from '../Modelo/TurnoFiebreA';
 import { Vacunador } from '../Modelo/Vacunador';
@@ -8,10 +9,6 @@ import { Zona } from '../Modelo/Zona';
 })
 export class VacunatorioService {
 
-  zonas : Zona[] = [
-    {nombre: 'Zona 1', fechaAplicacion: '12/05/2022' },
-    {nombre: 'Zona 2', fechaAplicacion: '26/02/2022' }
-  ]
 
   listVacunadores: Vacunador[] = [
     { id: 1, nombre: 'Alejandro', apellido: 'Ramos', clave: '12098', dni: 33452334 ,email: 'alex@gmail', centro_vacunatorio:0, token: 1234, borrado: false },
@@ -31,7 +28,11 @@ export class VacunatorioService {
     { id: 6,  nombre: 'Fabian', apellido: 'Fernandez', FechaSolic: new Date("11/06/2022 14:23:00") , fechaAsig: new Date("12/3/2022 14:23:00"), aprobada: false ,borrar: false},
   ];
 
-  constructor() {
+  url='http://localhost:8080';
+
+
+
+  constructor(private http:HttpClient) {
     //Adaptacion por error con BD
     if (!localStorage.getItem('TFA')) {
       this.setTFA()
@@ -40,9 +41,27 @@ export class VacunatorioService {
    }
 
 
-  getVacunadores(){
-    return this.listVacunadores.slice();
+  getVacunadores(){  
+    return this.http.get<Vacunador[]>(`${this.url}/vacunadores/listar`);
+  
   }
+
+  getZonas(){
+    return this.http.get<Zona[]>(`${this.url}/zona/traerZonas`);
+  }
+
+  cantVacunadoresZona(id: number){
+    return this.http.get<number>(`${this.url}/vacunadores/VacunadorPorZona/`+ id);
+    
+  }
+
+  crearVacunador(vacunador: Vacunador){
+    return this.http.post<Vacunador>(`${this.url}/vacunadores/crearVacunador`,vacunador);
+
+  }
+
+
+
 
   eliminarVacunador(index: number){
     this.listVacunadores.splice(index, 1);

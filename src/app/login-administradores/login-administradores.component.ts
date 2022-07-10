@@ -56,11 +56,13 @@ export class LoginAdministradoresComponent implements OnInit {
           this.encontrado=usuario;
           if(this.approved==false && this.encontrado!=null  && this.encontrado.email===this.email && this.encontrado.clave==this.pass && this.encontrado.token==this.token){
               // this.authService.authLogin(this.model);
-                this.router.navigate([this.returnUrl]);
-                localStorage.setItem('isLoggedIn', "true");
-                localStorage.setItem('idAdministrador',this.encontrado.id+"");
-                localStorage.setItem('tipo','administrador');
-                localStorage.setItem('token', this.encontrado.email);
+              console.log(usuario)
+              localStorage.setItem('user', JSON.stringify(usuario))
+              localStorage.setItem('isLoggedIn', "true");
+              localStorage.setItem('idAdministrador',this.encontrado.id+"");
+              localStorage.setItem('tipo','admin');
+              localStorage.setItem('token', this.encontrado.email);
+              this.router.navigate(["listaVacunadores"]);
           }
           else
           {

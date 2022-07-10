@@ -27,7 +27,7 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 const routes: Routes = [
   {
       path:'',
-      redirectTo: checkbasic(),
+      redirectTo: 'login',
       pathMatch:'full'
 
   },
@@ -134,7 +134,7 @@ function checkbasic(): string  {
     return "login";
   }
   else  {
-  return "refresh";
+  return "login";
   }
 }
 
