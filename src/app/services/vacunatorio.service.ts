@@ -9,14 +9,6 @@ import { Zona } from '../Modelo/Zona';
 })
 export class VacunatorioService {
 
-<<<<<<< HEAD
-=======
-  zonas : Zona[] = [
-    {nombre: 'Zona 1', ubicacion: '12/05/2022' },
-    {nombre: 'Zona 2', ubicacion: '26/02/2022' }
-  ]
->>>>>>> 317553300650c54c3f9d91bcddfff99d88826d2e
-
   listVacunadores: Vacunador[] = [
     { id: 1, nombre: 'Alejandro', apellido: 'Ramos', clave: '12098', dni: 33452334 ,email: 'alex@gmail', centro_vacunatorio:0, token: 1234, borrado: false },
     { id: 2,  nombre: 'Mariano', apellido: 'Garcia', clave: '12098', dni: 39456333 ,email: 'mariano@gmail', centro_vacunatorio:0, token: 1234, borrado: false },
