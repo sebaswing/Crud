@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Color, LegendPosition, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import * as _moment from 'moment';
+import { Zona } from '../Modelo/Zona';
+import { VacunatorioService } from '../services/vacunatorio.service';
 
 @Component({
   selector: 'app-estadisticas',
@@ -42,12 +44,12 @@ export class EstadisticasComponent implements OnInit {
   zonaFormControl1 = new FormControl;
   mostrarGraf : Boolean[] = [false,false,false,false,false]
   //////////////////////
-  
+  zonas : Zona[]
   /////////////////////
 
 
 
-  constructor() {
+  constructor( private vacunatorioService: VacunatorioService) {
     
    
   }
@@ -73,9 +75,40 @@ export class EstadisticasComponent implements OnInit {
     console.log(this.minDate)
     console.log(this.maxDate)
     // this.dateForm.setValue(new Date(currentYear, 5, 23))
+    this.vacunatorioService.getZonas().subscribe( resp => {
+      this.zonas = resp
+      this.zonasGrafico()
+    })
+
     
   }
 
+  zonasGrafico(){
+    
+    single[0].name = this.zonas[0].nombre
+    single[1].name = this.zonas[1].nombre
+    single[2].name = this.zonas[2].nombre
+
+    single1[0].name = this.zonas[0].nombre
+    single1[1].name = this.zonas[1].nombre
+    single1[2].name = this.zonas[2].nombre
+
+    single2[0].name = this.zonas[0].nombre
+    single2[1].name = this.zonas[1].nombre
+    single2[2].name = this.zonas[2].nombre
+
+    single3[0].name = this.zonas[0].nombre
+    single3[1].name = this.zonas[1].nombre
+    single3[2].name = this.zonas[2].nombre
+
+    single4[0].name = this.zonas[0].nombre
+    single4[1].name = this.zonas[1].nombre
+    single4[2].name = this.zonas[2].nombre
+
+    single5[0].name = this.zonas[0].nombre
+    single5[1].name = this.zonas[1].nombre
+    single5[2].name = this.zonas[2].nombre
+  }
 
 
   setStep(index: number) {
@@ -100,6 +133,27 @@ export class EstadisticasComponent implements OnInit {
 
       ///Envio al servicio por los datos y cargar grafico
       Object.assign(this, { single });
+
+      // if (posGraf=0) {
+        
+      //   Object.assign(this, { single1 });
+      // }
+      // if (posGraf=1) {
+        
+      //   Object.assign(this, { single2 });
+      // }
+      // if (posGraf=2) {
+        
+      //   Object.assign(this, { single3 });
+      // }
+      // if (posGraf=3) {
+        
+      //   Object.assign(this, { single4 });
+      // }
+      // if (posGraf=4) {
+        
+      //   Object.assign(this, { single5 });
+      // }
 
     }
 
@@ -136,18 +190,89 @@ export class EstadisticasComponent implements OnInit {
 
 
 
-
-export var single = [
+export var single= [
   {
     "name": "Zona 1",
-    "value": 23
+    "value": 6
   },
   {
     "name": "Zona 2",
-    "value": 11
+    "value": 6
   },
   {
     "name": "Zona 3",
-    "value": 12
+    "value": 4
+  }
+];
+
+
+export var single1 = [
+  {
+    "name": "Zona 1",
+    "value": 6
+  },
+  {
+    "name": "Zona 2",
+    "value": 6
+  },
+  {
+    "name": "Zona 3",
+    "value": 4
+  }
+];
+export var single2 = [
+  {
+    "name": "Zona 1",
+    "value": 5
+  },
+  {
+    "name": "Zona 2",
+    "value": 3
+  },
+  {
+    "name": "Zona 3",
+    "value": 4
+  }
+];
+export var single3 = [
+  {
+    "name": "Zona 1",
+    "value": 1
+  },
+  {
+    "name": "Zona 2",
+    "value": 2
+  },
+  {
+    "name": "Zona 3",
+    "value": 3
+  }
+];
+export var single4 = [
+  {
+    "name": "Zona 1",
+    "value": 3
+  },
+  {
+    "name": "Zona 2",
+    "value": 2
+  },
+  {
+    "name": "Zona 3",
+    "value": 4
+  }
+];
+export var single5 = [
+  {
+    "name": "Zona 1",
+    "value": 1
+  },
+  {
+    "name": "Zona 2",
+    "value": 3
+  },
+  {
+    "name": "Zona 3",
+    "value": 3
   }
 ];
