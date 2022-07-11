@@ -60,6 +60,10 @@ export class VacunatorioService {
 
   }
 
+  editZona(zona: Zona){
+    return this.http.post<Zona>(`${this.url}/zona/edit/`+ zona.id,zona);
+  }
+
 
 
 

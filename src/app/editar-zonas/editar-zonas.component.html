@@ -1,0 +1,75 @@
+<div class="contenCard">
+
+    <mat-card class="example-card">
+        <mat-card-title>Zona</mat-card-title>
+    
+        <mat-form-field  class="example" appearance="fill">
+            <mat-label>Ubicacion Zona</mat-label>
+            <input matInput *ngIf="!editarZona1"   [disabled]="!editarZona1" value=" {{zonas[0].nombre}} " >
+            <input matInput *ngIf="editarZona1"    [formControl]="zona1FormControl" >
+            <button *ngIf="!editarZona1" mat-icon-button matSuffix (click)="editarZona1 =!editarZona1" >
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button *ngIf="editarZona1" mat-icon-button matSuffix (click)="cambiarZona(0)" >
+                <mat-icon>save</mat-icon>
+            </button>
+            <button *ngIf="editarZona1" mat-icon-button matSuffix (click)="editarZona1 =!editarZona1"  >
+                <mat-icon>cancel</mat-icon>
+            </button>
+            <mat-error *ngIf="zona1FormControl.hasError('required')">
+                Nombre es requerido <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+    
+      
+    </mat-card>
+    
+    <mat-card class="example-card">
+        <mat-card-title>Zona</mat-card-title>
+    
+        <mat-form-field  class="example" appearance="fill">
+            <mat-label>Ubicacion Zona</mat-label>
+            <input matInput *ngIf="!editarZona2"   [disabled]="!editarZona2" value=" {{zonas[1].nombre}} " >
+            <input matInput *ngIf="editarZona2"    [formControl]="zona2FormControl" >
+            <button *ngIf="!editarZona2" mat-icon-button matSuffix (click)="editarZona2 =!editarZona2" >
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button *ngIf="editarZona2" mat-icon-button matSuffix (click)="cambiarZona(1)" >
+                <mat-icon>save</mat-icon>
+            </button>
+            <button *ngIf="editarZona2" mat-icon-button matSuffix (click)="editarZona2 =!editarZona2"  >
+                <mat-icon>cancel</mat-icon>
+            </button>
+            <mat-error *ngIf="zona2FormControl.hasError('required')">
+                Nombre es requerido <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+    
+     
+    </mat-card>
+    
+    <mat-card class="example-card">
+        <mat-card-title>Zona</mat-card-title>
+    
+        <mat-form-field  class="example" appearance="fill">
+            <mat-label>Ubicacion Zona</mat-label>
+            <input matInput *ngIf="!editarZona3"   [disabled]="!editarZona3" value=" {{zonas[2].nombre}} " >
+            <input matInput *ngIf="editarZona3"    [formControl]="zona3FormControl" >
+            <button *ngIf="!editarZona3" mat-icon-button matSuffix (click)="editarZona3 =!editarZona3" >
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button *ngIf="editarZona3" mat-icon-button matSuffix (click)="cambiarZona(2)" >
+                <mat-icon>save</mat-icon>
+            </button>
+            <button *ngIf="editarZona3" mat-icon-button matSuffix (click)="editarZona3 =!editarZona3"  >
+                <mat-icon>cancel</mat-icon>
+            </button>
+            <mat-error *ngIf="zona3FormControl.hasError('required')">
+                Nombre es requerido <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+    
+        
+    </mat-card>
+
+</div>

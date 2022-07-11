@@ -20,6 +20,9 @@
           <a class="nav-link" routerLink="crearPaciente" routerLinkActive="active"><i class="fas fa-gamepad"></i>Registrar Paciente</a>
         </li>
         <li  *ngIf="mostrar( ['admin'] )" class="nav-item active">
+          <a class="nav-link" routerLink="/editarZonas"  routerLinkActive="active"><i class="fas fa-gamepad"></i>Zonas</a>
+        </li>
+        <li  *ngIf="mostrar( ['admin'] )" class="nav-item active">
           <a class="nav-link" routerLink="/estadisticas"  routerLinkActive="active"><i class="fas fa-gamepad"></i>Estadisticas</a>
         </li>
         <li  *ngIf="mostrar( ['admin'] )"   class="nav-item active">

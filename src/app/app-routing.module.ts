@@ -22,6 +22,7 @@ import { RecuperarClaveComponent } from './recuperar-clave/recuperar-clave.compo
 import { CrearPacienteComponent } from './crear-paciente/crear-paciente.component';
 import { IngresoVacunasDesdeVacunadorComponent } from './ingreso-vacunas-desde-vacunador/ingreso-vacunas-desde-vacunador.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { EditarZonasComponent } from './editar-zonas/editar-zonas.component';
 
 
 const routes: Routes = [
@@ -115,6 +116,10 @@ const routes: Routes = [
   {
     path:'estadisticas',
     component:EstadisticasComponent,
+  },
+  {
+    path:'editarZonas',
+    component:EditarZonasComponent,
   },
 
 

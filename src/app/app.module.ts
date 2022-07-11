@@ -33,6 +33,7 @@ import { CrearPacienteComponent } from './crear-paciente/crear-paciente.componen
 import { IngresoVacunasDesdeVacunadorComponent } from './ingreso-vacunas-desde-vacunador/ingreso-vacunas-desde-vacunador.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component'
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { EditarZonasComponent } from './editar-zonas/editar-zonas.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AsigFechaTurno,
     CrearPacienteComponent,
     IngresoVacunasDesdeVacunadorComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    EditarZonasComponent
   ],
   imports: [
     BrowserModule,
