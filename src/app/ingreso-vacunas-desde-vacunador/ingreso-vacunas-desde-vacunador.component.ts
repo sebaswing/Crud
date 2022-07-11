@@ -20,6 +20,7 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
   covid:boolean;
   amarilla:boolean;
   solicitud:boolean;
+  riesgo:boolean=false;
   covid1:any;
   covid1ok:boolean;
   covid2:any;
@@ -55,12 +56,22 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
     this.vacu.id_usuario=Number(localStorage.getItem(('idPaciente')));
     const edad=Number(localStorage.getItem(('edadPaciente')));
     this.vacu.observacion="";
+
+
     if(this.gripe)
     {
       this.vacu.dosis=1;
       this.vacu.id_vacuna=1;
       this.vacu.fecha_aplicacion=this.gripeFecha;
+      this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
       this.service.createVacuna(this.vacu).subscribe();
+      if(this.fechasMayorAUnAño(this.gripeFecha)){
+        this.vacu.dosis=1;
+        this.vacu.id_vacuna=1;
+        this.vacu.zona=Number(localStorage.getItem(('zonaAsignada')));
+        this.vacu.fecha_aplicacion= new Date(this.ano,this.mes,this.dia);
+        this.service.createVacuna(this.vacu).subscribe();
+      }
     }else{
       this.vacu.dosis=1;
       this.vacu.id_vacuna=1;
@@ -129,6 +140,26 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
     return this.amarilla;
   }
 
+  fechasMayorAUnAño(fechaDeVacuna:any){
+    const fluDate= new Date (fechaDeVacuna);
+    const unAñoAtras = new Date(this.ano-1,this.mes,this.dia);
+    return fluDate<unAñoAtras;
+  }
+
+  resetGripe(){
+    if(this.gripe==false){
+      this.gripeFecha=this.resetDate();
+    }
+    return true;
+  }
+
+  resetFiebreAmarilla(){
+    if(this.amarilla==false){
+      this.fechaAmarilla=this.resetDate();
+    }
+    return true;
+  }
+
   resetCovid(){
     if(this.covid==false){
       this.covid1=this.resetDate();
@@ -154,6 +185,11 @@ export class IngresoVacunasDesdeVacunadorComponent implements OnInit {
       this.authService.checkLog(email).subscribe(
         encontrado=>{
           encontrado.completo_vacunas=1
+          if (this.riesgo == true){
+            localStorage.setItem(encontrado.email,"true");
+          }else{
+            localStorage.setItem(encontrado.email,"false");
+          }
           this.authService.editarUsuario(encontrado).subscribe();
           this.route.navigate([this.returnUrl]);
       })

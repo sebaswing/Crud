@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Paciente } from '../Modelo/Paciente';
+import { Zona } from '../Modelo/Zona';
 import { AuthService } from '../services/auth.service';
+import { ZonaService } from '../services/zona.service';
 
 @Component({
   selector: 'app-create-user',
@@ -23,15 +25,21 @@ export class CrearPacienteComponent implements OnInit {
   invalidEmail=false;
   existeDni=false;
   fechaNAcimientoIncorrecta=true;
+  zonas:Zona [];
   zona:number;
   encontrado:Paciente=new Paciente();
   us:Paciente=new Paciente();
   fechaNacimientoLimite = new Date().toISOString().split('T')[0];
   emailPattern = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
-  constructor(private route:Router,private service:AuthService) { }
+  constructor(private route:Router,private serviceZona:ZonaService,private service:AuthService) { }
 
   ngOnInit(): void {
     us:new Paciente();
+    this.serviceZona.traerZonas().subscribe(
+      z => { 
+        this.zonas=z;
+      }
+    )
   }
 
   guardarUser(usuario:Paciente){

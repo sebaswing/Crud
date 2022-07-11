@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Paciente } from '../Modelo/Paciente';
+import { Zona } from '../Modelo/Zona';
 import { AuthService } from '../services/auth.service';
+import { ZonaService } from '../services/zona.service';
 
 @Component({
   selector: 'app-create-user',
@@ -23,15 +25,21 @@ export class CreateUserComponent implements OnInit {
   invalidEmail=false;
   existeDni=false;
   fechaNAcimientoIncorrecta=true;
+  zonas:Zona [];
   zona:number;
   encontrado:Paciente=new Paciente();
   us:Paciente=new Paciente();
   fechaNacimientoLimite = new Date().toISOString().split('T')[0];
   emailPattern = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
-  constructor(private route:Router,private service:AuthService) { }
+  constructor(private route:Router,private service:AuthService,private serviceZona:ZonaService) { }
 
   ngOnInit(): void {
     us:new Paciente();
+    this.serviceZona.traerZonas().subscribe(
+      z => { 
+        this.zonas=z;
+      }
+    )
   }
 
   guardarUser(usuario:Paciente){
@@ -39,6 +47,7 @@ export class CreateUserComponent implements OnInit {
     .subscribe({
       next: usuario => {
         alert("se creo el usuario con exito")
+        localStorage.setItem('edadPaciente',this.calcularEdad(usuario.fechaNacimiento)+'');
         this.route.navigate(["login"]);
       },
       error: error => console.log(error)
@@ -91,8 +100,12 @@ export class CreateUserComponent implements OnInit {
     this.zona=event.target.value;
   }
 
+  calcularEdad(nacimiento:Date):number{
+    var timeDiff = Math.abs(Date.now() - new Date(nacimiento).getTime());
+    return Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25);
+  }
+
   cargarUser():Paciente{
-    console.log(this.zona)
     let us=new Paciente();
     us.nombre=this.nombre;
     us.apellido=this.apellido;

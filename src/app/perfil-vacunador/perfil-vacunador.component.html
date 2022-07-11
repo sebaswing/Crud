@@ -37,21 +37,42 @@
     </tr>
   </table>
   
-    <p>
-      <mat-form-field class="profile-full-width" appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" required>
-  
-        <mat-error *ngIf="passwordField?.hasError('required')">
-          Contraseña requerida.
-        </mat-error>
-      </mat-form-field>
-    </p>
+  <p>
+    <mat-form-field class="profile-full-width" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" required>
+      <mat-error *ngIf="!profileForm.get('password')?.errors?.minLength">
+        la constraseña debe ser mayor a 6 caracteres.
+      </mat-error>
+      <mat-error *ngIf="passwordField?.hasError('required')">
+        Contraseña requerida.
+      </mat-error>
+    </mat-form-field>
+  </p>
+
+
+  <p>
+    <mat-form-field class="profile-full-width" appearance="fill">
+      <mat-label>confirm Password</mat-label>
+      <input matInput type="password" formControlName="password2" required>
+      <mat-error *ngIf="!profileForm.get('password2')?.errors?.minLength">
+        la constraseña debe ser mayor a 6 caracteres.
+      </mat-error>
+      <mat-error *ngIf="passwordField?.hasError('required')">
+        Contraseña requerida.
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-hint *ngIf="profileForm.errors?.password2" style="color: red;">
+      las contraseñas no son iguales
+    </mat-hint>
+  </p>
   
     <p>
       <mat-form-field class="profile-full-width" appearance="fill">
         <mat-label>Zona</mat-label>
-            <input matInput type="string"  formControlName="zona" >
+            <input matInput type="string" disabled value={{zonas[zona].nombre}}>
       </mat-form-field>
     </p>
   
