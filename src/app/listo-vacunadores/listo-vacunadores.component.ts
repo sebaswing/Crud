@@ -8,6 +8,8 @@ import { VacunatorioService } from '../services/vacunatorio.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AgregarVacunadorComponent } from '../agregar-vacunador/agregar-vacunador.component'
 import { DetalleVacunadorComponent } from '../detalle-vacunador/detalle-vacunador.component';
+import { element } from 'protractor';
+import { VacunadoresService } from '../services/vacunadores.service';
 
 @Component({
   selector: 'app-listo-vacunadores',
@@ -25,7 +27,7 @@ export class ListoVacunadoresComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _usuarioService: VacunatorioService,private _snackBar: MatSnackBar,public dialog: MatDialog) { }
+  constructor(private _usuarioService: VacunatorioService, private vacunadorService: VacunadoresService,private _snackBar: MatSnackBar,public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.cargarVacunadores();
@@ -53,7 +55,7 @@ export class ListoVacunadoresComponent implements OnInit {
     })
   }
 
-  eliminarUsuario(index: number){
+  eliminarUsuario(element: Vacunador){
     //Confirmar si desea eliminar
     let confirmacion : Boolean = false;
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog);
@@ -63,13 +65,31 @@ export class ListoVacunadoresComponent implements OnInit {
       if( result){
         //MOMENTANEO::: eliminar usuario de este lado no tiene id, entonces se usan las posiciones del arregla para poder hacerlo
         //en todo caso, en el servicio para el backend, ya podemos insertar todo para que lo haga de ese lado
-      this._usuarioService.eliminarVacunador(index);
-      this.cargarVacunadores();
-      this._snackBar.open('El Vacunador ha sido eliminado con éxito', '', {
-        duration: 2500,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom',
-      });
+        this._usuarioService.cantVacunadoresZona(element.centro_vacunatorio).subscribe(response => {
+          if (response > 1 ){
+            element.borrado = true
+            this.vacunadorService.updateVacunador(element).subscribe(result  =>{
+              this.cargarVacunadores();
+              this._snackBar.open('El Vacunador ha sido eliminado con éxito', '', {
+                duration: 2500,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+              });
+            })
+            
+          }
+          this._snackBar.open('El Vacunador no se puede eliminar, hay solo un vacunador asignado a la zona', '', {
+            duration: 2500,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+          });
+        })
+        console.log(element)
+        
+
+        // this._usuarioService.eliminarVacunador(index);
+        
+       
       }
     });
 
